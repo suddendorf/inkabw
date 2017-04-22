@@ -1,0 +1,35 @@
+<div class="container-fluid" style="background-color:#d0d0d0">
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <!--th align="right">Id</th-->
+      <th align="center">Phase</th>
+      <th align="center">Projektname</th>
+      <th align="center">Projektschlüssel</th>
+      <th align="center">Beginn</th>
+      <th align="center">Ende</th>
+      <th align="center">Projektleiter</th>
+      <th align="center">Kosten</th>
+      <th align="center">Status</th>
+      <th class="pull-right"></th>
+
+    </thead>
+    <tbody>
+
+      <tr *ngFor="let p of projekte" (mousedown)="onSelection(p)">
+        <!--td align="center">{{user.id}}</td-->
+        <td>{{p.phase}}</td>
+     p   <td>
+          <div class="pull-right">
+            <!--a routerLink="/user/{{user.id}}" ><i class="fa fa-plus-circle fa-2x" style="color:green"> </i></a-->
+            <a class="enlarge " data-toggle="tooltip" title="bearbeiten" (click)="update(user)"> <i class="fa fa-dot-circle-o fa-2x" style="color:orange"> </i></a>
+            <a class="enlarge " data-toggle="tooltip" title="löschen" (click)="delete(user)"> <i class="fa fa-eraser fa-2x" style="color:#bb0000"> </i></a>
+            <!--a class="enlarge " data-toggle="tooltip" title="bearbeiten" (click)="update(user)"> <span class="glyphicon glyphicon-pencil">&nbsp;</span></a>
+          <a class="enlarge " data-toggle="tooltip" title="löschen" (click)="delete(user)"> <span class="">&nbsp;</span></a-->
+          </div>
+        </td>
+        <!--td align="right"><button (click)="edit(user)">edit</button></td-->
+      </tr>
+    </tbody>
+  </table>
+</div>

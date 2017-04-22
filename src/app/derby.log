@@ -1,0 +1,18 @@
+----------------------------------------------------------------
+Fri Apr 21 12:47:33 CEST 2017:
+Booten von Derby-Version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): Instanz a816c00e-015b-901f-c5b2-00001b10c8f0
+für Datenbankverzeichnis /mnt/sdb1/home/suddendorf/angular/inka/src/app/db mit Class Loader WebappClassLoader
+  context: SQLServer
+  delegate: false
+----------> Parent Classloader:
+java.net.URLClassLoader@7440e464
+
+Geladen aus file:/home/suddendorf/workspaceWeb/.metadata/.plugins/org.eclipse.wst.server.core/tmp1/wtpwebapps/SQLServer/WEB-INF/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_60-b27
+user.dir=/mnt/sdb1/home/suddendorf/angular/inka/src/app
+os.name=Linux
+os.arch=amd64
+os.version=4.4.0-72-generic
+derby.system.home=null
+Datenbank-Class Loader wurde gestartet - derby.database.classpath=''

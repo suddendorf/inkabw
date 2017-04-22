@@ -1,0 +1,127 @@
+<div class="container-fluid" style="background-color:#d0d0d0">
+  <h3>Wirtschaftseinheit</h3>
+
+  <form class="form-horizontal">
+    <fieldset>
+      <div class="row ">
+        <div class="form-group col-sm-5">
+          <label for="weBezeichnung" class="control-label col-xs-3 "  >WE-Bezeichnung</label>
+          <div class="col-xs-9">
+            <input type="text" class="form-control" id="weBezeichnung" size=30 required [(ngModel)]="model.bezeichnung" name="weBezeichnung" disabled>
+          </div>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="nutzung" class="control-label col-xs-4 ">Zuständigkeit</label> 
+          <div class="col-xs-8">
+            <input type="text" class="form-control" id="nutzung" size=30 required [(ngModel)]="model.nutzung" name="nutzung" disabled>
+          </div>
+        </div>
+        <div class="form-group col-sm-4">
+          <label for="kompzBauMgmt" class="control-label col-xs-6 ">Kompz BauMgmt</label>
+          <div class="col-xs-6">
+            <select class="form-control" id="kompzBauMgmt">
+              <option>Hannover </option>
+              <option>Kiel</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Reihe -->
+      <div class="row">
+        <div class="form-group col-sm-2">
+          <label for="weNrBw" class="col-xs-5 control-label ">WE-Nr.Bw</label>
+          <div class="col-xs-7">
+            <input type="text" class="form-control" id="weNrBw" size=30 required [(ngModel)]="model.weNrBw" name="weNrBw" disabled>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="weNrBima" class="control-label col-xs-5">BImA</label>
+          <div class="col-xs-7">
+            <input type="text" class="form-control" id="weNrBima" size=30 required [(ngModel)]="model.weNrBima" name="weNrBima" disabled> 
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="bwdlz" class="control-label col-xs-4 ">BwDLZ</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" id="bwdlz" size=30 required [(ngModel)]="model.bwdlz" name="bwdlz" disabled>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <label for="bimaFm" class="control-label col-xs-6 ">Zuständigk. BImA FM</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="bimaFm" size=30 required [(ngModel)]="model.bimaFm" name="bimaFm" disabled>
+          </div>
+        </div>
+      </div>
+      <!-- 3. Reihe -->
+      <div class="row">
+        <div class="form-group col-sm-1">
+          <label for="bundesland" class="col-xs-5 control-label ">BL</label>
+          <div class="col-xs-7">
+            <input type="text" class="form-control" id="bundesland" size=30 required [(ngModel)]="model.bundesland" name="bundesland" disabled>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-1">
+          <label for="plz" class="control-label col-xs-4">PLZ</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" id="plz" size=5 required [(ngModel)]="model.plz" name="plz" disabled>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="ort" class="control-label col-xs-6 ">Ort</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="ort" size=30 required [(ngModel)]="model.ort" name="ort" disabled>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="regBez" class="control-label col-xs-4 ">RegBez.</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" id="regBez" size=30 required [(ngModel)]="model.regBez" name="regBez" disabled>
+          </div>
+        </div>
+
+
+        <div class="form-group col-sm-4">
+          <label for="ffe" class="control-label col-xs-6 ">FfE</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="ffe" size=30 required [(ngModel)]="model.ffe" name="ffe" disabled>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Reihe -->
+      <div class="row">
+        <div class="form-group col-sm-5">
+          <label for="flaeche" class="col-xs-9 control-label ">Fläche[ha]</label>
+          <div class="col-xs-3">
+            <input type="text" class="form-control" id="flaeche" size=5 required [(ngModel)]="model.flaeche" name="flaeche" disabled>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="hbt" class="control-label col-xs-4 ">HBT</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" id="hbt" size=30 required [(ngModel)]="model.hbt" name="hbt" disabled>
+          </div>
+        </div>
+
+
+        <div class="form-group col-sm-4">
+          <label for="bde" class="control-label col-xs-6 ">BdE</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="bde" size=30 required [(ngModel)]="model.bde" name="bde" disabled>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>

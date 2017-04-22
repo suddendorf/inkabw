@@ -1,0 +1,118 @@
+<div class="container-fluid">
+  <h3>Abwasserspezifische Informationen zur WE</h3>
+  <form class="form-horizontal">
+    <fieldset>
+
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <label for="awtVorhanden" class="control-label col-xs-10 ">Entwässerungssys vorhanden</label>
+            <input type="checkbox" class=" col-xs-2 text-left" id="awtVorhanden" size=30 required [(ngModel)]="model.awtVorhanden" name="awtVorhanden">
+          
+        </div>
+
+        <div class="form-group col-sm-2">
+          <label for="baujAwtanl" class="control-label col-xs-6 ">Baujahr</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="baujAwtanl" size=6 required [(ngModel)]="model.baujAwtanl" name="baujAwtanl">
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="gesGef1ueberpr" class="control-label col-xs-9 ">gesetzl. geford. Erstüberprüfung</label>
+          <div class="col-xs-3">
+            <input type="text" class="form-control" id="gesGef1ueberpr" size=30 required [(ngModel)]="model.gesGef1ueberpr" name="gesGef1ueberpr">
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <label for="datum1Untersuchung" class="control-label col-xs-6 ">Erstuntersuchung</label>
+          <div class="col-xs-6">
+            <input type="date" class="form-control" id="datum1Untersuchung" size=30 required [(ngModel)]="model.datum1Untersuchung" name="datum1Untersuchung">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 2. Reihe -->
+
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <label for="laengeNetz" class="control-label col-xs-9 ">gesamte Netzlänge [m]</label>
+          <div class="col-xs-3">
+            <input type="text" class="form-control" id="laengeNetz" size=30 required [(ngModel)]="model.laengeNetz" name="laengeNetz">
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <label for="artAbw" class="control-label col-xs-6 ">Abwasserart</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="artAbw" size=6 required [(ngModel)]="model.artAbw" name="artAbw">
+          </div>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <label for="datumLetzteUnters" class="control-label col-xs-6 ">letzte Untersuchung</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="datumLetzteUnters" size=30 required [(ngModel)]="model.datumLetzteUnters" name="datumLetzteUnters">
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Reihe -->
+
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <label for="wsz" class="control-label col-xs-6 ">WSZ</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="model.wsz" name="wsz">
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="wassergefStoffe" class="control-label col-xs-10 "> wassergefährdende Stoffe</label>
+          <input type="checkbox" class=" col-xs-2 text-left" id="wassergefStoffe" required [(ngModel)]="model.wassergefStoffe" name="wassergefStoffe">
+
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="ueberprFristen" class="control-label col-xs-6 ">Überprüfungsintervall [Jahre]</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="ueberprFristen" size=30 required [(ngModel)]="model.ueberprFristen" name="ueberprFristen">
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 4. Reihe -->
+
+      <div class="row">
+        <div class="form-group col-sm-3">
+          <label for="einlArt" class="control-label col-xs-6 ">Einleitungsart</label>
+          <div class="col-xs-6">
+            <input type="text" class="form-control" id="einlArt" size=6 required [(ngModel)]="model.einlArt" name="einlArt">
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="gba" class="control-label col-xs-10 "> Gewässerschutzbeauftr. erf.</label>
+          <input type="checkbox" class=" col-xs-2 text-left" id="gba" required [(ngModel)]="model.gba" name="gba">
+
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="naechstesLAK" class="control-label col-xs-9 ">nächstes LAK geplant [Jahr]</label>
+          <div class="col-xs-3">
+            <input type="number" class="form-control" id="naechstesLAK" size=4 required [(ngModel)]="model.naechstesLAK" name="naechstesLAK">
+          </div>
+        </div>
+
+        <div class="form-group col-sm-3">
+          <label for="naechsteUnters" class="control-label col-xs-8 ">nächste Untersuchung</label>
+          <div class="col-xs-4">
+            <input type="date" class="form-control" id="naechsteUnters" required [(ngModel)]="model.naechsteUnters" name="naechsteUnters">
+          </div>
+        </div>
+
+      </div>
+      <div class="enlarge " data-toggle="tooltip" title="speichern" (click)="update(user)" align="right"> <i class="fa fa-floppy-o fa-3x"> </i></div>
+    </fieldset>
+  </form>
+</div>
