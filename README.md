@@ -1,10 +1,17 @@
 Git Befehle
+
 git clone https://github.com/suddendorf/inkabw.git
+
 git config --global user.name "Suddendorf"
+
 git config --global user.email "suddendorf@sddb.de"
+
 git add . #fügt neue Dateien hinzu und löscht und aktualisiert(?)
+
 git commit -m'kommentar' #commit im lokalen repository  
+
 git push #commit im zentralen repository
+
 git pull #aktualisieren der lokalen Dateien
 
 # Inka Berichtswesen
