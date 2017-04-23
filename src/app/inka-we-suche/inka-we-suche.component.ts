@@ -11,7 +11,6 @@ import { WE } from '../we';
 })
 export class InkaWeSucheComponent implements OnInit {
   wes: WE[];
-  public errorMessage: String;
 
   constructor(private router: Router, private service: DataService) { }
 
@@ -25,8 +24,13 @@ export class InkaWeSucheComponent implements OnInit {
     this.service.searchWE()
       .subscribe(
       wes => this.wes = wes,
-      error => this.errorMessage = <any>error);
+      error => this.getError(error));
 
+
+  }
+  getError(s: any) {
+    console.log('Fehler: ' + s);
+    this.router.navigate(['/error', s]);
 
   }
   onSelection(u: WE) {

@@ -16,15 +16,18 @@ import { InkaLakAComponent } from './inka-lak-a/inka-lak-a.component';
 import { InkaWeSucheComponent } from './inka-we-suche/inka-we-suche.component';
 import { InkaLakBComponent } from './inka-lak-b/inka-lak-b.component';
 import { InkaLakFklComponent } from './inka-lak-fkl/inka-lak-fkl.component';
+import { ErrorComponent } from './error/error.component';
 
 
 const appRoutes: Routes = [
-  { path: 'inka-we', component: Inka2WeComponent },
+  { path: '', component: ErrorComponent },
+ { path: 'inka-we', component: Inka2WeComponent },
   { path: 'inka-we-suche', component: InkaWeSucheComponent },
   { path: 'inka-admin/:id', component: InkaAdminComponent },
   { path: 'inka-lak-a', component: InkaLakAComponent },
   { path: 'inka-lak-b', component: InkaLakBComponent },
   { path: 'inka-lak-fkl', component: InkaLakFklComponent },
+  { path: 'error/:errorMessage', component: ErrorComponent },
   { path: '**', component: InkaWeSucheComponent }
 ];
 
@@ -39,7 +42,8 @@ const appRoutes: Routes = [
     InkaLakAComponent,
     InkaWeSucheComponent,
     InkaLakBComponent,
-    InkaLakFklComponent
+    InkaLakFklComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
