@@ -8,11 +8,11 @@ import { WE } from './we';
 @Injectable()
 export class DataService {
 
-  private urlWE: string = "http://localhost:8182/SQLServer/SQLServlet";
+  private urlWE: string = 'http://localhost:8181/SQLServer/SQLServlet';
   constructor(private http: Http) { }
 
   public searchWEx(): Observable<Array<WE>> {
-    return this.http.get(this.urlWE + "Suche", { withCredentials: true })
+    return this.http.get(this.urlWE + 'Suche', { withCredentials: true })
       .map(this.extractWE)
       .catch(this.handleError);
   }
@@ -40,7 +40,7 @@ export class DataService {
 
   public searchWE(): Observable<Array<WE>> {
     let params: URLSearchParams = new URLSearchParams();
-    params.set('sql', "select liegenschaft_nr \"liegenschaftNr\", 0 \"weNrBw\",1 \"weNrBima\",bezeichnung \"bezeichnung\" from admin_liegenschaft where rownum <10 order by 1");
+    params.set('sql', 'select liegenschaft_nr \"liegenschaftNr\", 0 \"weNrBw\",1 \"weNrBima\",bezeichnung \"bezeichnung\" from admin_liegenschaft where rownum <5 order by 1');
 
     return this.http.get(this.urlWE, {
       search: params

@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {DataService} from '../data.service';
+import { DataService } from '../data.service';
 
-import {WE} from '../we';
+import { WE } from '../we';
 @Component({
   selector: 'app-inka-we-suche',
-   providers: [DataService],
+  providers: [DataService],
   templateUrl: './inka-we-suche.component.html',
   styleUrls: ['./inka-we-suche.component.css']
 })
 export class InkaWeSucheComponent implements OnInit {
-  wes:WE[];
+  wes: WE[];
   public errorMessage: String;
-  
+
   constructor(private router: Router, private service: DataService) { }
 
   ngOnInit() {
-       console.log('init WE Suche');
-     this.search();
- 
+    console.log('init WE Suche');
+    this.search();
+
   }
   search() {
     this.wes = new Array();
@@ -30,6 +30,11 @@ export class InkaWeSucheComponent implements OnInit {
 
   }
   onSelection(u: WE) {
-    //console.log("select:" + JSON.stringify(u));
+    // console.log("select:" + JSON.stringify(u));
+  }
+
+  update(we: WE) {
+    console.log('WE-Suche: ' + we);
+    this.router.navigate(['/inka-admin', we]);
   }
 }

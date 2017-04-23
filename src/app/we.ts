@@ -1,23 +1,27 @@
 export class WE {
-    private _liegenschaftNr:string='105188';
-    private _bezeichnung: string = "Immelmann Kaserne";
-    private _nutzung: string = "nutzung";
+    private _liegenschaftId: string = 'id';
+    private _liegenschaftNr: string = '105188';
+    private _bezeichnung: string = 'Immelmann Kaserne';
+    private _nutzung: string = 'nutzung';
 
-    private _kompzBauMgmt: string = "Kompetenzzentrum Hannover";
-    private _weNrBw: string = "00432";
-    private _weNrBima: string = "744711";
-    private _bwdlz: string = "BwDLz Celle";
-    private _bimaFm: string = "bimafm";
-    private _bundesland: string = "Niedersachsen";
-    private _plz: string = "31832";
-    private _ort: string = "Springe";
-    private _regBez: string = "";
-    private _ffe: string = "";
-    private _flaeche: string = "57";
-    private _hbt: string = "";
-    private _bde: string = "";
+    private _kompzBauMgmt: string = 'Kompetenzzentrum Hannover';
+    private _weNrBw: string = '00432';
+    private _weNrBima: string = '744711';
+    private _bwdlz: string = 'BwDLz Celle';
+    private _bimaFm: string = 'bimafm';
+    private _bundesland: string = 'Niedersachsen';
+    private _plz: string = '31832';
+    private _ort: string = 'Springe';
+    private _regBez: string = '';
+    private _ffe: string = '';
+    private _flaeche: string = '57';
+    private _hbt: string = '';
+    private _bde: string = '';
 
 
+    get liegenschaftId(): string {
+        return this._liegenschaftId;
+    }
     get liegenschaftNr(): string {
         return this._liegenschaftNr;
     }
