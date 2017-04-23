@@ -35,6 +35,8 @@ export class InkaWeSucheComponent implements OnInit {
 
   update(we: WE) {
     console.log('WE-Suche: ' + we);
-    this.router.navigate(['/inka-admin', we]);
+    const id = we.liegenschaftId;
+    console.log('WE-Suche: ' + we.liegenschaftId);
+    this.router.navigate(['/inka-admin', id]);
   }
 }

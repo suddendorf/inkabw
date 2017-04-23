@@ -1,5 +1,5 @@
 export class WE {
-    private _liegenschaftId: string = 'id';
+    private _liegenschaftId: string = 'id0';
     private _liegenschaftNr: string = '105188';
     private _bezeichnung: string = 'Immelmann Kaserne';
     private _nutzung: string = 'nutzung';

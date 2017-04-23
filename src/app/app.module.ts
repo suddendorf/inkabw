@@ -21,7 +21,7 @@ import { InkaLakFklComponent } from './inka-lak-fkl/inka-lak-fkl.component';
 const appRoutes: Routes = [
   { path: 'inka-we', component: Inka2WeComponent },
   { path: 'inka-we-suche', component: InkaWeSucheComponent },
-  { path: 'inka-admin', component: InkaAdminComponent },
+  { path: 'inka-admin/:id', component: InkaAdminComponent },
   { path: 'inka-lak-a', component: InkaLakAComponent },
   { path: 'inka-lak-b', component: InkaLakBComponent },
   { path: 'inka-lak-fkl', component: InkaLakFklComponent },

@@ -17,9 +17,14 @@ export class DataService {
       .catch(this.handleError);
   }
   private extractWE(res: Response): Array<WE> {
-    console.log('extract WE'+res);
+    console.log('extract WE' + res);
     let body: Array<WE> = res.json();
     return body;
+  }
+  private extractSingleWE(res: Response): WE{
+    console.log('extract WE' + res);
+    const body: Array<WE> = res.json();
+    return body[0];
   }
   private handleError(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
@@ -39,12 +44,25 @@ export class DataService {
   }
 
   public searchWE(): Observable<Array<WE>> {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('sql', 'select liegenschaft_nr \"liegenschaftNr\", 0 \"weNrBw\",1 \"weNrBima\",bezeichnung \"bezeichnung\" from admin_liegenschaft where rownum <5 order by 1');
+    const params: URLSearchParams = new URLSearchParams();
+    params.set('sql', 'select liegenschaft_id \"liegenschaftId\",liegenschaft_nr \"liegenschaftNr\", 0 \"weNrBw\",1 \"weNrBima\",bezeichnung \"bezeichnung\" from admin_liegenschaft where rownum <5 order by 1');
 
     return this.http.get(this.urlWE, {
       search: params
     }).map(this.extractWE)
+      .catch(this.handleError);
+  }
+
+  public readWE(id: string): Observable<WE> {
+    const params: URLSearchParams = new URLSearchParams();
+    let sql: string = 'select liegenschaft_id \"liegenschaftId\",liegenschaft_nr \"liegenschaftNr\", 0 \"weNrBw\",1 \"weNrBima\",bezeichnung \"bezeichnung\" from admin_liegenschaft where liegenschaft_id=\'';
+    sql += id;
+    sql += '\'';
+    params.set('sql', sql);
+
+    return this.http.get(this.urlWE, {
+      search: params
+    }).map(this.extractSingleWE)
       .catch(this.handleError);
   }
 }
