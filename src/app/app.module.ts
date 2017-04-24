@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { InkaAdminComponent } from './inka-admin/inka-admin.component';
 import { InkaLakListeComponent } from './inka-lak-liste/inka-lak-liste.component';
 import { Inka2AbwasserComponent } from './inka2-abwasser/inka2-abwasser.component';
 import { Inka2WeComponent } from './inka2-we/inka2-we.component';
@@ -21,12 +20,12 @@ import { ErrorComponent } from './error/error.component';
 
 const appRoutes: Routes = [
   { path: '', component: ErrorComponent },
- { path: 'inka-we', component: Inka2WeComponent },
+ { path: 'inka-we/:id', component: Inka2WeComponent },
   { path: 'inka-we-suche', component: InkaWeSucheComponent },
-  { path: 'inka-admin/:id', component: InkaAdminComponent },
-  { path: 'inka-lak-a', component: InkaLakAComponent },
-  { path: 'inka-lak-b', component: InkaLakBComponent },
-  { path: 'inka-lak-fkl', component: InkaLakFklComponent },
+  { path: 'inka-admin/:id', component: Inka2AdminComponent },
+  { path: 'inka-lak-a/:id', component: InkaLakAComponent },
+  { path: 'inka-lak-b/:id', component: InkaLakBComponent },
+  { path: 'inka-lak-fkl/:id', component: InkaLakFklComponent },
   { path: 'error/:errorMessage', component: ErrorComponent },
   { path: '**', component: InkaWeSucheComponent }
 ];
@@ -34,7 +33,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    InkaAdminComponent,
     InkaLakListeComponent,
     Inka2AbwasserComponent,
     Inka2WeComponent,

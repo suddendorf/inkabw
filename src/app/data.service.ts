@@ -11,14 +11,10 @@ import { WE } from './we';
 @Injectable()
 export class DataService {
 
-  private urlWE = 'http://localhost:8181/SQLServer/SQLServlet';
+  private urlWE = 'http://localhost:8182/SQLServer/SQLServlet';
   constructor(private http: Http, private router: Router) { }
 
-  public searchWEx(): Observable<Array<WE>> {
-    return this.http.get(this.urlWE + 'Suche', { withCredentials: true })
-      .map(this.extractWE)
-      .catch(this.handleError);
-  }
+
   private extractWE(res: Response): Array<WE> {
     console.log('extract WE' + res);
     const body: Array<WE> = res.json();
@@ -51,7 +47,12 @@ export class DataService {
 
   public searchWE(): Observable<Array<WE>> {
     const params: URLSearchParams = new URLSearchParams();
-    params.set('sql', 'select liegenschaftid \"liegenschaftId\",liegenschaft_nr \"liegenschaftNr\", 0 \"weNrBw\",1 \"weNrBima\",bezeichnung \"bezeichnung\" from admin_liegenschaft where rownum <5 order by 1');
+    const sql = "select l.liegenschaft_id,liegenschaft_nr,bezeichnung,ort,strasse,plz,herkunft_id \"weNrBw\"" +
+      " from admin_liegenschaft l, herkunft_liegenschaft hl " +
+      " where  l.liegenschaft_id=hl.liegenschaft_id" +
+      " and herkunft_art='SDM'" +
+      " order by 2";
+    params.set('sql', sql);
 
     return this.http.get(this.urlWE, {
       search: params
@@ -61,7 +62,7 @@ export class DataService {
 
   public readWE(id: string): Observable<WE> {
     const params: URLSearchParams = new URLSearchParams();
-    let sql = 'select liegenschaft_id \"liegenschaftId\",liegenschaft_nr \"liegenschaftNr\", 0 \"weNrBw\",1 \"weNrBima\",bezeichnung \"bezeichnung\" from admin_liegenschaft where liegenschaft_id=\'';
+    let sql = 'select * from admin_liegenschaft where liegenschaft_id=\'';
     sql += id;
     sql += '\'';
     params.set('sql', sql);
