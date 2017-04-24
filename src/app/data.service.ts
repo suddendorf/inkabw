@@ -12,6 +12,7 @@ import { WE } from './we';
 export class DataService {
 
   private urlWE = 'http://localhost:8182/SQLServer/SQLServlet';
+  private urlSearch = 'http://localhost:8182/SQLServer/INKABWServlet';
   constructor(private http: Http, private router: Router) { }
 
 
@@ -45,12 +46,13 @@ export class DataService {
 
   }
 
-  public searchWE(): Observable<Array<WE>> {
+  public searchWE2(we: WE): Observable<Array<WE>> {
     const params: URLSearchParams = new URLSearchParams();
-    const sql = "select l.liegenschaft_id,liegenschaft_nr,bezeichnung,ort,strasse,plz,herkunft_id \"weNrBw\"" +
-      " from admin_liegenschaft l, herkunft_liegenschaft hl " +
+    const sql = "select l.liegenschaft_id,l.liegenschaft_nr,l.bezeichnung,l.ort,l.strasse,l.plz,herkunft_id \"we_nr_bw\", bima_we_nr \"we_nr_bima\"" +
+      " from admin_liegenschaft l, herkunft_liegenschaft hl , adm_sdm_liegenschaft_staende sl" +
       " where  l.liegenschaft_id=hl.liegenschaft_id" +
       " and herkunft_art='SDM'" +
+      " and sl.we_nr=hl.herkunft_id" +
       " order by 2";
     params.set('sql', sql);
 
@@ -60,9 +62,28 @@ export class DataService {
       .catch(this.handleError);
   }
 
+  public searchWE(we: WE): Observable<Array<WE>> {
+    console.log("Search WE");
+    console.log(JSON.stringify(we));
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let parms: string = JSON.stringify({ action: "search", we: we });
+    return this.http.post(this.urlSearch, parms, options)
+      .map(this.extractWE)
+      .catch(this.handleError);
+  }
   public readWE(id: string): Observable<WE> {
     const params: URLSearchParams = new URLSearchParams();
-    let sql = 'select * from admin_liegenschaft where liegenschaft_id=\'';
+    let sql = "select l.liegenschaft_id,l.liegenschaft_nr,l.bezeichnung,l.ort,l.strasse,l.plz,herkunft_id \"we_nr_bw\", bwdlz.bwdlz||' '||bwdlz.bezeichnung \"bwdlz\" ,kompz.bezeichnung \"kompz\" " +
+      " ,bima_we_nr \"we_nr_bima\" ,'-' \"bezeichnung_bima\" ,sl.lgbez \"bezeichnung_bw\"" +
+      " from admin_liegenschaft l, herkunft_liegenschaft hl , adm_sdm_liegenschaft_staende sl, adm_sdm_bwdlz bwdlz, adm_sdm_kompz kompz" +
+      " where  l.liegenschaft_id=hl.liegenschaft_id" +
+      " and herkunft_art='SDM'" +
+      " and sl.we_nr=hl.herkunft_id" +
+      " and kompz.kompz_id=sl.kompz_id" +
+      " and sl.sdm_stand=(select sdm_stand from adm_sdm_aktuell where status ='A')" +
+      " and bwdlz.bwdlz=sl.bwdlz" +
+      " and l.liegenschaft_id=\'";
     sql += id;
     sql += '\'';
     params.set('sql', sql);

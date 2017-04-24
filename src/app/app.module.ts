@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+import {AUTH_PROVIDERS} from './security.service';
+import {SecurityService} from './security.service';
+import {LoggedInGuard} from './security/logged-in-guard';
 import { AppComponent } from './app.component';
 import { InkaLakListeComponent } from './inka-lak-liste/inka-lak-liste.component';
 import { Inka2AbwasserComponent } from './inka2-abwasser/inka2-abwasser.component';
@@ -16,18 +18,21 @@ import { InkaWeSucheComponent } from './inka-we-suche/inka-we-suche.component';
 import { InkaLakBComponent } from './inka-lak-b/inka-lak-b.component';
 import { InkaLakFklComponent } from './inka-lak-fkl/inka-lak-fkl.component';
 import { ErrorComponent } from './error/error.component';
+import { LoginComponent } from './login/login.component';
+import {DataTableModule} from "angular2-datatable";
 
 
 const appRoutes: Routes = [
-  { path: '', component: ErrorComponent },
- { path: 'inka-we/:id', component: Inka2WeComponent },
-  { path: 'inka-we-suche', component: InkaWeSucheComponent },
-  { path: 'inka-admin/:id', component: Inka2AdminComponent },
-  { path: 'inka-lak-a/:id', component: InkaLakAComponent },
-  { path: 'inka-lak-b/:id', component: InkaLakBComponent },
-  { path: 'inka-lak-fkl/:id', component: InkaLakFklComponent },
+  { path: '', component: InkaWeSucheComponent ,canActivate:[LoggedInGuard]},
+  { path: 'login', component: LoginComponent },
+ { path: 'inka-we/:id', component: Inka2WeComponent ,canActivate:[LoggedInGuard]},
+  { path: 'inka-we-suche', component: InkaWeSucheComponent ,canActivate:[LoggedInGuard]},
+  { path: 'inka-admin/:id', component: Inka2AdminComponent ,canActivate:[LoggedInGuard]},
+  { path: 'inka-lak-a/:id', component: InkaLakAComponent ,canActivate:[LoggedInGuard]},
+  { path: 'inka-lak-b/:id', component: InkaLakBComponent ,canActivate:[LoggedInGuard]},
+  { path: 'inka-lak-fkl/:id', component: InkaLakFklComponent ,canActivate:[LoggedInGuard]},
   { path: 'error/:errorMessage', component: ErrorComponent },
-  { path: '**', component: InkaWeSucheComponent }
+  { path: '**', component: InkaWeSucheComponent,canActivate:[LoggedInGuard] }
 ];
 
 @NgModule({
@@ -41,15 +46,17 @@ const appRoutes: Routes = [
     InkaWeSucheComponent,
     InkaLakBComponent,
     InkaLakFklComponent,
-    ErrorComponent
+    ErrorComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    DataTableModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [{provide: LocationStrategy,useClass:HashLocationStrategy}],
+  providers: [SecurityService, LoggedInGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

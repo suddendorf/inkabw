@@ -3,7 +3,7 @@
 
   <form class="form-horizontal">
     <fieldset>
-      <p>{{we.bezeichnung}}</p>
+      <p>{{we.liegenschaftNr}} {{we.bezeichnung}}</p>
       <p>{{we.plz}} {{we.ort}}  {{we.bundesland}} </p>
       <div style="background-color:#50a050; margin:5px; ">
         <p ><strong>
@@ -11,10 +11,12 @@
           </strong>
         </p>
         <p>
-          WE: {{we.weNrBw}}
+          WE: {{we.weNrBw}} {{we.bezeichnungBw}}
         </p>
         <p>
-          {{we.bwdlz}}
+          Kompetenzzentrum {{we.kompz}}
+        </p><p>
+          BwDLZ:{{we.bwdlz}}
         </p>
       </div>
      <div style="background-color:#9090f0; margin:5px; ">
@@ -23,7 +25,7 @@
           </strong>
         </p>
         <p>
-          WE: {{we.weNrBima}}
+          WE: {{we.weNrBima}} {{we.bezeichnungBima}}
         </p>
         <p>
           {{we.bimaFm}}

@@ -11,17 +11,30 @@ import { WE } from '../we';
 })
 export class InkaWeSucheComponent implements OnInit {
   wes: WE[];
+  we: WE;
 
-  constructor(private router: Router, private service: DataService) { }
+  constructor(private router: Router, private service: DataService) { 
+    console.log('Konstruktor WE Suche');
+    localStorage.removeItem('we');
+  }
 
   ngOnInit() {
     console.log('init WE Suche');
-    this.search();
-
+    console.log('init WE Suche:' + this.we);
+    if (this.we == null) {
+      this.we = new WE();      
+    }
+    const sWe: string = localStorage.getItem('we.bezeichnung');
+    if ( sWe!=null){
+      this.we.bezeichnung = sWe;
+      this.search();
+    }
   }
+
   search() {
+    console.log('search');
     this.wes = new Array();
-    this.service.searchWE()
+    this.service.searchWE(this.we)
       .subscribe(
       wes => this.wes = wes,
       error => this.getError(error));
@@ -35,6 +48,7 @@ export class InkaWeSucheComponent implements OnInit {
   }
   onSelection(u: WE) {
     // console.log("select:" + JSON.stringify(u));
+    localStorage.setItem('we.bezeichnung', this.we.bezeichnung);
   }
 
   navigate(we: WE) {
