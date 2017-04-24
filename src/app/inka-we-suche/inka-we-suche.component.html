@@ -48,10 +48,18 @@
     <!--th align="center">Liegenschafts-Nr.</th>
     <th align="center">Bundeswehr WE</th>
     <th align="center">BIMA WE</th-->
-    <th align="center"><mfDefaultSorter by="liegenschaftNr">Liegenschafts-Nr.</mfDefaultSorter></th>
-    <th align="center"><mfDefaultSorter by="weNrBw">Bundeswehr WE</mfDefaultSorter></th>
-    <th align="center"><mfDefaultSorter by="weNrBima">BIMA WE</mfDefaultSorter></th>
-    <th align="center"><mfDefaultSorter by="bezeichnung">Bezeichnung</mfDefaultSorter></th>
+    <th align="center">
+      <mfDefaultSorter by="liegenschaftNr">Lieg.-Nr.</mfDefaultSorter>
+    </th>
+    <th align="center">
+      <mfDefaultSorter by="weNrBw">BW WE</mfDefaultSorter>
+    </th>
+    <th align="center">
+      <mfDefaultSorter by="weNrBima">BIMA WE</mfDefaultSorter>
+    </th>
+    <th align="center">
+      <mfDefaultSorter by="bezeichnung">Bezeichnung</mfDefaultSorter>
+    </th>
     <th class="pull-right"></th>
 
   </thead>
@@ -70,4 +78,11 @@
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="5">
+        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+  </tfoot>
 </table>
