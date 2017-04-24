@@ -12,7 +12,7 @@ import { WE } from '../we';
 export class InkaWeSucheComponent implements OnInit {
   wes: WE[];
   we: WE;
-
+  loading:boolean=false;
   constructor(private router: Router, private service: DataService) { 
     console.log('Konstruktor WE Suche');
     localStorage.removeItem('we');
@@ -21,6 +21,7 @@ export class InkaWeSucheComponent implements OnInit {
   ngOnInit() {
     console.log('init WE Suche');
     console.log('init WE Suche:' + this.we);
+    this.loading=false;
     if (this.we == null) {
       this.we = new WE();      
     }
@@ -33,13 +34,19 @@ export class InkaWeSucheComponent implements OnInit {
 
   search() {
     console.log('search');
+    this.loading=true;
+    
     this.wes = new Array();
     this.service.searchWE(this.we)
       .subscribe(
-      wes => this.wes = wes,
+      wes => this.getWEs(wes),
       error => this.getError(error));
 
 
+  }
+  private getWEs(wes:Array<WE>){
+    this.wes=wes;
+    this.loading=false
   }
   getError(s: any) {
     console.log('Fehler: ' + s);
