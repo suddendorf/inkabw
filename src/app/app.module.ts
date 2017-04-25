@@ -21,7 +21,6 @@ import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import {DataTableModule} from "angular2-datatable";
 
-
 const appRoutes: Routes = [
   { path: '', component: InkaWeSucheComponent ,canActivate:[LoggedInGuard]},
   { path: 'login', component: LoginComponent },
