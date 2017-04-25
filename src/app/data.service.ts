@@ -8,6 +8,8 @@ import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
 
 import { WE } from './we';
+import { Abwasser } from './abwasser';
+
 @Injectable()
 export class DataService {
 
@@ -46,21 +48,7 @@ export class DataService {
 
   }
 
-  public searchWE2(we: WE): Observable<Array<WE>> {
-    const params: URLSearchParams = new URLSearchParams();
-    const sql = "select l.liegenschaft_id,l.liegenschaft_nr,l.bezeichnung,l.ort,l.strasse,l.plz,herkunft_id \"we_nr_bw\", bima_we_nr \"we_nr_bima\"" +
-      " from admin_liegenschaft l, herkunft_liegenschaft hl , adm_sdm_liegenschaft_staende sl" +
-      " where  l.liegenschaft_id=hl.liegenschaft_id" +
-      " and herkunft_art='SDM'" +
-      " and sl.we_nr=hl.herkunft_id" +
-      " order by 2";
-    params.set('sql', sql);
 
-    return this.http.get(this.urlWE, {
-      search: params
-    }).map(this.extractWE)
-      .catch(this.handleError);
-  }
 
   public searchWE(we: WE): Observable<Array<WE>> {
     console.log("Search WE");
@@ -76,7 +64,7 @@ export class DataService {
     const params: URLSearchParams = new URLSearchParams();
     let sql = "select l.liegenschaft_id,l.liegenschaft_nr,l.bezeichnung,l.ort,l.strasse,l.plz,herkunft_id \"we_nr_bw\", bwdlz.bwdlz||' '||bwdlz.bezeichnung \"bwdlz\" ,kompz.bezeichnung \"kompz\" " +
       " ,bima_we_nr \"we_nr_bima\" ,'-' \"bezeichnung_bima\" ,sl.lgbez \"bezeichnung_bw\"" +
-      " from admin_liegenschaft l, herkunft_liegenschaft hl , adm_sdm_liegenschaft_staende sl, adm_sdm_bwdlz bwdlz, adm_sdm_kompz kompz" +
+      " from admin_liegenschaft l, herkunft_liegenschaft hl , adm_sdm_liegenschaft_staende sl, adm_sdm_bwdlz_staende bwdlz, adm_sdm_kompz kompz" +
       " where  l.liegenschaft_id=hl.liegenschaft_id" +
       " and herkunft_art='SDM'" +
       " and sl.we_nr=hl.herkunft_id" +
@@ -91,6 +79,30 @@ export class DataService {
     return this.http.get(this.urlWE, {
       search: params
     }).map(this.extractSingleWE)
+      .catch(this.handleError);
+  }
+  private extractAbwasser(res: Response): Abwasser {
+    console.log('extract Abwasser' + res);
+    const body: Array<Abwasser> = res.json();
+    if (body) {
+      console.log("extracted Abwasser:"+JSON.stringify(body[0]));
+      return body[0];
+    }
+    return null;
+  }
+  public readAbw(id: string): Observable<Abwasser> {
+    console.log("Search ABW");
+    const params: URLSearchParams = new URLSearchParams();
+    let sql = "select * from abw_liegenschaft" +
+      " where liegenschaft_id=\'";
+    sql += id;
+    sql += '\'';
+    console.log(sql);
+    params.set('sql', sql);
+
+    return this.http.get(this.urlWE, {
+      search: params
+    }).map(this.extractAbwasser)
       .catch(this.handleError);
   }
 }

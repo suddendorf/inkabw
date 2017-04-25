@@ -1,95 +1,103 @@
 <div>
   <h3>Abwasserspezifische Informationen zur WE</h3>
-  <div class="enlarge " data-toggle="tooltip" title="speichern" (click)="update(user)" align="right"> <i class="fa fa-floppy-o fa-3x"> </i></div>
-
+  <div class="row">
+    <div class="enlarge col-sm-10 " data-toggle="tooltip" title=""  align="right">   </div>
+    <div class="enlarge col-sm-1 " data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right"> <i class="fa fa-floppy-o fa-2x" style="color:#0000ff; background-color: #ffffff">  </i></div>
+    <div class="enlarge col-sm-1" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right"> <i class="fa fa-eraser fa-2x" style="color:#bb0000"> </i></div>
+  </div>
   <form class="form form-horizontal">
     <fieldset>
       <div class="row">
-        <label for="awtVorhanden" class="control-label col-sm-8">Entwässerungssys vorhanden</label>
+        <label for="awtVorhanden" class="control-label col-sm-8">Entwässerungssys. vorhanden</label>
         <div class="col-sm-4">
-          <input type="checkbox" class="form-control  text-left" id="awtVorhanden" required [(ngModel)]="model.awtVorhanden" name="awtVorhanden">
+          <select class="input-large form-control" id="awtVorhanden" required [(ngModel)]="abw.awtVorhanden" name="awtVorhanden">
+              <!--option value="{{abw.awtVorhanden}}">{{abw.awtVorhanden}}</option-->
+              <option value="Ja" >Ja</option>
+              <option value="geringer Umfang">geringer Umfang</option>
+              <option value="Nein" selected="selected">Nein</option>
+              <option value="keine Angabe">keine Angabe</option>
+        </select>
         </div>
       </div>
       <div class="row">
         <label for="baujAwtanl" class="control-label col-sm-8">Baujahr</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control input4" id="baujAwtanl" size=4 maxlength=4 required [(ngModel)]="model.baujAwtanl"
-            name="baujAwtanl">
+          <input type="text" class="form-control input4" id="baujAwtanl" size=4 maxlength=4 required [(ngModel)]="abw.baujAwtanl" name="baujAwtanl">
         </div>
       </div>
       <div class="row">
         <label for="gesGef1ueberpr" class="control-label col-sm-8">gesetzl. geford. Erstüberprüfung</label>
         <div class="col-sm-4">
-          <input type="date" class="form-control" id="gesGef1ueberpr" [(ngModel)]="model.gesGef1ueberpr" name="gesGef1ueberpr">
+          <input type="date" class="form-control" id="gesGef1ueberpr" [(ngModel)]="abw.gesGef1ueberpr" name="gesGef1ueberpr">
         </div>
       </div>
 
       <div class="row">
         <label for="datum1Untersuchung" class="control-label col-sm-8">Erstuntersuchung</label>
         <div class="col-sm-4">
-          <input type="date" class="form-control" id="datum1Untersuchung" size=30 required [(ngModel)]="model.datum1Untersuchung" name="datum1Untersuchung">
+          <input type="date" class="form-control" id="datum1Untersuchung" size=30 required [(ngModel)]="abw.datum1Untersuchung" name="datum1Untersuchung">
         </div>
       </div>
 
       <div class="row">
         <label for="laengeNetz" class="control-label  col-sm-8">gesamte Netzlänge [m]</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="laengeNetz" size=30 required [(ngModel)]="model.laengeNetz" name="laengeNetz">
+          <input type="text" class="form-control" id="laengeNetz" size=30 required [(ngModel)]="abw.laengeNetz" name="laengeNetz">
         </div>
       </div>
       <div class="row">
         <label for="artAbw" class="control-label col-sm-4">Abwasserart</label>
         <div class="col-sm-8">
-          <input type="text" class="form-control" id="artAbw" required [(ngModel)]="model.artAbw" name="artAbw">
+          <input type="text" class="form-control" id="artAbw" required [(ngModel)]="abw.artAbw" name="artAbw">
         </div>
       </div>
       <div class="row">
         <label for="datumLetzteUnters" class="control-label  col-sm-8">letzte Untersuchung</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="datumLetzteUnters" size=30 required [(ngModel)]="model.datumLetzteUnters" name="datumLetzteUnters">
+          <input type="text" class="form-control" id="datumLetzteUnters" size=30 required [(ngModel)]="abw.datumLetzteUnters" name="datumLetzteUnters">
         </div>
       </div>
       <div class="row">
         <label for="wsz" class="control-label  col-sm-8">WSZ</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="model.wsz" name="wsz">
+          <input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz">
 
         </div>
       </div>
       <div class="row">
         <label for="wassergefStoffe" class="control-label  col-sm-8"> wassergefährdende Stoffe</label>
         <div class="col-sm-4">
-          <input type="checkbox" class="form-control text-left" id="wassergefStoffe" required [(ngModel)]="model.wassergefStoffe" name="wassergefStoffe">
+          <input type="checkbox" class="form-control text-left" id="wassergefStoffe" required [(ngModel)]="abw.wassergefStoffe" name="wassergefStoffe">
         </div>
       </div>
       <div class="row">
         <label for="ueberprFristen" class="control-label  col-sm-8">Überprüfungsintervall [Jahre]</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="ueberprFristen" size=30 required [(ngModel)]="model.ueberprFristen" name="ueberprFristen">
+          <input type="text" class="form-control" id="ueberprFristen" size=30 required [(ngModel)]="abw.ueberprFristen" name="ueberprFristen">
         </div>
       </div>
       <div class="row">
         <label for="einlArt" class="control-label  col-sm-8">Einleitungsart</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="einlArt" size=6 required [(ngModel)]="model.einlArt" name="einlArt">
+          <input type="text" class="form-control" id="einlArt" size=6 required [(ngModel)]="abw.einlArt" name="einlArt">
         </div>
       </div>
       <div class="row">
         <label for="gba" class="control-label  col-sm-8"> Gewässerschutzbeauftr. erf.</label>
         <div class="col-sm-4">
-          <input type="checkbox" class=" form-control text-left" id="gba" required [(ngModel)]="model.gba" name="gba">
+          <input type="checkbox" class=" form-control text-left" id="gba" required [(ngModel)]="abw.gba" name="gba">
         </div>
       </div>
       <div class="row">
         <label for="naechstesLAK" class="control-label col-sm-8">nächstes LAK geplant [Jahr]</label>
         <div class="col-sm-4">
-          <input type="number" class="form-control" id="naechstesLAK" size=4 required [(ngModel)]="model.naechstesLAK" name="naechstesLAK">
+          <input type="number" class="form-control" id="naechstesLAK" size=4 required [(ngModel)]="abw.naechstesLAK" name="naechstesLAK">
         </div>
       </div>
       <div class="row">
         <label for="naechsteUnters" class="control-label col-sm-8">nächste Untersuchung</label>
         <div class="col-sm-4">
-          <input type="date" class="form-control" id="naechsteUnters" required [(ngModel)]="model.naechsteUnters" name="naechsteUnters">
+          <input type="date" class="form-control" id="naechsteUnters" required [(ngModel)]="abw.naechsteUnters" name="naechsteUnters">
         </div>
       </div>
     </fieldset>
