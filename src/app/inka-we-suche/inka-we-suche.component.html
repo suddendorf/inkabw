@@ -1,6 +1,6 @@
 <div class="container-fluid" style="background-color:#d0d0d0">
-  <h3>Abwasserspezifische Informationen zur WE</h3>
-  <form class="form-horizontal">
+  <h3>Suche nach Wirtschaftseinheiten</h3>
+  <form class="form form-horizontal">
     <fieldset>
 
       <div class="row">
@@ -24,19 +24,26 @@
         <div class="form-group col-sm-1">
           <div class="pull-right">
             <a class="enlarge " data-toggle="tooltip" title="suchen" (click)="search()"> <i class="fa fa-dot-circle-o fa-2x" *ngIf="loading" style="color:red"> </i></a>
-            <a class="enlarge " data-toggle="tooltip" title="suchen" (click)="search()"> <i class="fa fa-dot-circle-o fa-2x" *ngIf="loading == false" style="color:green"> </i></a>
+            <a class="enlarge " data-toggle="tooltip" title="suchen" (click)="search()"> <i class="fa fa-dot-circle-o fa-2x" *ngIf="!loading" style="color:green"> </i></a>
             <!--a class="enlarge " data-toggle="tooltip" title="löschen" (click)="delete(we)"> <i class="fa fa-eraser fa-2x" style="color:#bb0000"> </i></a-->
           </div>
         </div>
       </div>
+
       <div class="row">
-        <div class="form-group col-sm-6">
-          <label for="imSDM" class="control-label col-xs-11 ">aktive Bundeswehr Liegenschaft:</label>
-          <input type="checkbox" class=" col-xs-1 text-left" id="imSDM" required [(ngModel)]="we.imSDM" name="imSDM">
+        <div class="form-group col-sm-3">
+          <label for="abwasserspezifischeInfos" class="control-label col-xs-10 ">abwasserspezifische Informationen:</label>
+          <input type="checkbox" class=" form-control  col-xs-2  " id="abwasserspezifischeInfos" required [(ngModel)]="we.abwasserspezifischeInfos"
+            name="abwasserspezifischeInfos">
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="imSDM" class="control-label col-xs-10 ">Bundeswehr Liegenschaft:</label>
+          <input type="checkbox" class=" form-control col-xs-2 text-left" id="imSDM" required [(ngModel)]="we.imSDM" name="imSDM">
         </div>
         <div class="form-group col-sm-6">
-          <label for="imBima" class="control-label col-xs-11 ">BImA Liegenschaft:</label>
-          <input type="checkbox" class=" col-xs-1 text-left" id="imBima" required [(ngModel)]="we.imBima" name="imBima">
+          <label for="imBima">BImA Liegenschaft:          </label>
+
+          <input type="checkbox" class=" form-control"  id="imBima" required [(ngModel)]="we.imBima" name="imBima">
         </div>
       </div>
     </fieldset>
@@ -89,5 +96,5 @@
   </tfoot>
 </table>
 <p align="center" style="color:gray" *ngIf="loading != false">Liegenschaften werden geladen</p>
-<p align="center" style="color:gray"  *ngIf="loading == false && wes!=null  && wes.length==0 ">keine Liegenschaften gefunden</p>
-<p align="center" style="color:gray"  *ngIf="loading == false && wes!=null  && wes.length>0 ">{{wes.length}} Liegenschaften gefunden</p>
+<p align="center" style="color:gray" *ngIf="loading == false && wes!=null  && wes.length==0 ">keine Liegenschaften gefunden</p>
+<p align="center" style="color:gray" *ngIf="loading == false && wes!=null  && wes.length>0 ">{{wes.length}} Liegenschaften gefunden</p>

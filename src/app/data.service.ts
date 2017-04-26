@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 
 import { WE } from './we';
 import { Abwasser } from './abwasser';
+import { Message } from './message';
 
 @Injectable()
 export class DataService {
 
-  private urlWE = 'http://localhost:8182/SQLServer/SQLServlet';
-  private urlSearch = 'http://localhost:8182/SQLServer/INKABWServlet';
+  private urlSQL = 'http://localhost:8182/SQLServer/SQLServlet';
+  private urlABW = 'http://localhost:8182/SQLServer/INKABWServlet';
   constructor(private http: Http, private router: Router) { }
 
 
@@ -56,7 +57,7 @@ export class DataService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let parms: string = JSON.stringify({ action: "search", we: we });
-    return this.http.post(this.urlSearch, parms, options)
+    return this.http.post(this.urlABW, parms, options)
       .map(this.extractWE)
       .catch(this.handleError);
   }
@@ -76,7 +77,7 @@ export class DataService {
     sql += '\'';
     params.set('sql', sql);
 
-    return this.http.get(this.urlWE, {
+    return this.http.get(this.urlSQL, {
       search: params
     }).map(this.extractSingleWE)
       .catch(this.handleError);
@@ -85,13 +86,22 @@ export class DataService {
     console.log('extract Abwasser' + res);
     const body: Array<Abwasser> = res.json();
     if (body) {
-      console.log("extracted Abwasser:"+JSON.stringify(body[0]));
+      console.log("extracted Abwasser:" + JSON.stringify(body[0]));
       return body[0];
     }
     return null;
   }
+   private extractMessage(res: Response): Message {
+    console.log('extract Message' + res);
+    const body: Message = res.json();
+    if (body) {
+      console.log("extracted Message:" + JSON.stringify(body));
+      return body;
+    }
+    return null;
+  }
   public readAbw(id: string): Observable<Abwasser> {
-    console.log("Search ABW");
+    console.log("readAbw");
     const params: URLSearchParams = new URLSearchParams();
     let sql = "select * from abw_liegenschaft" +
       " where liegenschaft_id=\'";
@@ -100,9 +110,27 @@ export class DataService {
     console.log(sql);
     params.set('sql', sql);
 
-    return this.http.get(this.urlWE, {
+    return this.http.get(this.urlSQL, {
       search: params
     }).map(this.extractAbwasser)
+      .catch(this.handleError);
+  }
+  public updateAbw(abw: Abwasser): Observable<Message> {
+    console.log("updateAbw");
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let parms: string = JSON.stringify({ action: "update", abw: abw });
+    return this.http.post(this.urlABW, parms, options)
+      .map(this.extractMessage)
+      .catch(this.handleError);
+  }
+  public deleteAbw(abw: Abwasser) {
+    console.log("deleteAbw");
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let parms: string = JSON.stringify({ action: "delete", liegenschaftId: abw.liegenschaftId });
+    return this.http.post(this.urlABW, parms, options)
+      .map(this.extractWE)
       .catch(this.handleError);
   }
 }

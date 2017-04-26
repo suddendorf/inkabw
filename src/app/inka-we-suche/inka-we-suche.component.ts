@@ -23,8 +23,9 @@ export class InkaWeSucheComponent implements OnInit {
     console.log('init WE Suche:' + this.we);
     this.loading=false;
     if (this.we == null) {
-      this.we = new WE();      
+      this.we = new WE();            
     }
+    this.we.abwasserspezifischeInfos=true;
     const sWe: string = localStorage.getItem('we.bezeichnung');
     if ( sWe!=null){
       this.we.bezeichnung = sWe;
