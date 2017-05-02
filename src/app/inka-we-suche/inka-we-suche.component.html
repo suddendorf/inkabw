@@ -5,45 +5,46 @@
 
       <div class="row">
         <div class="form-group col-sm-3">
-          <label for="liegenschaftNr" class="control-label col-xs-8 ">Liegenschaft-Nr.:</label>
+          <label for="liegenschaftNr" class="control-label col-xs-8">Liegenschaft-Nr.:</label>
           <input type="text" class=" col-xs-4 text-left" id="liegenschaftNr" size=30 required [(ngModel)]="we.liegenschaftNr" name="liegenschaftNr">
         </div>
         <div class="form-group col-sm-2">
-          <label for="weNrBw" class="control-label col-xs-7 ">BW:</label>
+          <label for="weNrBw" class="control-label col-xs-7">BW:</label>
           <input type="text" class=" col-xs-5 text-left" id="weNrBw" size=30 required [(ngModel)]="we.weNrBw" name="weNrBw">
         </div>
         <div class="form-group col-sm-2">
-          <label for="weNrBima" class="control-label col-xs-7 ">BImA:</label>
+          <label for="weNrBima" class="control-label col-xs-7">BImA:</label>
           <input type="text" class=" col-xs-5 text-left" id="weNrBima" size=30 required [(ngModel)]="we.weNrBima" name="weNrBima">
         </div>
 
         <div class="form-group col-sm-4">
-          <label for="bezeichnung" class="control-label col-xs-4 ">Bezeichnung:</label>
-          <input type="text" class=" col-xs-8 " id="bezeichnung" size=30 required [(ngModel)]="we.bezeichnung" name="bezeichnung">
+          <label for="bezeichnung" class="control-label col-xs-4">Bezeichnung:</label>
+          <input type="text" class="col-xs-7" id="bezeichnung" size=30 required [(ngModel)]="we.bezeichnung" name="bezeichnung">
         </div>
         <div class="form-group col-sm-1">
-          <div class="pull-right">
-            <a class="enlarge " data-toggle="tooltip" title="suchen" (click)="search()"> <i class="fa fa-dot-circle-o fa-2x" *ngIf="loading" style="color:red"> </i></a>
-            <a class="enlarge " data-toggle="tooltip" title="suchen" (click)="search()"> <i class="fa fa-dot-circle-o fa-2x" *ngIf="!loading" style="color:green"> </i></a>
+          <div>
+            <button  class="btn btn-primary btn-block" data-toggle="tooltip" title="suchen" (click)="search()">
+              <i *ngIf="loading" class="fa fa-spinner fa-spin fa-1x"> </i>
+              <span div *ngIf="!loading" class="glyphicon glyphicon-search"></span>
+            </button>
             <!--a class="enlarge " data-toggle="tooltip" title="löschen" (click)="delete(we)"> <i class="fa fa-eraser fa-2x" style="color:#bb0000"> </i></a-->
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="form-group col-sm-3">
-          <label for="abwasserspezifischeInfos" class="control-label col-xs-10 ">abwasserspezifische Informationen:</label>
-          <input type="checkbox" class=" form-control  col-xs-2  " id="abwasserspezifischeInfos" required [(ngModel)]="we.abwasserspezifischeInfos"
+        <div class="form-group col-sm-4">
+          <label for="abwasserspezifischeInfos" class="control-label col-sm-8">abwasserspezifische Informationen:</label>
+          <input type="checkbox" class="col-sm-2" id="abwasserspezifischeInfos"  style="vertical-align:baseline;" required [(ngModel)]="we.abwasserspezifischeInfos"
             name="abwasserspezifischeInfos">
         </div>
-        <div class="form-group col-sm-3">
-          <label for="imSDM" class="control-label col-xs-10 ">Bundeswehr Liegenschaft:</label>
-          <input type="checkbox" class=" form-control col-xs-2 text-left" id="imSDM" required [(ngModel)]="we.imSDM" name="imSDM">
+        <div class="form-group col-sm-4">
+          <label for="imSDM" class="control-label col-sm-10">Bundeswehr Liegenschaft:</label>
+          <input type="checkbox" class="col-sm-2" id="imSDM" required [(ngModel)]="we.imSDM" name="imSDM">
         </div>
-        <div class="form-group col-sm-6">
-          <label for="imBima">BImA Liegenschaft:          </label>
-
-          <input type="checkbox" class=" form-control"  id="imBima" required [(ngModel)]="we.imBima" name="imBima">
+        <div class="form-group col-sm-4">
+          <label for="imBima" class="control-label col-sm-10">BImA Liegenschaft:          </label>
+          <input type="checkbox" class="col-sm-2"  id="imBima" required [(ngModel)]="we.imBima" name="imBima">
         </div>
       </div>
     </fieldset>
