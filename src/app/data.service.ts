@@ -14,8 +14,8 @@ import { Message } from './message';
 @Injectable()
 export class DataService {
 
-  private urlSQL = 'http://localhost:8080/SQLServer/SQLServlet';
-  private urlABW = 'http://localhost:8080/SQLServer/INKABWServlet';
+  private urlSQL = 'http://192.168.137.57:8080/SQLServer/SQLServlet';
+  private urlABW = 'http://192.168.137.57:8080/SQLServer/INKABWServlet';
   constructor(private http: Http, private router: Router) { }
 
 

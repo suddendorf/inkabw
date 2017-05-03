@@ -1,9 +1,9 @@
 <div>
   <div class="row">
     <div class="enlarge col-sm-9 " data-toggle="tooltip" title=""  align="right" style="color:#bb0000"> {{errorMessage}}  {{message.message}} </div>
-    <div class="enlarge col-sm-1" data-toggle="tooltip" title="löschen" (click)="read()" align="right"> <i class="fa fa-rotate-left fa-2x" style="color:darkorange"> </i></div>
-    <div class="enlarge col-sm-1 " data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right"> <i class="fa fa-floppy-o fa-2x" style="color:darkgreen">  </i></div>
-    <div class="enlarge col-sm-1" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right"> <i class="fa fa-eraser fa-2x" style="color:#bb0000"> </i></div>
+    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
+    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
+    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
   </div>
   <h3>Abwasserspezifische Informationen zur WE</h3>
   <form class="form form-horizontal">
@@ -68,7 +68,7 @@
       <div class="row">
         <label for="wassergefStoffe" class="control-label  col-sm-8"> wassergefährdende Stoffe</label>
         <div class="col-sm-4">
-          <input type="checkbox" class="form-control text-left" id="wassergefStoffe" required [(ngModel)]="abw.wassergefStoffe" name="wassergefStoffe">
+          <input type="checkbox" class="text-left" id="wassergefStoffe" required [(ngModel)]="abw.wassergefStoffe" name="wassergefStoffe">
         </div>
       </div>
       <div class="row">
@@ -86,7 +86,7 @@
       <div class="row">
         <label for="gba" class="control-label  col-sm-8"> Gewässerschutzbeauftr. erf.</label>
         <div class="col-sm-4">
-          <input type="checkbox" class=" form-control text-left" id="gba" required [(ngModel)]="abw.gba" name="gba">
+          <input type="checkbox" class="text-left" id="gba" required [(ngModel)]="abw.gba" name="gba">
         </div>
       </div>
       <div class="row">

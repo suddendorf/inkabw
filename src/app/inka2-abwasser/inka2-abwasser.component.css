@@ -1,3 +1,7 @@
 .input4{
     text-align: right;
 }
+
+input[type="checkbox"] {
+    margin-top: .75em;
+}
