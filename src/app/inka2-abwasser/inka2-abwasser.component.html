@@ -5,7 +5,7 @@
     <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
     <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
   </div>
-  <h3>Abwasserspezifische Informationen zur WE</h3>
+  <h3 style="text-align:right">Abwasserspezifische Informationen zur WE</h3>
   <form class="form form-horizontal">
     <fieldset>
       <div class="row">
@@ -36,7 +36,7 @@
       <div class="row">
         <label for="datum1Untersuchung" class="control-label col-sm-8">Erstuntersuchung</label>
         <div class="col-sm-4">
-          <input type="date" class="form-control" id="datum1Untersuchung" size=30 required [(ngModel)]="abw.datum1Untersuchung" name="datum1Untersuchung">
+          <input type="date" class="form-control" id="datum1Untersuchung" size=30 required [(ngModel)]="abw.datum1untersg" name="datum1Untersuchung">
         </div>
       </div>
 
@@ -47,9 +47,9 @@
         </div>
       </div>
       <div class="row">
-        <label for="artAbw" class="control-label col-sm-4">Abwasserart</label>
-        <div class="col-sm-8">
-          <input type="text" class="form-control" id="artAbw" required [(ngModel)]="abw.artAbw" name="artAbw">
+        <label for="artAbw" class="control-label col-sm-8">Abwasserart</label>
+        <div class="col-sm-4">
+          <textarea class="form-control" id="artAbw" required [(ngModel)]="abw.artAbw" name="artAbw"></textarea>
         </div>
       </div>
       <div class="row">
@@ -80,7 +80,7 @@
       <div class="row">
         <label for="einlArt" class="control-label  col-sm-8">Einleitungsart</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="einlArt" size=6 required [(ngModel)]="abw.einlArt" name="einlArt">
+          <textarea type="text" class="form-control" id="einlArt" size=6 required [(ngModel)]="abw.einlArt" name="einlArt"></textarea>
         </div>
       </div>
       <div class="row">

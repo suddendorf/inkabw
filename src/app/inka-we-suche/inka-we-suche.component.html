@@ -6,20 +6,20 @@
       <div class="row">
         <div class="form-group col-sm-3">
           <label for="liegenschaftNr" class="control-label col-xs-8">Liegenschaft-Nr.:</label>
-          <input type="text" class=" col-xs-4 text-left" id="liegenschaftNr" size=30 required [(ngModel)]="we.liegenschaftNr" name="liegenschaftNr">
+          <input type="text" class=" col-xs-4 text-left" id="liegenschaftNr" size=30  [(ngModel)]="we.liegenschaftNr" name="liegenschaftNr">
         </div>
         <div class="form-group col-sm-2">
           <label for="weNrBw" class="control-label col-xs-7">BW:</label>
-          <input type="text" class=" col-xs-5 text-left" id="weNrBw" size=30 required [(ngModel)]="we.weNrBw" name="weNrBw">
+          <input type="text" class=" col-xs-5 text-left" id="weNrBw" size=30  [(ngModel)]="we.weNrBw" name="weNrBw">
         </div>
         <div class="form-group col-sm-2">
           <label for="weNrBima" class="control-label col-xs-7">BImA:</label>
-          <input type="text" class=" col-xs-5 text-left" id="weNrBima" size=30 required [(ngModel)]="we.weNrBima" name="weNrBima">
+          <input type="text" class=" col-xs-5 text-left" id="weNrBima" size=30  [(ngModel)]="we.weNrBima" name="weNrBima">
         </div>
 
         <div class="form-group col-sm-4">
           <label for="bezeichnung" class="control-label col-xs-4">Bezeichnung:</label>
-          <input type="text" class="col-xs-7" id="bezeichnung" size=30 required [(ngModel)]="we.bezeichnung" name="bezeichnung">
+          <input type="text" class="col-xs-7" id="bezeichnung" size=30  [(ngModel)]="we.bezeichnung" name="bezeichnung">
         </div>
         <div class="form-group col-sm-1">
           <div>
@@ -35,16 +35,16 @@
       <div class="row">
         <div class="form-group col-sm-4">
           <label for="abwasserspezifischeInfos" class="control-label col-sm-8">abwasserspezifische Informationen:</label>
-          <input type="checkbox" class="col-sm-2" id="abwasserspezifischeInfos"  style="vertical-align:baseline;" required [(ngModel)]="we.abwasserspezifischeInfos"
+          <input type="checkbox" class="col-sm-2" id="abwasserspezifischeInfos"  style="vertical-align:baseline;"  [(ngModel)]="we.abwasserspezifischeInfos"
             name="abwasserspezifischeInfos">
         </div>
         <div class="form-group col-sm-4">
           <label for="imSDM" class="control-label col-sm-10">Bundeswehr Liegenschaft:</label>
-          <input type="checkbox" class="col-sm-2" id="imSDM" required [(ngModel)]="we.imSDM" name="imSDM">
+          <input type="checkbox" class="col-sm-2" id="imSDM"  [(ngModel)]="we.imSDM" name="imSDM">
         </div>
         <div class="form-group col-sm-4">
           <label for="imBima" class="control-label col-sm-10">BImA Liegenschaft:          </label>
-          <input type="checkbox" class="col-sm-2"  id="imBima" required [(ngModel)]="we.imBima" name="imBima">
+          <input type="checkbox" class="col-sm-2"  id="imBima"  [(ngModel)]="we.imBima" name="imBima">
         </div>
       </div>
     </fieldset>

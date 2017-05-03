@@ -1,12 +1,12 @@
 import { Abwasser } from '../abwasser';
 import { Message } from '../message';
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { AbwasserService } from './abwasser.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inka2-abwasser',
-  providers: [DataService],
+  providers: [AbwasserService],
 
   templateUrl: './inka2-abwasser.component.html',
   styleUrls: ['./inka2-abwasser.component.css']
@@ -16,7 +16,7 @@ export class Inka2AbwasserComponent implements OnInit {
   public message:Message=new Message();
   public errorMessage: String;
 
-  constructor(private route: ActivatedRoute, private service: DataService) {
+  constructor(private route: ActivatedRoute, private service: AbwasserService) {
     this.route.params.subscribe(params => {
       this.getAbw(params['id']);
     });
@@ -25,9 +25,8 @@ export class Inka2AbwasserComponent implements OnInit {
   ngOnInit() {
   }
 
-  read() {
-    this.getAbw(this.abw.liegenschaftId);
-  }
+  
+  
   private getAbw(id: string) {
     this.message=new Message();
     console.log('ABW:' + id);
