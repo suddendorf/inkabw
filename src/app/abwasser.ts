@@ -4,14 +4,14 @@ export class Abwasser {
     laengeNetz: number;
     wassergefStoffe: boolean;
     wsz: string; //Wassschutzzone
-    naechstes_lak: number;
+    naechstesLak: number;
     baujAwtanl: number;
     artAbw: string;
     einlArt: string;
     gsb: boolean;
     datum1untersg: Date;
-    ueberpr_fristen: number;
-    naechste_unters: Date;
+    ueberprFristen: number;
+    naechsteUnters: Date;
     gesUnters: Date;
     datumAngelegt: Date;
     datumGeaendert: Date;

@@ -1,16 +1,16 @@
 export class WE {
      liegenschaftId: string = '';
      liegenschaftNr: string = '';
-     bezeichnung: string = '%';
+     bezeichnung: string = '';
      bezeichnungBw: string = '';
      bezeichnungBima: string = '';
      nutzung: string = '';
 
      kompzBauMgmt: string = ' ';
-     weNrBw: string = '*';
-     weNrBima: string = '*';
+     weNrBw: string = '';
+     weNrBima: string = '';
      bwdlz: string = '';
-     kompz: string = ' ';
+     kompz: string = '';
      bimaFm: string = '';
      bundesland: string = '';
      plz: string = '';

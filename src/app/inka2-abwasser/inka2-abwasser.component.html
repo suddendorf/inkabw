@@ -1,6 +1,7 @@
 <div>
   <div class="row">
-    <div class="enlarge col-sm-9 " data-toggle="tooltip" title=""  align="right" style="color:#bb0000"> {{errorMessage}}  {{message.message}} </div>
+    <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
+    <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
     <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
     <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
     <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
@@ -23,13 +24,14 @@
       <div class="row">
         <label for="baujAwtanl" class="control-label col-sm-8">Baujahr</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control input4" id="baujAwtanl" size=4 maxlength=4 required [(ngModel)]="abw.baujAwtanl" name="baujAwtanl">
+          <input type="number" class="form-control input4" id="baujAwtanl" size=4 maxlength=4 required [(ngModel)]="abw.baujAwtanl"
+            name="baujAwtanl">
         </div>
       </div>
       <div class="row">
-        <label for="gesGef1ueberpr" class="control-label col-sm-8">gesetzl. geford. Erstüberprüfung</label>
+        <label for="gesUnters" class="control-label col-sm-8">gesetzl. geford. Erstüberprüfung</label>
         <div class="col-sm-4">
-          <input type="date" class="form-control" id="gesGef1ueberpr" [(ngModel)]="abw.gesGef1ueberpr" name="gesGef1ueberpr">
+          <input type="date" class="form-control" id="gesUnters" [(ngModel)]="abw.gesUnters" name="gesUnters">
         </div>
       </div>
 
@@ -43,7 +45,7 @@
       <div class="row">
         <label for="laengeNetz" class="control-label  col-sm-8">gesamte Netzlänge [m]</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="laengeNetz" size=30 required [(ngModel)]="abw.laengeNetz" name="laengeNetz">
+          <input type="number" class="form-control" id="laengeNetz" size=30 required [(ngModel)]="abw.laengeNetz" name="laengeNetz">
         </div>
       </div>
       <div class="row">
@@ -55,14 +57,21 @@
       <div class="row">
         <label for="datumLetzteUnters" class="control-label  col-sm-8">letzte Untersuchung</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="datumLetzteUnters" size=30 required [(ngModel)]="abw.datumLetzteUnters" name="datumLetzteUnters">
+          <input type="date" class="form-control" id="datumLetzteUnters" size=30 required [(ngModel)]="abw.datumLetzteUnters" name="datumLetzteUnters">
         </div>
       </div>
       <div class="row">
         <label for="wsz" class="control-label  col-sm-8">WSZ</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz">
-
+          <!--input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz"-->
+          <select class="input-large form-control" id="wsz" required [(ngModel)]="abw.wsz" name="wsz">
+              <option value="I" >I</option>
+              <option value="II" >II</option>
+              <option value="III A" >III A</option>
+              <option value="III B" >III B</option>
+              <option value="Nein" >Nein</option>
+              <option value="Unbekannt" >Unbekannt</option>              
+        </select>
         </div>
       </div>
       <div class="row">
@@ -74,7 +83,7 @@
       <div class="row">
         <label for="ueberprFristen" class="control-label  col-sm-8">Überprüfungsintervall [Jahre]</label>
         <div class="col-sm-4">
-          <input type="text" class="form-control" id="ueberprFristen" size=30 required [(ngModel)]="abw.ueberprFristen" name="ueberprFristen">
+          <input type="number" class="form-control" id="ueberprFristen" size=30 required [(ngModel)]="abw.ueberprFristen" name="ueberprFristen">
         </div>
       </div>
       <div class="row">
@@ -84,15 +93,15 @@
         </div>
       </div>
       <div class="row">
-        <label for="gba" class="control-label  col-sm-8"> Gewässerschutzbeauftr. erf.</label>
+        <label for="gsb" class="control-label  col-sm-8"> Gewässerschutzbeauftr. erf.</label>
         <div class="col-sm-4">
-          <input type="checkbox" class="text-left" id="gba" required [(ngModel)]="abw.gba" name="gba">
+          <input type="checkbox" class="text-left" id="gsb" required [(ngModel)]="abw.gsb" name="gsb">
         </div>
       </div>
       <div class="row">
-        <label for="naechstesLAK" class="control-label col-sm-8">nächstes LAK geplant [Jahr]</label>
+        <label for="naechstesLak" class="control-label col-sm-8">nächstes LAK geplant [Jahr]</label>
         <div class="col-sm-4">
-          <input type="number" class="form-control" id="naechstesLAK" size=4 required [(ngModel)]="abw.naechstesLAK" name="naechstesLAK">
+          <input type="number" class="form-control input4" id="naechstesLak" size=4 required [(ngModel)]="abw.naechstesLak" name="naechstesLak">
         </div>
       </div>
       <div class="row">

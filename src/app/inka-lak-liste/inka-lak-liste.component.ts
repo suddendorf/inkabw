@@ -6,6 +6,7 @@ import { Lak } from '../lak';
 
 @Component({
   selector: 'app-inka-lak-liste',
+    providers: [LakListeService],
   templateUrl: './inka-lak-liste.component.html',
   styleUrls: ['./inka-lak-liste.component.css']
 })
@@ -14,7 +15,7 @@ export class InkaLakListeComponent implements OnInit {
   private liegenschaftId: string;
   loading: boolean = false;
 
-  constructor(private router: Router, private service: LakService) { }
+  constructor(private router: Router, private service: LakListeService) { }
 
   ngOnInit() {
   }
@@ -23,7 +24,7 @@ export class InkaLakListeComponent implements OnInit {
     this.loading = true;
 
     this.laks = new Array();
-    this.service.searchLak(this.liegenschaftId)
+    this.service.searchLaks(this.liegenschaftId)
       .subscribe(
       wes => this.getLaks(wes),
       error => this.getError(error));

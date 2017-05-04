@@ -13,10 +13,10 @@ import { AbstractService } from '../abstract.service';
 
 
 @Injectable()
-export class LakListeService extends AbstractService{
- private urlLak = 'http://192.168.137.57:8080/SQLServer/LakServlet';
+export class LakListeService extends AbstractService {
+  private urlLak = 'http://192.168.137.57:8080/SQLServer/LakServlet';
 
-  constructor() { }
+
   searchLaks(liegenschaftId: string): Observable<Array<Lak>> {
     console.log("Search Projekte");
     console.log(JSON.stringify(liegenschaftId));
@@ -27,5 +27,14 @@ export class LakListeService extends AbstractService{
       .map(this.extractLak)
       .catch(this.handleError);
   }
-  
+
+  private extractLak(res: Response): Lak {
+    console.log('extract Abwasser' + res);
+    const body: Lak = res.json();
+    if (body) {
+      console.log("extracted Abwasser:" + JSON.stringify(body));
+      return body;
+    }
+    return null;
+  }
 }

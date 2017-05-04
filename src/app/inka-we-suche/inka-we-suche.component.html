@@ -7,7 +7,7 @@
         <div class="form-group col-sm-3">
           <label for="liegenschaftNr" class="control-label col-xs-8">Liegenschaft-Nr.:</label>
           <input type="text" class=" col-xs-4 text-left" id="liegenschaftNr" size=30  [(ngModel)]="we.liegenschaftNr" name="liegenschaftNr">
-        </div>
+        </div> 
         <div class="form-group col-sm-2">
           <label for="weNrBw" class="control-label col-xs-7">BW:</label>
           <input type="text" class=" col-xs-5 text-left" id="weNrBw" size=30  [(ngModel)]="we.weNrBw" name="weNrBw">
@@ -76,7 +76,7 @@
   <tbody>
 
     <tr *ngFor="let we of mf.data" (mousedown)="onSelection(we)">
-      <td>{{we.liegenschaftNr}}</td>
+      <td>{{we.liegenschaftId}}</td>
       <td>{{we.weNrBw}}</td>
       <td>{{we.weNrBima}}</td>
       <td>{{we.bezeichnung}}</td>

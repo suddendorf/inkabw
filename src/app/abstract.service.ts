@@ -11,7 +11,7 @@ import { Message } from './message';
 
 @Injectable()
 export class AbstractService {
-
+  public message:Message;
   constructor(public  http: Http,  router: Router) { }
 
   handleError(error: Response | any) {
@@ -37,11 +37,7 @@ export class AbstractService {
 
    extractMessage(res: Response): Message {
     console.log('extract Message' + res);
-    const body: Message = res.json();
-    if (body) {
-      console.log("extracted Message:" + JSON.stringify(body));
-      return body;
-    }
-    return null;
+    this.message = res.json();
+    return this.message;
   }
 }

@@ -10,16 +10,19 @@ import { Router } from '@angular/router';
 import { Abwasser } from '../abwasser';
 import { Message } from '../message';
 import { AbstractService } from '../abstract.service';
+import { DataService } from '../data.service';
 
 
 @Injectable()
 export class AbwasserService extends AbstractService {
-  private urlABW = 'http://192.168.137.57:8080/SQLServer/AbwasserServlet';
-
-
+  private urlABW :string;
+  constructor(public http: Http, router: Router) {
+    super(http, router);
+    this.urlABW = DataService.getWebServer() + 'AbwasserServlet';
+  }
   public readAbw(id: string): Observable<Abwasser> {
     console.log("readAbw");
-    const params: URLSearchParams = new URLSearchParams();
+     const params: URLSearchParams = new URLSearchParams();
     params.set('liegenschaftId', id);
     console.log(id);
 
@@ -32,7 +35,8 @@ export class AbwasserService extends AbstractService {
     console.log("updateAbw");
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let parms: string = JSON.stringify({ action: "update", abw: abw });
+    let parms: string = JSON.stringify( abw );
+    console.log("update:"+parms);
     return this.http.post(this.urlABW, parms, options)
       .map(this.extractMessage)
       .catch(this.handleError);
@@ -51,7 +55,6 @@ export class AbwasserService extends AbstractService {
     const body: Abwasser = res.json();
     if (body) {
       console.log("extracted Abwasser:" + JSON.stringify(body));
-      console.log(body.datum1untersg);
       return body;
     }
     return null;

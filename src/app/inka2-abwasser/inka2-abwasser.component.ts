@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Inka2AbwasserComponent implements OnInit {
   abw: Abwasser = new Abwasser();
-  public message:Message=new Message();
+  public message: Message = new Message();
   public errorMessage: String;
 
   constructor(private route: ActivatedRoute, private service: AbwasserService) {
@@ -25,10 +25,13 @@ export class Inka2AbwasserComponent implements OnInit {
   ngOnInit() {
   }
 
-  
-  
+  private read() {
+    this.getAbw(this.abw.liegenschaftId);
+  }
+
+
   private getAbw(id: string) {
-    this.message=new Message();
+    this.message = new Message();
     console.log('ABW:' + id);
     this.errorMessage = null;
     this.service.readAbw(id)
@@ -39,7 +42,7 @@ export class Inka2AbwasserComponent implements OnInit {
   }
 
   update(abw: Abwasser) {
-    this.message=new Message();
+    this.message = new Message();
     this.errorMessage = null;
     if (abw != null) {
       console.log(JSON.stringify(abw));
@@ -51,7 +54,7 @@ export class Inka2AbwasserComponent implements OnInit {
     }
   }
   delete(abw: Abwasser) {
-    this.message=new Message();
+    this.message = new Message();
     this.errorMessage = null;
     if (abw != null) {
       console.log(JSON.stringify(abw));
