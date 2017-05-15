@@ -1,4 +1,4 @@
-export class Lak {
+export class AbwProjekt {
     // ABW_PROJEKT
     projektId: string = "LIxxxxxx";
     phase: string = "LAK A";
