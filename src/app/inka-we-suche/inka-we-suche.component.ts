@@ -65,4 +65,5 @@ export class InkaWeSucheComponent implements OnInit {
     console.log('WE-Suche: ' + we.liegenschaftId);
     this.router.navigate(['/inka-we', id]);
   }
+  
 }

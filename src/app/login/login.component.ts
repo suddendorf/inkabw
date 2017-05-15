@@ -2,22 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SecurityService } from '../security.service';
+import { DataService } from '../data.service';
 import { User } from '../user';
 @Component({
   selector: 'app-login',
-  providers: [SecurityService],
+  providers: [SecurityService,DataService],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   user: User = new User();
   error: string;
+  public webServer:string;
+  public errorMessage:string;
   constructor(private router: Router, private securityService: SecurityService) { }
 
   ngOnInit() {
-    this.logout();    
+    this.logout();
   }
+
+
+
   login(): boolean {
+
     this.error = null;
     const ok: boolean = this.securityService.login(this.user.name, this.user.password);
     console.log('login:' + ok);
@@ -29,8 +36,9 @@ export class LoginComponent implements OnInit {
     return ok;
   }
 
-  logout(){
+  logout() {
     this.securityService.logout();
   }
 
+  
 }
