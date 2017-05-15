@@ -31,7 +31,7 @@ const appRoutes: Routes = [
   { path: 'inka-lak-a/:id', component: InkaLakAComponent ,canActivate:[LoggedInGuard]},
   { path: 'inka-lak-b/:id', component: InkaLakBComponent ,canActivate:[LoggedInGuard]},
   { path: 'inka-lak-fkl/:id', component: InkaLakFklComponent ,canActivate:[LoggedInGuard]},
-  { path: 'map/:geom', component: MapComponent ,canActivate:[LoggedInGuard]},
+  { path: 'map', component: MapComponent ,canActivate:[LoggedInGuard]},
   { path: 'error/:errorMessage', component: ErrorComponent },
   { path: '**', component: InkaWeSucheComponent,canActivate:[LoggedInGuard] }
 ];

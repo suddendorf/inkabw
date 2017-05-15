@@ -18,4 +18,6 @@ export class AbwProjekt {
     extAuftragsdatum: Date;
     datumAngelegt: Date;
     datumGeaendert: Date;
+
+   
 }

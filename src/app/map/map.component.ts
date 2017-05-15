@@ -13,10 +13,10 @@ export class MapComponent implements OnInit {
   private geom: string;
 
   constructor(private route: ActivatedRoute) {
-    this.route.params.subscribe(params => {
+  /*  this.route.params.subscribe(params => {
       this.geom = params['geom'];
     });
-    console.log('constructor:' + this.geom);
+*/    console.log('constructor:' + this.geom);
     if (this.geom == null) {
       this.geom = "{          'type': 'Feature',          'geometry': {            'type': 'MultiPolygon',            'coordinates': [              [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6], [-3e6, 6e6]]],              [[[-2e6, 6e6], [-2e6, 8e6], [0, 8e6], [0, 6e6]]],              [[[1e6, 6e6], [1e6, e6], [3e6, 8e6], [3e6, 6e6]]]            ]          }    }";
     }
@@ -25,7 +25,7 @@ export class MapComponent implements OnInit {
   ngOnInit(): void {
     console.log('init:' + this.geom);
 
-    var vectorSource = new ol.source.Vector({
+    /*var vectorSource = new ol.source.Vector({
       features: (new ol.format.GeoJSON()).readFeatures(this.geom)
     });
 
@@ -33,7 +33,7 @@ export class MapComponent implements OnInit {
       source: vectorSource,
       style: styleFunction
     });
-
+*/
     var map = new ol.Map({
       controls: ol.control.defaults({
         attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
@@ -50,8 +50,7 @@ export class MapComponent implements OnInit {
       layers: [
         new ol.layer.Tile({
           source: new ol.source.OSM()
-        }),
-        vectorLayer
+        })
       ],
       target: 'map',
       view: new ol.View({

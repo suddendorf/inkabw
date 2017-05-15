@@ -6,20 +6,24 @@ import * as Rx from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
+import { DataService } from '../data.service';
 
-import { Lak } from '../lak';
+import { AbwProjekt} from '../abw-projekt';
 
 import { AbstractService } from '../abstract.service';
 
 
 @Injectable()
 export class LakListeService extends AbstractService {
-  private urlLak = 'http://192.168.137.57:8080/SQLServer/LakServlet';
+  private urlLak ;
 
+ constructor(public http: Http, router: Router) {
+    super(http, router);
+    this.urlLak = DataService.getWebServer() + 'ABWProjektSucheServlet';
+  }
+  
 
-  searchLaks(liegenschaftId: string): Observable<Array<Lak>> {
-    console.log("Search Projekte");
-    console.log(JSON.stringify(liegenschaftId));
+  searchLaks(liegenschaftId: string): Observable<Array<AbwProjekt>> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let parms: string = JSON.stringify({ action: "search", liegenschaftId: liegenschaftId });
@@ -28,11 +32,10 @@ export class LakListeService extends AbstractService {
       .catch(this.handleError);
   }
 
-  private extractLak(res: Response): Lak {
-    console.log('extract Abwasser' + res);
-    const body: Lak = res.json();
+  private extractLak(res: Response): Array<AbwProjekt> {
+    console.log("Projekte:"+res.json());
+    const body: Array<AbwProjekt> = res.json();
     if (body) {
-      console.log("extracted Abwasser:" + JSON.stringify(body));
       return body;
     }
     return null;
