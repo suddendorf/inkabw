@@ -1,9 +1,9 @@
 <div>
   <div class="row">
-    <div class="enlarge col-sm-9 " data-toggle="tooltip" title=""  align="right" style="color:#bb0000"> {{errorMessage}}  {{message.message}} </div>
-    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
-    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
-    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
+    <div class="enlarge col-sm-8 " data-toggle="tooltip" title=""  align="right" style="color:#bb0000"> {{errorMessage}}  {{message.message}} </div>
+    <div class="col-sm-1"><button class="btn btn-primary" data-toggle="tooltip" title="rollback" (click)="read()"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
+    <div class="col-sm-1"><button class="btn btn-primary" data-toggle="tooltip" title="speichern" (click)="update(abw)"> <i class="glyphicon glyphicon-ok">  </i></button></div>
+    <div class="col-sm-1"><button class="btn btn-primary" data-toggle="tooltip" title="löschen" (click)="delete(abw)"> <i class="glyphicon glyphicon-remove"> </i></button></div>
   </div>
   <h3>Abwasserspezifische Informationen zur WE</h3>
   <form class="form form-horizontal">
