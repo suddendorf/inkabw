@@ -14,6 +14,7 @@ import { Message } from './message';
 export class DataService {
   //private static webServer: string = "http://localhost:8182/SQLServer/";//
   private static webServer: string ="http://192.168.137.57:8080/SQLServer/";
+  //private static webServer: string = "/SQLServer/";//
   private urlSQL = 'SQLServlet';
   private urlWE = 'WEServlet';
   private urlABW = 'WESucheServlet';

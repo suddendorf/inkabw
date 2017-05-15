@@ -35,7 +35,7 @@ export class AbwasserService extends AbstractService {
     console.log("updateAbw");
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let parms: string = JSON.stringify( abw );
+    let parms: string =  JSON.stringify({ action: "update", object: abw });
     console.log("update:"+parms);
     return this.http.post(this.urlABW, parms, options)
       .map(this.extractMessage)
@@ -45,7 +45,7 @@ export class AbwasserService extends AbstractService {
     console.log("deleteAbw");
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let parms: string = JSON.stringify({ action: "delete", liegenschaftId: abw.liegenschaftId });
+    let parms: string = JSON.stringify({ action: "delete", object: abw });
     return this.http.post(this.urlABW, parms, options)
       .map(this.extractAbwasser)
       .catch(this.handleError);

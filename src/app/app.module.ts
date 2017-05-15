@@ -20,6 +20,7 @@ import { InkaLakFklComponent } from './inka-lak-fkl/inka-lak-fkl.component';
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import {DataTableModule} from "angular2-datatable";
+import { MapComponent } from './map/map.component';
 
 const appRoutes: Routes = [
   { path: '', component: InkaWeSucheComponent ,canActivate:[LoggedInGuard]},
@@ -30,6 +31,7 @@ const appRoutes: Routes = [
   { path: 'inka-lak-a/:id', component: InkaLakAComponent ,canActivate:[LoggedInGuard]},
   { path: 'inka-lak-b/:id', component: InkaLakBComponent ,canActivate:[LoggedInGuard]},
   { path: 'inka-lak-fkl/:id', component: InkaLakFklComponent ,canActivate:[LoggedInGuard]},
+  { path: 'map/:geom', component: MapComponent ,canActivate:[LoggedInGuard]},
   { path: 'error/:errorMessage', component: ErrorComponent },
   { path: '**', component: InkaWeSucheComponent,canActivate:[LoggedInGuard] }
 ];
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     InkaLakBComponent,
     InkaLakFklComponent,
     ErrorComponent,
-    LoginComponent
+    LoginComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
