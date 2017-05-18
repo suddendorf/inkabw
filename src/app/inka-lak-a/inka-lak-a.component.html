@@ -4,101 +4,165 @@
     </app-inka2-admin>
   </div>
   <div class="col-sm-8">
+    <div class="row">
+      <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
+      <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
+      <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
+      <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
+      <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
+    </div>
+    <h3 style="text-align:center">LAK Teil A</h3>
     <div>
-      <h3>LAK Teil A</h3>
-      <div class="enlarge " data-toggle="tooltip" title="speichern" (click)="update(model)" align="right"> <i class="fa fa-floppy-o fa-3x"> </i></div>
-
       <form class="form form-horizontal">
         <fieldset>
           <div class="row">
             <label for="projektNr" class="control-label col-sm-4">Projekt Nr.</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control  text-left" id="projektNr" required [(ngModel)]="model.projektNr" name="projektNr">
+              <input type="text" class="form-control  text-left" id="projektNr" required [(ngModel)]="projekt.projektNr" name="projektNr">
             </div>
           </div>
           <div class="row">
             <label for="projektName" class="control-label col-sm-4">Projektname</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.projektName" name="projektName">
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Auftraggeber</label>
+            <label for="auftraggeber" class="control-label col-sm-4">Auftraggeber</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.auftraggeber" name="auftraggeber">
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Durchf. Stelle</label>
+            <label for="durchfStelle" class="control-label col-sm-4">Durchf. Stelle</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="durchfStelle" required [(ngModel)]="projekt.durchfStelle" name="durchfStelle">
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Kommentar durchführende Stelle</label>
+            <label for="bemerkung" class="control-label col-sm-4">Kommentar durchführende Stelle</label>
             <div class="col-sm-8">
-                <textarea cols="50" rows="3" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName"></textarea>
+              <textarea cols="50" rows="3" class="form-control  text-left" id="bemerkung" required [(ngModel)]="projekt.bemerkung" name="bemerkung"></textarea>
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Sachbearb. BdE (Fz)</label>
+            <label for="projektLeiter" class="control-label col-sm-4">Sachbearb. BdE (Fz)</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="projektLeiter" required [(ngModel)]="projekt.projektLeiter" name="projektLeiter">
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Beauftragung</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+            <label for="beginn" class="control-label col-sm-4">Beauftragung</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control  text-left" id="beginn" required [(ngModel)]="beginn" name="beginn">
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Status</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+            <label for="ende" class="control-label col-sm-4">Fertigstellung</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control  text-left" id="ende" required [(ngModel)]="ende" name="ende">
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Ing.-Büro</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
-            </div>
-          </div>
-          <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Sofortmaßnahmen</label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
-            </div>
-            <div class="col-sm-6">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
-            </div>
-          </div>
-          <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Kommentar FfE</label>
-            <div class="col-sm-8">
-              <textarea cols="50" rows="3" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName"></textarea>
-            </div>
-          </div>
+            <label for="status" class="control-label col-sm-4">Status</label>
 
+            <div class="col-sm-4">
+              <!--input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz"-->
+              <select class="input-large form-control" id="status" required [(ngModel)]="projekt.status" name="status">
+              <option value="" >geplant</option>
+              <option value="" >FfE beauftragt</option>
+              <option value="" >BdE beauftragt</option>
+              <option value="" >fertiggestellt</option>
+              </select>
+            </div>
+          </div>
           <div class="row">
+            <label for="extAuftragnehmer" class="control-label col-sm-4">Ing.-Büro</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control  text-left" id="extAuftragnehmer" required [(ngModel)]="projekt.extAuftragnehmer"
+                name="extAuftragnehmer">
+            </div>
+          </div>
+          <div class="row">
+            <label for="statusZkl5" class="control-label col-sm-4">Sofortmaßnahmen</label>
+            <div class="col-sm-2">
+              <!--input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz"-->
+              <select class="input-large form-control" id="status" required [(ngModel)]="projekt.status" name="status">
+              <option  >kein Bedarf</option>
+              <option  >zu veranlassen</option>
+              <option  >veranlasst</option>
+              <option >in Bearbeitung </option>
+              <option >abgeschlossen</option>
+              <option >unbekannt</option>
+              </select>
+            </div>
+
+            <div class="col-sm-6">
+              <input type="text" class="form-control  text-left" id="sachstandZkl5" required [(ngModel)]="projekt.sachstandZkl5" name="sachstandZkl5">
+            </div>
+          </div>
+          <div class="row">
+            <label for="kommentarFfe" class="control-label col-sm-4">Kommentar FfE</label>
+            <div class="col-sm-8">
+              <textarea cols="50" rows="3" class="form-control  text-left" id="kommentarFfe" required [(ngModel)]="projekt.kommentarFfe"
+                name="kommentarFfe"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <label for="inspektion" class="control-label col-sm-4">Inspektion</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control  text-left" id="inspektionVon" required [(ngModel)]="inspektionVon" name="inspektionVon">
+            </div>
+            <div class="col-sm-4">
+              <input type="text" class="form-control  text-left" id="inspektionBis" required [(ngModel)]="inspektionBis" name="inspektionBis">
+            </div>
+          </div>
+          <!--div class="row">
             <label for="projektName" class="control-label col-sm-4">Inspektionskosten</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.projektName" name="projektName">
             </div>
           </div>
           <div class="row">
             <label for="projektName" class="control-label col-sm-4">Reinigungskosten</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.projektName" name="projektName">
             </div>
           </div>
           <div class="row">
             <label for="projektName" class="control-label col-sm-4">Ingenieurkosten Teil A</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="model.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.projektName" name="projektName">
             </div>
-          </div>
+          </div-->
+          <table *ngIf="projekt.kosten!=null && projekt.kosten.length>0" class="table table-striped table-hover" [mfData]="projekt.kosten"
+            #mf="mfDataTable" [mfRowsOnPage]="5">
+            <thead>
+              <th align="right">
+                <mfDefaultSorter by="kostenart">Kostenart</mfDefaultSorter>
+              </th>
+              <th align="right">
+                <mfDefaultSorter by="kosten">Kosten (Brutto)</mfDefaultSorter>
+              </th>
+            </thead>
+            <tbody>
 
+              <tr *ngFor="let k of mf.data">
+                <td>{{k.kostenart}}</td>
+                <td>{{k.kosten}}</td>
+                <td>
+                  <input type="text" class="form-control  text-left" id="kosten" required [(ngModel)]="k.kosten" name="kosten">
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="5">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[10,20,100]">test</mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+            </table>
         </fieldset>
       </form>
     </div>

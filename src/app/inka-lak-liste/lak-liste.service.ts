@@ -24,6 +24,7 @@ export class LakListeService extends AbstractService {
   
 
   searchLaks(liegenschaftId: string): Observable<Array<AbwProjekt>> {
+    console.log("search Projekte:");
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let parms: string = JSON.stringify({ action: "search", liegenschaftId: liegenschaftId });

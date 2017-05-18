@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
+import { LISA2Component } from '../lisa2-component';
 import { LakListeService } from './lak-liste.service';
 
 import { AbwProjekt } from '../abw-projekt';
@@ -10,18 +11,19 @@ import { AbwProjekt } from '../abw-projekt';
   templateUrl: './inka-lak-liste.component.html',
   styleUrls: ['./inka-lak-liste.component.css']
 })
-export class InkaLakListeComponent implements OnInit {
+export class InkaLakListeComponent  extends LISA2Component implements OnInit{
   private projekte: Array<AbwProjekt>;
   private liegenschaftId: string;
   loading: boolean = false;
 
-  constructor(private route: ActivatedRoute, private service: LakListeService) { }
+  constructor(private route: ActivatedRoute,private router: Router, private service: LakListeService) { 
+    super();
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.getWE(params['id']);
     });
-    this.search();
   }
   private getWE(id: string) {
     this.liegenschaftId = id;
@@ -49,29 +51,17 @@ export class InkaLakListeComponent implements OnInit {
 
   }
 
-  toDate(d: Date): string {
-    console.log("Datum:"+d);
-    if (d != null) {
-      if (typeof d === "Date") {
-        return d.toLocaleDateString();
-      } else if (typeof d === "string") {
-        let s: string = d;
-        /*if (s.length > 0) {
-          d = new Date(s);
-          return d.toLocaleDateString();
-        }*/
-      }
-    }
-    return '-';
-  }
-
+ 
   datum(): string {
     return 'x';
   }
 
   navigate(lak: AbwProjekt) {
-    console.log('Projekt-Nav: ' + lak.projektId);
-    const id = lak.projektId;
-    //this.route.navigate(['/inka-lak', id]);
+    console.log('LAK-Nav: ' + lak);
+    let id = 'A';
+    if ( lak !=null){
+      id=lak.projektId;
+    }
+    this.router.navigate(['/inka-lak-a', id]);
   }
 }

@@ -33,7 +33,7 @@
     </thead>
     <tbody>
 
-      <tr *ngFor="let p of projekte" (mousedown)="onSelection(p)">
+      <tr *ngFor="let p of projekte" >
         <!--td align="center">{{user.id}}</td-->
         <td>{{p.phase}}</td>
         <td>{{p.projektNr}}</td>
@@ -46,14 +46,14 @@
 
         <td>
           <div class="pull-right">
-            <button class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(we)">
+            <button class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(p)">
             <span div class="glyphicon glyphicon-pencil"></span>
            </button>
           </div>
         </td>
         <td>
           <div class="pull-right">
-            <button class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(we)">
+            <button class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(p)">
             <span div class="glyphicon glyphicon-remove"></span>
            </button>
           </div>
@@ -72,7 +72,7 @@
         
         <td>
           <div class="pull-right">
-            <button class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(we)">
+            <button class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(null)">
             <span div class="glyphicon glyphicon-plus"></span>
            </button>
           </div>

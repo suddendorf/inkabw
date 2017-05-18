@@ -4,7 +4,11 @@
   <form class="form-horizontal">
     <fieldset>
       <p>{{we.liegenschaftNr}} {{we.bezeichnung}}</p>
-      <p>{{we.plz}} {{we.ort}}  {{we.bundesland}} </p>
+      <p>{{we.bundesland}} </p>
+      <p>{{we.regbez}} </p>
+      <p>{{we.plz}} {{we.ort}} </p>
+      <p>Fläche [ha]: {{we.flaeche}} </p>
+      
       <div style="background-color:#50a050; margin:5px; ">
         <p ><strong>
           Bundeswehr
@@ -28,7 +32,22 @@
           WE: {{we.weNrBima}} {{we.bezeichnungBima}}
         </p>
         <p>
-          {{we.bimaFm}}
+          Zuständigkeit BImA:{{we.bimaFm}}
+        </p>
+      </div>
+      <div style="background-color:#d0d0d0; margin:5px; ">
+        <p ><strong>
+          Zuständigkeiten
+          </strong>
+        </p>
+        <p>
+          HBT: {{we.hbt}}
+        </p>
+        <p>
+          FfE:{{we.FfE}}
+        </p>
+        <p>
+          BdE:{{we.bde}}
         </p>
       </div>
     </fieldset>

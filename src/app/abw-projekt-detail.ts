@@ -4,13 +4,13 @@ export class AbwProjektDetail {
         // ABW_PROJEKT
     projektId: string = "LIxxxxxx";
     phase: string = "LAK A";
-    projektNr: string = "LAK 1767_1A";
-    projektName: string = "erstes LAK auf WE";
-    durchfStelle: string = "Bauamt Ludwigslust";
+    projektNr: string = "LAK -";
+    projektName: string = "erstes  ";
+    durchfStelle: string = "  Ludwigslust";
     projektLeiter: string = "Peter Leiter";
     auftraggeber: string = "KompZ Düsseldorf";
-    beginn: Date = new Date("February 4, 2016 10:13:00");
-    ende: Date = new Date("February 5, 2016 10:13:00");
+    beginn: Date = new Date("1000-01-01");
+    ende: Date = new Date("1000-01-01");
     kostenBrutto: number = 1000000;
     bemerkung: string = "Dies ist die Bemerkung ";
     extAuftragnehmer: string = "Ester Nehmer";
