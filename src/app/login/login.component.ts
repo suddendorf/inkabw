@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { SecurityService } from '../security.service';
 import { DataService } from '../data.service';
 import { User } from '../user';
-import { Message } from '../message';
 @Component({
   selector: 'app-login',
   providers: [SecurityService, DataService],
@@ -14,33 +13,39 @@ import { Message } from '../message';
 export class LoginComponent implements OnInit {
   user: User = new User();
   error: string;
+  ok:boolean;
   public webServer: string;
-  message: Message;
-  constructor(private router: Router,private securityService: SecurityService) { }
+  public errorMessage: string;
+  constructor(private router: Router, private securityService: SecurityService) { }
 
   ngOnInit() {
     this.logout();
-  }
+  } 
 
 
 
-  login(): boolean {
+  login() {
 
     this.error = null;
-    this.securityService.login(this.user.name, this.user.password);
-    let ok: boolean = this.securityService.isLoggedIn();
-    console.log('login:' + ok);
-    if (!ok) {
-      this.error = 'Benutzer unbenkannt oder Passwort falsch.';
-    } else {
-      this.router.navigate(['/inka_we-suche']);
-    }
-    return ok;
+     this.securityService.login(this.user.name,this.user.password)
+      .subscribe(
+      err => this.start(err),
+      error => this.error=error);
+    this.router.navigate(['/inka_we-suche']);
+
   }
 
   logout() {
     this.securityService.logout();
   }
 
+  start(err:string){
+    console.log('logoin'+err);
+    if ( err){
+      this.error=err;
+    }else{
+      this.router.navigate(['/inka_we-suche']);
+    }
+  }
 
 }
