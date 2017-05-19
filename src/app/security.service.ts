@@ -54,10 +54,11 @@ export class SecurityService {
       if (body) {
         errMsg = body.fehler;
       }
-    } else {
-      errMsg = error.message ? error.message : error.toString();
     }
 
+    if (!errMsg) {
+      errMsg = 'Fehler bei der Kommunikation mit dem WEB-Server.';
+    }
 
     return Rx.Observable.throw(errMsg);
 

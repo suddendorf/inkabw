@@ -1,39 +1,79 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../data.service';
 
 declare var ol: any;
 
 @Component({
   selector: 'app-map',
+  providers: [DataService],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
   private ol: any;
   private geom: string;
+  private errorMessage: string;
+  constructor(private route: ActivatedRoute, private service: DataService) {
 
-  constructor(private route: ActivatedRoute) {
-  /*  this.route.params.subscribe(params => {
-      this.geom = params['geom'];
-    });
-*/    console.log('constructor:' + this.geom);
-    if (this.geom == null) {
-      this.geom = "{          'type': 'Feature',          'geometry': {            'type': 'MultiPolygon',            'coordinates': [              [[[-5e6, 6e6], [-5e6, 8e6], [-3e6, 8e6], [-3e6, 6e6]]],              [[[-2e6, 6e6], [-2e6, 8e6], [0, 8e6], [0, 6e6]]],              [[[1e6, 6e6], [1e6, e6], [3e6, 8e6], [3e6, 6e6]]]            ]          }    }";
-    }
   }
 
   ngOnInit(): void {
-    console.log('init:' + this.geom);
-
-    /*var vectorSource = new ol.source.Vector({
-      features: (new ol.format.GeoJSON()).readFeatures(this.geom)
+    console.log('init');
+    this.route.params.subscribe(params => {
+      this.readFeature(params['id']);
     });
+  }
+  private readFeature(weNr: string) {
+    console.log('read');
+    this.service.readSDMGeom(weNr)
+      .subscribe(
+      geom => this.showMap(geom),
+      error => this.errorMessage = <any>error);
+  }
+  showMap(res: String) {
+    this.geom=res.toString();
+    console.log('showMap:' + this.geom);
+    var geojsonObject = {
+      'type': 'FeatureCollection',
+      'crs': {
+        'type': 'name',
+        'properties': {
+          'name': 'EPSG:32632'
+        }
+      },
+      'features': [{
+        'type': 'Feature',
+        'geometry': {
+          'type': 'MultiPolygon',
+          'coordinates': this.geom
+        }
+      }
+      ]
+    }
+
+
+    var style = new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: 'yellow',
+        width: 1
+      }),
+      fill: new ol.style.Fill({
+        color: 'rgba(255, 255, 0, 0.1)'
+      })
+    });
+
+    var vectorSource = new ol.source.Vector({
+      features: (new ol.format.GeoJSON()).readFeatures(geojsonObject)
+    });
+
+    vectorSource.addFeature(new ol.Feature(new ol.geom.Circle([5e6, 7e6], 1e6)));
 
     var vectorLayer = new ol.layer.Vector({
       source: vectorSource,
-      style: styleFunction
+      style: style
     });
-*/
+
     var map = new ol.Map({
       controls: ol.control.defaults({
         attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
@@ -42,38 +82,27 @@ export class MapComponent implements OnInit {
       }).extend([
         new ol.control.ZoomToExtent({
           extent: [
-            813079.7791264898, 5929220.284081122,
-            848966.9639063801, 7036863.986909639
+            841950.3449999997, 5775167.2634,
+            842950.3449999997, 5776167.2634
+            
           ]
         })
       ]),
       layers: [
         new ol.layer.Tile({
           source: new ol.source.OSM()
-        })
+        }),
+        vectorLayer
       ],
       target: 'map',
       view: new ol.View({
-        projection: 'EPSG:900913',
-        center: [1075000.0, 6843000.0],
-        zoom: 14
+        projection: 'EPSG:32632',
+        center: [-2e6, 8e6],
+        zoom: 4
       })
     });
 
-    var styles = {
-      'MultiPolygon': new ol.style.Style({
-        stroke: new ol.style.Stroke({
-          color: 'yellow',
-          width: 1
-        }),
-        fill: new ol.style.Fill({
-          color: 'rgba(255, 255, 0, 0.1)'
-        })
-      }),
-    };
-
-    var styleFunction = function (feature) {
-      return styles[feature.getGeometry().getType()];
-    };
   }
+
 }
+

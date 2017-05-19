@@ -34,7 +34,7 @@ export class Inka2AbwasserComponent implements OnInit {
     console.log('ABW:' + id);
     this.service.readAbw(id)
       .subscribe(
-      abw => this.abw = abw,
+      abw => {this.abw = abw;console.log(abw);},
       error => this.message.fehler = <any>error);
   }
 
