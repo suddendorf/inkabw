@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
       error => this.errorMessage = <any>error);
   }
   showMap(res: String) {
-    this.geom=res.toString();
+    this.geom = res.toString();
     console.log('showMap:' + this.geom);
     var geojsonObject = {
       'type': 'FeatureCollection',
@@ -44,10 +44,7 @@ export class MapComponent implements OnInit {
       },
       'features': [{
         'type': 'Feature',
-        'geometry': {
-          'type': 'MultiPolygon',
-          'coordinates': this.geom
-        }
+        'geometry': this.geom
       }
       ]
     }
@@ -84,7 +81,7 @@ export class MapComponent implements OnInit {
           extent: [
             841950.3449999997, 5775167.2634,
             842950.3449999997, 5776167.2634
-            
+
           ]
         })
       ]),

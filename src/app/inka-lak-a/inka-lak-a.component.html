@@ -54,13 +54,13 @@
           <div class="row">
             <label for="beginn" class="control-label col-sm-4">Beauftragung</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control  text-left" id="beginn" required [(ngModel)]="beginn" name="beginn">
+              <input type="date" class="form-control  text-left" id="beginn" required [(ngModel)]="projekt.beginn" name="beginn">
             </div>
           </div>
           <div class="row">
             <label for="ende" class="control-label col-sm-4">Fertigstellung</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control  text-left" id="ende" required [(ngModel)]="ende" name="ende">
+              <input type="date" class="form-control  text-left" id="ende" required [(ngModel)]="projekt.ende" name="ende">
             </div>
           </div>
           <div class="row">
@@ -69,10 +69,10 @@
             <div class="col-sm-4">
               <!--input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz"-->
               <select class="input-large form-control" id="status" required [(ngModel)]="projekt.status" name="status">
-              <option value="" >geplant</option>
-              <option value="" >FfE beauftragt</option>
-              <option value="" >BdE beauftragt</option>
-              <option value="" >fertiggestellt</option>
+              <option  >geplant</option>
+              <option  >FfE beauftragt</option>
+              <option  >BdE beauftragt</option>
+              <option  >fertiggestellt</option>
               </select>
             </div>
           </div>
@@ -87,7 +87,7 @@
             <label for="statusZkl5" class="control-label col-sm-4">Sofortmaßnahmen</label>
             <div class="col-sm-2">
               <!--input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz"-->
-              <select class="input-large form-control" id="status" required [(ngModel)]="projekt.status" name="status">
+              <select class="input-large form-control" id="status" required [(ngModel)]="projekt.statusZkl5" name="status">
               <option  >kein Bedarf</option>
               <option  >zu veranlassen</option>
               <option  >veranlasst</option>
@@ -109,36 +109,23 @@
             </div>
           </div>
           <div class="row">
-            <label for="inspektion" class="control-label col-sm-4">Inspektion</label>
-            <div class="col-sm-2">
-              <input type="number" class="form-control  text-left" id="inspektionVon" required [(ngModel)]="inspektionVon" name="inspektionVon">
+            <label for="inspektion" class="control-label col-sm-4">TV Inspektion von</label>
+            <div class="col-sm-3">
+              <input type="date" class="form-control  text-left" id="inspektionBeginn" required [(ngModel)]="projekt.inspektionBeginn" name="inspektionBeginn">
             </div>
-            <div class="col-sm-2">
-              <input type="number" class="form-control  text-left" id="inspektionBis" required [(ngModel)]="inspektionBis" name="inspektionBis">
-            </div><div class="col-sm-4">
-              <input type="text" class="form-control  text-left" id="inspekteur" required [(ngModel)]="inspekteur" name="inspekteur">
-            </div>
-          </div>
-          <!--div class="row">
-            <label for="projektName" class="control-label col-sm-4">Inspektionskosten</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.projektName" name="projektName">
+            <label for="inspektionEnde" class="control-label col-sm-1">bis</label>
+            <div class="col-sm-3">
+              <input type="date" class="form-control  text-left" id="inspektionEnde" required [(ngModel)]="projekt.inspektionEnde" name="inspektionEnde">
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Reinigungskosten</label>
+            <label for="inspekteur" class="control-label col-sm-4">Inspektionsfirma</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="inspekteur" required [(ngModel)]="projekt.inspekteur" name="inspekteur">
             </div>
           </div>
           <div class="row">
-            <label for="projektName" class="control-label col-sm-4">Ingenieurkosten Teil A</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.projektName" name="projektName">
-            </div>
-          </div-->
-          <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3">
 
             </div>
             <div class="col-sm-8">

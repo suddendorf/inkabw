@@ -53,7 +53,7 @@ export class InkaLakAComponent  extends LISA2Component implements OnInit {
     this.message = new Message();
     if (p != null) {
       console.log(JSON.stringify(p));
-      this.service.delete(p)
+      this.service.delete(p.projektId)
         .subscribe(
         abw => this.projekt = abw,
         error => this.message.fehler = <any>error);

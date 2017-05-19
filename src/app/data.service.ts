@@ -42,7 +42,7 @@ export class DataService {
       errMsg = error.message ? error.message : error.toString();
     }
 
-    console.error('Handel:' + errMsg);
+    console.log('Handel:' + errMsg);
 
     return Rx.Observable.throw(errMsg);
 
@@ -77,7 +77,7 @@ export class DataService {
     const body = res.json();
     console.log('extract Geom'+body);
     if ( body && body.length>0){
-      let geom= body[0].geometrieWkt;
+      let geom= body[0];
       return geom;
     }
     return null;
