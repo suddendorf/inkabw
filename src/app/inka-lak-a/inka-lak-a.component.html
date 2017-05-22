@@ -4,71 +4,86 @@
     </app-inka2-admin>
   </div>
   <div class="col-sm-8">
-    <div class="row">
-      <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
-      <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
-      <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
-      <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
-      <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(projekt)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
-    </div>
-    <h3 style="text-align:center">LAK Teil A</h3>
     <div>
-      <form class="form form-horizontal">
+      <div class="row">
+        <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
+        <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
+        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
+        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
+        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(projekt)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
+      </div>
+      <h3 style="text-align:center">LAK Teil A</h3>
+      <form class="form form-horizontal" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
         <fieldset>
           <div class="row">
-            <label for="projektNr" class="control-label col-sm-4">Projekt Nr.</label>
+            <label for="projektNr" class="control-label col-sm-4">Projekt Nr. *</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control  text-left" id="projektNr" required [(ngModel)]="projekt.projektNr" name="projektNr">
+              <input type="text" class="form-control  text-left" id="projektNr" [(ngModel)]="projekt.projektNr" name="projektNr" required>
+            </div>
+            <div *ngIf="f?.controls?.projektNr?.hasError('')">
+              Dieses Feld ist ein Pflichtfeld.
             </div>
           </div>
           <div class="row">
             <label for="projektName" class="control-label col-sm-4">Projektname</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="projektName" [(ngModel)]="projekt.projektName" name="projektName">
             </div>
           </div>
           <div class="row">
-            <label for="auftraggeber" class="control-label col-sm-4">Auftraggeber</label>
+            <label for="auftraggeber" class="control-label col-sm-4">Auftraggeber *</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" required [(ngModel)]="projekt.auftraggeber" name="auftraggeber">
+              <!--input type="text" class="form-control  text-left" id="projektName"  [(ngModel)]="projekt.auftraggeber" name="auftraggeber"-->
+              <select class="input-large form-control" id="auftraggeber" [(ngModel)]="projekt.auftraggeber" name="auftraggeber" required>
+              <option  >KompZ BauMgmt Düsseldorf</option>
+              <option  >KompZ BauMgmt Hannover</option>
+              <option  >KompZ BauMgmt Kiel</option>
+              <option  >KompZ BauMgmt München</option>
+              <option  >KompZ BauMgmt Strausberg</option>
+              <option  >KompZ BauMgmt Stuttgart</option>
+              <option  >WBV Nord</option>
+              <option  >WBV Ost</option>
+              <option  >WBV Süd</option>
+              <option  >WBV West</option>
+              </select>
             </div>
           </div>
           <div class="row">
             <label for="durchfStelle" class="control-label col-sm-4">Durchf. Stelle</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="durchfStelle" required [(ngModel)]="projekt.durchfStelle" name="durchfStelle">
+              <input type="text" class="form-control  text-left" id="durchfStelle" [(ngModel)]="projekt.durchfStelle" name="durchfStelle">
             </div>
           </div>
           <div class="row">
             <label for="bemerkung" class="control-label col-sm-4">Kommentar durchführende Stelle</label>
             <div class="col-sm-8">
-              <textarea cols="50" rows="3" class="form-control  text-left" id="bemerkung" required [(ngModel)]="projekt.bemerkung" name="bemerkung"></textarea>
+              <textarea cols="50" rows="3" class="form-control  text-left" id="bemerkung" [(ngModel)]="projekt.bemerkung" name="bemerkung"></textarea>
             </div>
           </div>
           <div class="row">
             <label for="projektLeiter" class="control-label col-sm-4">Sachbearb. BdE (Fz)</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektLeiter" required [(ngModel)]="projekt.projektLeiter" name="projektLeiter">
+              <input type="text" class="form-control  text-left" id="projektLeiter" [(ngModel)]="projekt.projektLeiter" name="projektLeiter">
             </div>
           </div>
           <div class="row">
             <label for="beginn" class="control-label col-sm-4">Beauftragung</label>
             <div class="col-sm-4">
-              <input type="date" class="form-control  text-left" id="beginn" required [(ngModel)]="projekt.beginn" name="beginn">
+              <input type="date" class="form-control  text-left" id="beginn" [(ngModel)]="projekt.beginn" name="beginn">
             </div>
           </div>
           <div class="row">
             <label for="ende" class="control-label col-sm-4">Fertigstellung</label>
             <div class="col-sm-4">
-              <input type="date" class="form-control  text-left" id="ende" required [(ngModel)]="projekt.ende" name="ende">
+              <input type="date" class="form-control  text-left" id="ende" [(ngModel)]="projekt.ende" name="ende">
             </div>
           </div>
           <div class="row">
             <label for="status" class="control-label col-sm-4">Status</label>
 
             <div class="col-sm-4">
-              <!--input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz"-->
-              <select class="input-large form-control" id="status" required [(ngModel)]="projekt.status" name="status">
+              <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
+              <select class="input-large form-control" id="status" [(ngModel)]="projekt.status" name="status" required>
               <option  >geplant</option>
               <option  >FfE beauftragt</option>
               <option  >BdE beauftragt</option>
@@ -79,15 +94,18 @@
           <div class="row">
             <label for="extAuftragnehmer" class="control-label col-sm-4">Ing.-Büro</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="extAuftragnehmer" required [(ngModel)]="projekt.extAuftragnehmer"
-                name="extAuftragnehmer">
+              <input type="text" class="form-control  text-left" id="extAuftragnehmer" [(ngModel)]="projekt.extAuftragnehmer" name="extAuftragnehmer">
             </div>
           </div>
-          <div class="row">
-            <label for="statusZkl5" class="control-label col-sm-4">Sofortmaßnahmen</label>
-            <div class="col-sm-2">
-              <!--input type="text" class="form-control" id="wsz" size=6 required [(ngModel)]="abw.wsz" name="wsz"-->
-              <select class="input-large form-control" id="status" required [(ngModel)]="projekt.statusZkl5" name="status">
+          <div style="background-color:#d0d0d0">
+            <div class="row">
+              <label class="control-label col-sm-4">Sofortmaßnahmen</label>
+            </div>
+            <div class="row">
+              <label for="statusZkl5" class="control-label col-sm-4">Status *</label>
+              <div class="col-sm-2">
+                <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
+                <select class="input-large form-control" id="statusZkl5" [(ngModel)]="projekt.statusZkl5" name="statusZkl5">
               <option  >kein Bedarf</option>
               <option  >zu veranlassen</option>
               <option  >veranlasst</option>
@@ -95,69 +113,70 @@
               <option >abgeschlossen</option>
               <option >unbekannt</option>
               </select>
+              </div>
             </div>
+            <div class="row">
+              <label for="sachstandZkl5" class="control-label col-sm-4">Sachstand</label>
 
-            <div class="col-sm-6">
-              <input type="text" class="form-control  text-left" id="sachstandZkl5" required [(ngModel)]="projekt.sachstandZkl5" name="sachstandZkl5">
+              <div class="col-sm-8">
+                <textarea cols="50" rows="3" class="form-control  text-left" id="sachstandZkl5" [(ngModel)]="projekt.sachstandZkl5" name="sachstandZkl5"></textarea>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <label for="kommentarFfe" class="control-label col-sm-4">Kommentar FfE</label>
-            <div class="col-sm-8">
-              <textarea cols="50" rows="3" class="form-control  text-left" id="kommentarFfe" required [(ngModel)]="projekt.kommentarFfe"
-                name="kommentarFfe"></textarea>
+            <div class="row">
+              <label for="kommentarFfe" class="control-label col-sm-4">Kommentar FfE</label>
+              <div class="col-sm-8">
+                <textarea cols="50" rows="3" class="form-control  text-left" id="kommentarFfe" [(ngModel)]="projekt.kommentarFfe" name="kommentarFfe"></textarea>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <label for="inspektion" class="control-label col-sm-4">TV Inspektion von</label>
-            <div class="col-sm-3">
-              <input type="date" class="form-control  text-left" id="inspektionBeginn" required [(ngModel)]="projekt.inspektionBeginn" name="inspektionBeginn">
+            <div class="row">
+              <label for="inspektion" class="control-label col-sm-4">TV Inspektion von</label>
+              <div class="col-sm-3">
+                <input type="date" class="form-control  text-left" id="inspektionBeginn" [(ngModel)]="projekt.inspektionBeginn" name="inspektionBeginn">
+              </div>
+              <label for="inspektionEnde" class="control-label col-sm-1">bis</label>
+              <div class="col-sm-3">
+                <input type="date" class="form-control  text-left" id="inspektionEnde" [(ngModel)]="projekt.inspektionEnde" name="inspektionEnde">
+              </div>
             </div>
-            <label for="inspektionEnde" class="control-label col-sm-1">bis</label>
-            <div class="col-sm-3">
-              <input type="date" class="form-control  text-left" id="inspektionEnde" required [(ngModel)]="projekt.inspektionEnde" name="inspektionEnde">
+            <div class="row">
+              <label for="inspekteur" class="control-label col-sm-4">Inspektionsfirma</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control  text-left" id="inspekteur" [(ngModel)]="projekt.inspekteur" name="inspekteur">
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <label for="inspekteur" class="control-label col-sm-4">Inspektionsfirma</label>
-            <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="inspekteur" required [(ngModel)]="projekt.inspekteur" name="inspekteur">
             </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-3">
+            <div class="row">
+              <div class="col-sm-12">
+                <table *ngIf="projekt.kosten!=null && projekt.kosten.length>0" class="table table-striped table-hover" [mfData]="projekt.kosten"
+                  #mf="mfDataTable" [mfRowsOnPage]="5">
+                  <thead>
+                    <th align="center">
+                      <mfDefaultSorter by="kostenart">Kostenart</mfDefaultSorter>
+                    </th>
+                    <th>
+                      <mfDefaultSorter by="kosten" align="right">Kosten (Brutto)</mfDefaultSorter>
+                    </th>
+                  </thead>
+                  <tbody>
 
+                    <tr *ngFor="let k of mf.data">
+                      <td>{{k.kostenart}}</td>
+                      <td>
+                        <input type="number" class="form-control" id="kosten" [(ngModel)]="k.kosten" name="kosten">
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="5">
+                        <mfBootstrapPaginator [rowsOnPageSet]="[10,20,100]">test</mfBootstrapPaginator>
+                      </td>
+                    </tr>
+                  </tfoot>
+                  </table>
+              </div>
             </div>
-            <div class="col-sm-8">
-              <table *ngIf="projekt.kosten!=null && projekt.kosten.length>0" class="table table-striped table-hover" [mfData]="projekt.kosten"
-                #mf="mfDataTable" [mfRowsOnPage]="5">
-                <thead>
-                  <th align="center">
-                    <mfDefaultSorter by="kostenart">Kostenart</mfDefaultSorter>
-                  </th>
-                  <th >
-                    <mfDefaultSorter by="kosten" align="right">Kosten (Brutto)</mfDefaultSorter>
-                  </th>
-                </thead>
-                <tbody>
-
-                  <tr *ngFor="let k of mf.data">
-                    <td>{{k.kostenart}}</td>
-                    <td>
-                      <input type="number" class="form-control" id="kosten" required [(ngModel)]="k.kosten" name="kosten">
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="5">
-                      <mfBootstrapPaginator [rowsOnPageSet]="[10,20,100]">test</mfBootstrapPaginator>
-                    </td>
-                  </tr>
-                </tfoot>
-                </table>
-            </div>
-          </div>
+          
         </fieldset>
       </form>
     </div>

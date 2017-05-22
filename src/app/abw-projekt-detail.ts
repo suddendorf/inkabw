@@ -2,20 +2,20 @@ import {AbwProjektKosten} from "./abw-projekt-kosten";
 
 export class AbwProjektDetail {
         // ABW_PROJEKT
-    projektId: string = "LIxxxxxx";
-    phase: string = "LAK A";
-    projektNr: string = "LAK -";
-    projektName: string = "erstes  ";
-    durchfStelle: string = "  Ludwigslust";
-    projektLeiter: string = "Peter Leiter";
-    auftraggeber: string = "KompZ Düsseldorf";
-    beginn: Date = new Date("1000-01-01");
-    ende: Date = new Date("1000-01-01");
-    kostenBrutto: number = 1000000;
-    bemerkung: string = "Dies ist die Bemerkung ";
-    extAuftragnehmer: string = "Ester Nehmer";
+    projektId: string ;
+    phase: string ;
+    projektNr: string ;
+    projektName: string ;
+    durchfStelle: string ;
+    projektLeiter: string ;
+    auftraggeber: string ;
+    beginn: Date ;
+    ende: Date ;
+    kostenBrutto: number ;
+    bemerkung: string ;
+    extAuftragnehmer: string ;
     exportDatum: Date;
-    status: string = "fertiggestellt";
+    status: string ;
     auftragsdatum: Date;
     extAuftragsdatum: Date;
     
@@ -35,6 +35,7 @@ export class AbwProjektDetail {
     baumassnahmeNr: String;
     
     kosten: AbwProjektKosten[];
+    liegenschaftIds: string[];
 
     
 }

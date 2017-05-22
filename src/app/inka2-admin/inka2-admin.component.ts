@@ -23,7 +23,13 @@ export class Inka2AdminComponent implements OnInit {
   }
   private getWE(id: string) {
     console.log('WE:' + id);
-    this.readWE(id);
+    if (id) {
+      this.readWE(id);
+    }else{
+      let lid:string=localStorage.getItem('liegenschaftId');
+        this.readWE(lid);
+      }
+    
   }
   private readWE(id: string) {
     this.service.readWE(id)

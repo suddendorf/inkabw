@@ -21,8 +21,8 @@ export class AbstractService {
     console.log(error);
     if (error instanceof Response) {
       const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+      const err = body.fehler || JSON.stringify(body);
+      errMsg = `${err}`;
     } else {
       errMsg = error.message ? error.message : error.toString();
     }

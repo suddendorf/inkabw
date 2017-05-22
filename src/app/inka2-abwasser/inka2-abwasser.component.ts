@@ -13,8 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Inka2AbwasserComponent implements OnInit {
   abw: Abwasser = new Abwasser();
-  message: Message ;
- 
+  message: Message;
+
   constructor(private route: ActivatedRoute, private service: AbwasserService) {
     this.route.params.subscribe(params => {
       this.getAbw(params['id']);
@@ -32,9 +32,22 @@ export class Inka2AbwasserComponent implements OnInit {
   private getAbw(id: string) {
     this.message = new Message();
     console.log('ABW:' + id);
+    if (id) {
+      this.service.readAbw(id)
+        .subscribe(
+        abw => { this.abw = abw; console.log(abw); },
+        error => this.message.fehler = <any>error);
+    } else {
+      let lid: string = localStorage.getItem('liegenschaftId');
+      this.service.readAbw(lid)
+        .subscribe(
+        abw => { this.abw = abw; console.log(abw); },
+        error => this.message.fehler = <any>error);
+    }
+
     this.service.readAbw(id)
       .subscribe(
-      abw => {this.abw = abw;console.log(abw);},
+      abw => { this.abw = abw; console.log(abw); },
       error => this.message.fehler = <any>error);
   }
 

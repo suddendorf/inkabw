@@ -15,8 +15,7 @@ import { AbstractService } from '../abstract.service';
 
 @Injectable()
 export class LakListeService extends AbstractService {
-  private urlLak ;
-
+  private urlLak :string;
  constructor(public http: Http, router: Router) {
     super(http, router);
     this.urlLak = DataService.getWebServer() + 'ABWProjektSucheServlet';
