@@ -20,11 +20,11 @@ export class AbwasserService extends AbstractService {
     super(http, router);
     this.urlABW = DataService.getWebServer() + 'AbwasserServlet';
   }
-  public readAbw(id: string): Observable<Abwasser> {
+  public readAbw(liegenschaftId: string): Observable<Abwasser> {
     console.log("readAbw");
      const params: URLSearchParams = new URLSearchParams();
-    params.set('liegenschaftId', id);
-    console.log(id);
+    params.set('liegenschaftId', liegenschaftId);
+    console.log(liegenschaftId);
 
     return this.http.get(this.urlABW, {
       search: params

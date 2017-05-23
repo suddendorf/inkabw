@@ -10,12 +10,11 @@
                 <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
                 <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
                 <div class="col-sm-1">
-                    <button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)"
-                        align="right"> <i class="glyphicon glyphicon-ok">  </i></button>
+                    <button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right"
+                        [disabled]="!f.form.valid"> <i class="glyphicon glyphicon-ok">  </i></button>
                 </div>
                 <div class="col-sm-1">
-                    <button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(projekt)"
-                        align="right"> <i class="glyphicon glyphicon-remove"> </i></button>
+                    <button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(projekt)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button>
                 </div>
             </div>
             <h3 style="text-align:center">LAK Teil B</h3>
@@ -41,16 +40,16 @@
                         <div class="col-sm-8">
                             <!--input type="text" class="form-control  text-left" id="projektName"  [(ngModel)]="projekt.auftraggeber" name="auftraggeber"-->
                             <select class="input-large form-control" id="auftraggeber" [(ngModel)]="projekt.auftraggeber" name="auftraggeber" required>
-              <option  >KompZ BauMgmt Düsseldorf</option>
-              <option  >KompZ BauMgmt Hannover</option>
-              <option  >KompZ BauMgmt Kiel</option>
-              <option  >KompZ BauMgmt München</option>
-              <option  >KompZ BauMgmt Strausberg</option>
-              <option  >KompZ BauMgmt Stuttgart</option>
-              <option  >WBV Nord</option>
-              <option  >WBV Ost</option>
-              <option  >WBV Süd</option>
-              <option  >WBV West</option>
+              <option  value="KompZ BauMgmt Düsseldorf">KompZ BauMgmt Düsseldorf</option>
+              <option  value="KompZ BauMgmt Hannover">KompZ BauMgmt Hannover</option>
+              <option value="KompZ BauMgmt Kiel" >KompZ BauMgmt Kiel</option>
+              <option  value="KompZ BauMgmt München">KompZ BauMgmt München</option>
+              <option  value="KompZ BauMgmt Strausberg">KompZ BauMgmt Strausberg</option>
+              <option value="KompZ BauMgmt Stuttgart" >KompZ BauMgmt Stuttgart</option>
+              <option  value="WBV Nord">WBV Nord</option>
+              <option  value="WBV Ost">WBV Ost</option>
+              <option  value="WBV Süd">WBV Süd</option>
+              <option value="WBV West" >WBV West</option>
               </select>
                         </div>
                     </div>
@@ -90,11 +89,10 @@
                         <div class="col-sm-4">
                             <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
                             <select class="input-large form-control" id="status" [(ngModel)]="projekt.status" name="status" required>
-              <option  >geplant</option>
-              <option  >FfE beauftragt</option>
-              <option  >BdE beauftragt</option>
-              <option  >fertiggestellt</option>
-              </select>
+              <option value="geplant" >geplant</option>
+              <option  value="FfE beauftragt">FfE beauftragt</option>
+              <option  value="BdE beauftragt">BdE beauftragt</option>
+              <option  value="fertiggestellt">fertiggestellt</option> </select>
                         </div>
                     </div>
                     <div class="row">

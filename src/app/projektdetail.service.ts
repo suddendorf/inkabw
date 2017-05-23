@@ -21,12 +21,12 @@ export class ProjektdetailService extends AbstractService {
     this.url = DataService.getWebServer() + 'ABWProjektDetailServlet';
   }
 
-  public read(id: string,liegenschaftId:string): Observable<AbwProjektDetail> {
+  public read(projektId: string,liegenschaftId:string): Observable<AbwProjektDetail> {
     console.log("readAbw");
     const params: URLSearchParams = new URLSearchParams();
     let token = localStorage.getItem('userToken');
 
-    params.set('projektId', id);
+    params.set('projektId', projektId);
     params.set('liegenschaftId', liegenschaftId);
     params.set('token', token);
    
@@ -44,11 +44,11 @@ export class ProjektdetailService extends AbstractService {
       .map(this.extractMessage)
       .catch(this.handleError);
   }
-  public delete(id: string) {
+  public delete(projektId: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let token = localStorage.getItem('userToken');
-    let parms: string = JSON.stringify({ action: "delete", object: id, token: token });
+    let parms: string = JSON.stringify({ action: "delete", object: projektId, token: token });
     return this.http.post(this.url, parms, options)
       .map(this.extract)
       .catch(this.handleError);

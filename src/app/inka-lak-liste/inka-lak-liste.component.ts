@@ -22,12 +22,15 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.getWE(params['id']);
+      this.getWE(params['liegenschaftId']);
     });
   }
-  private getWE(id: string) {
-    this.liegenschaftId = id;
-    if (id) {
+  private getWE(liegenschaftId: string) {
+    this.liegenschaftId = liegenschaftId;
+    if (liegenschaftId) {
+      this.search();
+    }else {
+      this.liegenschaftId = localStorage.getItem('liegenschaftId');
       this.search();
     }
   }
@@ -79,26 +82,26 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
     this.router.navigate(['/inka-lak-a', projektId, liegenschaftId]);
   }
   navigateB(lak: AbwProjekt) {
-    let id = 'A';
+    let projektId = 'B';
     if (lak != null) {
-      id = lak.projektId;
+      projektId = lak.projektId;
     }
-    this.router.navigate(['/inka-lak-b', id]);
+    this.router.navigate(['/inka-lak-b', projektId]);
   }
   navigateFkl(lak: AbwProjekt) {
     console.log('LAK-Nav: ' + lak);
-    let id = 'A';
+    let projektId = 'A';
     if (lak != null) {
-      id = lak.projektId;
+      projektId = lak.projektId;
     }
-    this.router.navigate(['/inka-lak-b', id]);
+    this.router.navigate(['/inka-lak-b', projektId]);
   }
   navigateUntersuchung(lak: AbwProjekt) {
     console.log('LAK-Nav: ' + lak);
-    let id = 'A';
+    let projektId = 'A';
     if (lak != null) {
-      id = lak.projektId;
+      projektId = lak.projektId;
     }
-    this.router.navigate(['/inka-lak-b', id]);
+    this.router.navigate(['/inka-lak-b', projektId]);
   }
 }

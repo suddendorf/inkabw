@@ -18,7 +18,7 @@ export class Inka2AbwasserComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private service: AbwasserService) {
     this.route.params.subscribe(params => {
-      this.getAbw(params['id']);
+      this.getAbw(params['liegenschaftId']);
     });
   }
 
@@ -30,11 +30,11 @@ export class Inka2AbwasserComponent implements OnInit {
   }
 
 
-  private getAbw(id: string) {
+  private getAbw(liegenschaftId: string) {
     this.message = new Message();
-    console.log('ABW:' + id);
-    if (id) {
-      this.service.readAbw(id)
+    console.log('ABW:' +liegenschaftId);
+    if (liegenschaftId) {
+      this.service.readAbw(liegenschaftId)
         .subscribe(
         abw => { this.abw = abw; console.log(abw); },
         error => this.message.fehler = <any>error);
@@ -46,10 +46,7 @@ export class Inka2AbwasserComponent implements OnInit {
         error => this.message.fehler = <any>error);
     }
 
-    this.service.readAbw(id)
-      .subscribe(
-      abw => { this.abw = abw; console.log(abw); },
-      error => this.message.fehler = <any>error);
+    
   }
 
   update(abw: Abwasser) {
