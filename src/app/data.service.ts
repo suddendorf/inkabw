@@ -12,8 +12,8 @@ import { Message } from './message';
 
 @Injectable()
 export class DataService {
-  private static webServer: string = "http://localhost:8182/SQLServer/";//
-  //private static webServer: string = "http://192.168.137.57:8080/SQLServer/";
+  //private static webServer: string = "http://localhost:8182/SQLServer/";//
+  private static webServer: string = "http://192.168.137.57:8080/SQLServer/";
   //private static webServer: string = "/SQLServer/";//
   private urlSQL = 'SQLServlet';
   private urlWE = 'WEServlet';
@@ -56,7 +56,7 @@ export class DataService {
   public readWE(id: string): Observable<WE> {
     const params: URLSearchParams = new URLSearchParams();
     params.set('liegenschaftId', id);
-
+    console.log(id);
     return this.http.get(DataService.getWebServer() + this.urlWE, {
       search: params
     }).map(this.extractSingleWE)
@@ -92,7 +92,6 @@ export class DataService {
     let token = localStorage.getItem('userToken');
     let parms: string = JSON.stringify({ action: "search", token: token, we: we });
     const url: string = DataService.getWebServer() + this.urlABW;
-    console.log(url);
     return this.http.post(url, parms, options)
       .map(this.extractWE)
       .catch(this.handleError);
@@ -100,7 +99,6 @@ export class DataService {
 
 
   public getWebServerUrl(): Observable<string> {
-    console.log("get WebServer");
     // const params: URLSearchParams = new URLSearchParams();
     return this.http.get("/xclient.config", null)
       .map(this.extractWebServer)
@@ -108,9 +106,7 @@ export class DataService {
   }
 
   private extractWebServer(res: Response): string {
-    console.log('WebServer' + res);
     DataService.webServer = res.text();
-    console.log('WebServer' + DataService.getWebServer());
     return DataService.webServer;
   }
 

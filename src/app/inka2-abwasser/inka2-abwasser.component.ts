@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbwasserService } from './abwasser.service';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-inka2-abwasser',
   providers: [AbwasserService],

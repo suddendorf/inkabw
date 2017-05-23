@@ -60,6 +60,9 @@ export class ProjektdetailService extends AbstractService {
     }
     const body: AbwProjektDetail = res.json();
     if (body) {
+      console.log(body.beginn);
+      console.log(body.status);
+      
       return body;
     }
     return null;

@@ -13,13 +13,14 @@ import { ProjektdetailService } from '../projektdetail.service';
 })
 export class InkaLakAComponent extends LISA2Component implements OnInit {
   projekt: AbwProjektDetail = new AbwProjektDetail();
+  private liegenschaftId:string; // id der primaeren Lg
   message: Message;
 
   constructor(private route: ActivatedRoute, private service: ProjektdetailService) {
     super();
     this.projekt.phase = 'LAK A';
     this.route.params.subscribe(params => {
-      this.get(params['id']);
+      this.get(params['projektId'], params['liegenschaftId']);
     });
   }
 
@@ -29,21 +30,20 @@ export class InkaLakAComponent extends LISA2Component implements OnInit {
 
   read() {
     if (this.projekt.projektId) {
-      this.get(this.projekt.projektId);
+      this.get(this.projekt.projektId,this.liegenschaftId);
     }
   }
 
-  private get(id: string) {
+  private get(projektId: string, liegenschaftId: string) {
     this.message = new Message();
-    console.log('Projekt:' + id);
+    console.log('Projekt:' + projektId);
     // beim neu Anlegen wird die ID auf 'A' gesetzt, um dem Server mitzuteilen, dass ein Projekt der Phases LAK A angelegt werden soll.
     // der Server ermittelt die möglichen Kostenarten und schickt diese zurück
-    if (!id) {
-      id = 'A';
+    if (!projektId) {
+      projektId = 'A';
 
     }
-    let liegenschaftId = localStorage.getItem('liegenschaftId');
-    this.service.read(id, liegenschaftId)
+    this.service.read(projektId, liegenschaftId)
       .subscribe(
       p => this.projekt = p,
       error => this.message.fehler = <any>error);
@@ -74,8 +74,8 @@ export class InkaLakAComponent extends LISA2Component implements OnInit {
       console.log(JSON.stringify(p));
       this.service.delete(p.projektId)
         .subscribe(
-        abw => this.projekt = abw,
-        error => this.message = <any>error);
+        message => this.message = message,
+        error => this.fehler(error));
 
     }
   }

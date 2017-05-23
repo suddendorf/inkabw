@@ -16,7 +16,7 @@ export class Inka2AdminComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private service: DataService) {
     this.route.params.subscribe(params => {
-      this.getWE(params['id']);
+      this.getWE(params['liegenschaftId']);
     });
   }
   ngOnInit() {

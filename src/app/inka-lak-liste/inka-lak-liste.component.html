@@ -15,7 +15,7 @@
           <p>Bitte wählen Sie die Art des Projektes</p>
           <button class="btn btn-primary btn-block" data-dismiss="modal" title="LAK Teil A" (click)="navigateA(null)"> LAK Teil A </button>
           <button class="btn btn-primary btn-block" data-dismiss="modal" title="LAK Teil B" (click)="navigateB(null)"> LAK Teil B </button>
-          <button class="btn btn-primary btn-block" data-dismiss="modal" title="LAK für kleine Liegenschaften" (click)="navigateFkl(null)"> LAK für kleine Liegenschaften </button>
+          <button class="btn btn-primary btn-block" data-dismiss="modal" title="LAK für kleine Liegenschaften" (click)="navigateFkl(null)" > LAK für kleine Liegenschaften </button>
           <button class="btn btn-primary btn-block" data-dismiss="modal" title="Untersuchung" (click)="navigateUntersuchung(null)"> Untersuchung</button>
         </div>
       </div>
@@ -49,8 +49,7 @@
         <mfDefaultSorter by="status">Status</mfDefaultSorter>
       </th>
       <th align="center"></th>
-      <th align="center"></th>
-
+ 
     </thead>
     <tbody>
 
@@ -72,13 +71,7 @@
            </button>
           </div>
         </td>
-        <td>
-          <div class="pull-right">
-            <button class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(p)">
-            <span div class="glyphicon glyphicon-remove"></span>
-           </button>
-          </div>
-        </td>
+        
       </tr>
       <tr>
         <!--td align="center">{{user.id}}</td-->
@@ -99,8 +92,7 @@
            </button>
           </div>
         </td>
-        <td> </td>
-
+       
       </tr>
 
     </tbody>

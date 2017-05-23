@@ -58,11 +58,6 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
   }
 
   navigate(lak: AbwProjekt) {
-    console.log('LAK-Nav: ' + lak);
-    let id = '';
-    if (lak != null) {
-      id = lak.projektId;
-    }
     if ('LAK A' == lak.phase) {
       this.navigateA(lak);
     } else if ('LAK B' == lak.phase) {
@@ -72,19 +67,18 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
     } else if ('Untersuchung' == lak.phase) {
       this.navigateUntersuchung(lak);
     }
-    this.router.navigate(['/inka-lak-a', id]);
   }
 
   navigateA(lak: AbwProjekt) {
     console.log('LAK-Nav: ' + lak);
-    let id = '';
+    let projektId = '';
     if (lak != null) {
-      id = lak.projektId;
+      projektId = lak.projektId;
     }
-    this.router.navigate(['/inka-lak-a', id]);
+    let liegenschaftId = this.liegenschaftId;
+    this.router.navigate(['/inka-lak-a', projektId, liegenschaftId]);
   }
   navigateB(lak: AbwProjekt) {
-    console.log('LAK-Nav: ' + lak);
     let id = 'A';
     if (lak != null) {
       id = lak.projektId;

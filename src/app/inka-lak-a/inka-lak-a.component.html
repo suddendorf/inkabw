@@ -9,11 +9,11 @@
         <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
         <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
         <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
-        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
+        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right" [disabled]="!f.form.valid"> <i class="glyphicon glyphicon-ok" >  </i></button></div>
         <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(projekt)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
       </div>
       <h3 style="text-align:center">LAK Teil A</h3>
-      <form class="form form-horizontal" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+      <form class="form form-horizontal" name="f" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
         <fieldset>
           <div class="row">
             <label for="projektNr" class="control-label col-sm-4">Projekt Nr. *</label>
@@ -81,7 +81,7 @@
           <div class="row">
             <label for="status" class="control-label col-sm-4">Status</label>
 
-            <div class="col-sm-4">
+            <div class="col-sm-8">
               <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
               <select class="input-large form-control" id="status" [(ngModel)]="projekt.status" name="status" required>
               <option  >geplant</option>
@@ -103,7 +103,7 @@
             </div>
             <div class="row">
               <label for="statusZkl5" class="control-label col-sm-4">Status *</label>
-              <div class="col-sm-2">
+              <div class="col-sm-8">
                 <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
                 <select class="input-large form-control" id="statusZkl5" [(ngModel)]="projekt.statusZkl5" name="statusZkl5">
               <option  >kein Bedarf</option>
@@ -159,10 +159,10 @@
                   </thead>
                   <tbody>
 
-                    <tr *ngFor="let k of mf.data">
+                    <tr *ngFor="let k of mf.data ; let in = index">
                       <td>{{k.kostenart}}</td>
                       <td>
-                        <input type="number" class="form-control" id="kosten" [(ngModel)]="k.kosten" name="kosten">
+                        <input type="number" class="form-control"  [(ngModel)]="k.kosten" name="kosten-{{in}}">
                       </td>
                     </tr>
                   </tbody>
