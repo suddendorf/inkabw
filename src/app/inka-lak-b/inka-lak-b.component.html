@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
                 <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
-                <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
+                <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
                 <div class="col-sm-1">
                     <button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right"
                         [disabled]="!f.form.valid"> <i class="glyphicon glyphicon-ok">  </i></button>
@@ -101,7 +101,7 @@
                             <input type="text" class="form-control  text-left" id="extAuftragnehmer" [(ngModel)]="projekt.extAuftragnehmer" name="extAuftragnehmer">
                         </div>
                     </div>
-                    <div style="background-color:#d0d0d0">
+                    <div style="background-color:#e0e0f0">
                         <div class="row">
                             <label class="control-label col-sm-4">Baumaßnahmen</label>
                         </div>
@@ -120,6 +120,12 @@
                             <label for="baumassnahmeNr" class="control-label col-sm-4"> Nummer(n)</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control  text-left" id="baumassnahmeNr" [(ngModel)]="projekt.baumassnahmeNr" name="baumassnahmeNr">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="baumassnahmeKosten" class="control-label col-sm-4"> Geschätzte Kosten</label>
+                            <div class="col-sm-3">
+                                <input type="number" class="form-control  text-left" id="baumassnahmeKosten" [(ngModel)]="projekt.baumassnahmeKosten" name="baumassnahmeKosten">
                             </div>
                         </div>
                     </div>

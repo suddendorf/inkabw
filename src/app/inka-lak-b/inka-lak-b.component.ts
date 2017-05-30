@@ -20,7 +20,7 @@ export class InkaLakBComponent extends LISA2Component implements OnInit {
     super();
     this.projekt.phase = 'LAK B';
     this.route.params.subscribe(params => {
-      this.get(params['id']);
+      this.get(params['projektId'], params['liegenschaftId']);
     });
   }
 
@@ -28,17 +28,16 @@ export class InkaLakBComponent extends LISA2Component implements OnInit {
 
   }
 
-  private get(id: string) {
+  private get(projektId: string, liegenschaftId: string) {
     this.message = new Message();
-    console.log('Projekt:' + id);
+    console.log('Projekt:' + projektId);
     // beim neu Anlegen wird die ID auf 'B' gesetzt, um dem Server mitzuteilen, dass ein Projekt der Phases LAK B angelegt werden soll.
     // der Server ermittelt die möglichen Kostenarten und schickt diese zurück
-    if (!id) {
-      id = 'B';
+    if (!projektId) {
+      projektId = 'B';
 
     }
-    let liegenschaftId = localStorage.getItem('liegenschaftId');
-    this.service.read(id, liegenschaftId)
+    this.service.read(projektId, liegenschaftId)
       .subscribe(
       p => this.projekt = p,
       error => this.message.fehler = <any>error);

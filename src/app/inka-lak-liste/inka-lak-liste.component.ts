@@ -65,9 +65,9 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
       this.navigateA(lak);
     } else if ('LAK B' == lak.phase) {
       this.navigateB(lak);
-    } else if ('LAK fkL' == lak.phase) {
+    } else if ('LAK KL' == lak.phase) {
       this.navigateFkl(lak);
-    } else if ('Untersuchung' == lak.phase) {
+    } else if ('U' == lak.phase) {
       this.navigateUntersuchung(lak);
     }
   }
@@ -86,22 +86,25 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
     if (lak != null) {
       projektId = lak.projektId;
     }
-    this.router.navigate(['/inka-lak-b', projektId]);
+    let liegenschaftId = this.liegenschaftId;
+    this.router.navigate(['/inka-lak-b', projektId, liegenschaftId]);
   }
   navigateFkl(lak: AbwProjekt) {
     console.log('LAK-Nav: ' + lak);
-    let projektId = 'A';
+    let projektId = 'KL';
     if (lak != null) {
       projektId = lak.projektId;
     }
-    this.router.navigate(['/inka-lak-b', projektId]);
+    let liegenschaftId = this.liegenschaftId;
+    this.router.navigate(['/inka-lak-fkl', projektId, liegenschaftId]);
   }
   navigateUntersuchung(lak: AbwProjekt) {
     console.log('LAK-Nav: ' + lak);
-    let projektId = 'A';
+    let projektId = 'U';
     if (lak != null) {
       projektId = lak.projektId;
     }
-    this.router.navigate(['/inka-lak-b', projektId]);
+    let liegenschaftId = this.liegenschaftId;
+    this.router.navigate(['/inka-lak-a', projektId, liegenschaftId]);
   }
 }

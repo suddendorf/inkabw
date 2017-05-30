@@ -8,11 +8,12 @@
       <div class="row">
         <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
         <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
-        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rollback" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
+        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
         <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right" [disabled]="!f.form.valid"> <i class="glyphicon glyphicon-ok" >  </i></button></div>
         <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(projekt)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
       </div>
-      <h3 style="text-align:center">LAK Teil A</h3>
+      <h3 *ngIf="projekt.phase == 'LAK A'" style="text-align:center">LAK Teil A</h3>
+      <h3 *ngIf="projekt.phase == 'U'" style="text-align:center">Untersuchung</h3>
       <form class="form form-horizontal" name="f" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
         <fieldset>
           <div class="row">
@@ -97,7 +98,7 @@
               <input type="text" class="form-control  text-left" id="extAuftragnehmer" [(ngModel)]="projekt.extAuftragnehmer" name="extAuftragnehmer">
             </div>
           </div>
-          <div style="background-color:#d0d0d0">
+          <div style="background-color:#e0f0e0">
             <div class="row">
               <label class="control-label col-sm-4">Sofortmaßnahmen</label>
             </div>

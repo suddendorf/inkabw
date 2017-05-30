@@ -17,9 +17,11 @@ export class WE {
      ort: string = '';
      regBez: string = '';
      ffe: string = '';
+     ffeAdresse: string = '';
      flaeche: string = '';
      hbt: string = '';
      bde: string = '';
+     bedAdresse: string = '';
      imSdm: boolean;
      imBima: boolean;
      abwasserspezifischeInfos:boolean;

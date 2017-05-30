@@ -36,6 +36,4 @@ export class AbwProjektDetail {
     
     kosten: AbwProjektKosten[];
     liegenschaftIds: string[];
-
-    
 }
