@@ -13,7 +13,7 @@ import { Message } from './message';
 @Injectable()
 export class DataService {
   //private static webServer: string = "http://localhost:8182/SQLServer/";//
-  private static webServer: string = "http://192.168.137.79:8182/SQLServer/";
+  private static webServer: string = "http://192.168.137.76:8182/SQLServer/";
   //private static webServer: string = "http://192.168.137.57:8080/SQLServer/";
   //private static webServer: string = "/SQLServer/";//
   private urlSQL = 'SQLServlet';
@@ -66,9 +66,8 @@ export class DataService {
 
   public readSDMGeom(id: string): Observable<String> {
     const params: URLSearchParams = new URLSearchParams();
-    params.set('sql', "select geometrie_wkt from adm_sdm_liegenschaft s,herkunft_liegenschaft h where h.herkunft_id=s.we_nr and herkunft_art='SDM' and h.liegenschaft_id='" + id + "'");
-    console.log(params);
-    return this.http.get('http://localhost:8182/SQLServer/' + 'SQLServlet', {
+    params.set('liegenschaftId', id);
+    return this.http.get(DataService.getWebServer() + 'WKTServlet', {
       search: params
     }).map(this.extractGeom)
       .catch(this.handleError);
@@ -77,8 +76,8 @@ export class DataService {
   private extractGeom(res: Response): Array<String> {
     const body = res.json();
     console.log('extract Geom'+body);
-    if ( body && body.length>0){
-      let geom= body[0];
+    if ( body ){
+      let geom= body;
       return geom;
     }
     return null;
