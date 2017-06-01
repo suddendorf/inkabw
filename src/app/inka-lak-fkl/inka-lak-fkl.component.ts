@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from '../message';
 import { LISA2Component } from '../lisa2-component';
 import { AbwProjektDetail } from '../abw-projekt-detail';
@@ -16,10 +16,10 @@ import { ProjektdetailService } from '../projektdetail.service';
 export class InkaLakFklComponent extends LISA2Component implements OnInit {
 
   projekt: AbwProjektDetail = new AbwProjektDetail();
-  private liegenschaftId:string; // id der primaeren Lg
+  private liegenschaftId: string; // id der primaeren Lg
   message: Message;
 
-  constructor(private route: ActivatedRoute, private service: ProjektdetailService) {
+  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService) {
     super();
     this.projekt.phase = 'LAK KL';
     this.route.params.subscribe(params => {
@@ -33,13 +33,14 @@ export class InkaLakFklComponent extends LISA2Component implements OnInit {
 
   read() {
     if (this.projekt.projektId) {
-      this.get(this.projekt.projektId,this.liegenschaftId);
+      this.get(this.projekt.projektId, this.liegenschaftId);
     }
   }
 
   private get(projektId: string, liegenschaftId: string) {
     this.message = new Message();
-    console.log('Projekt:' + projektId);
+    console.log('Projekt:' + projektId); 
+    this.liegenschaftId = liegenschaftId;
     // beim neu Anlegen wird die ID auf 'KL' gesetzt, um dem Server mitzuteilen, dass ein Projekt der Phases LAK KL angelegt werden soll.
     // der Server ermittelt die möglichen Kostenarten und schickt diese zurück
     if (!projektId) {
@@ -79,7 +80,7 @@ export class InkaLakFklComponent extends LISA2Component implements OnInit {
         .subscribe(
         message => this.message = message,
         error => this.fehler(error));
-
+      this.router.navigate(['/inka-we', this.liegenschaftId]);
     }
   }
 

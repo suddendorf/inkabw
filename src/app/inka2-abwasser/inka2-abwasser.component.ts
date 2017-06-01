@@ -32,7 +32,7 @@ export class Inka2AbwasserComponent implements OnInit {
 
   private getAbw(liegenschaftId: string) {
     this.message = new Message();
-    console.log('ABW:' +liegenschaftId);
+    console.log('ABW:' + liegenschaftId);
     if (liegenschaftId) {
       this.service.readAbw(liegenschaftId)
         .subscribe(
@@ -46,12 +46,16 @@ export class Inka2AbwasserComponent implements OnInit {
         error => this.message.fehler = <any>error);
     }
 
-    
+
   }
 
   update(abw: Abwasser) {
     this.message = new Message();
     if (abw != null) {
+      if (abw.liegenschaftId == null) {
+        let lid: string = localStorage.getItem('liegenschaftId');
+        abw.liegenschaftId = lid;
+      }
       console.log(JSON.stringify(abw));
       this.service.updateAbw(abw)
         .subscribe(

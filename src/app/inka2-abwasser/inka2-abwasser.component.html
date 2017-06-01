@@ -1,13 +1,29 @@
-<div>
+<!-- Modal fuer Fehlermeldung-->
+  <div id="errModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Fehlermeldung</h4>
+        </div>
+        <div class="modal-body">
+          <p>{{message.fehler}} </p>
+          <button class="btn btn-primary btn-block" data-dismiss="modal" title="Meldung"> Ok</button>
+        </div>
+      </div>
+    </div>
+  </div><div>
   <div class="row">
     <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
     <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
     <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
-    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right"> <i class="glyphicon glyphicon-ok">  </i></button></div>
+    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right" [disabled]="!f.form.valid"    > <i class="glyphicon glyphicon-ok">  </i></button></div>
     <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
   </div>
   <h3 style="text-align:right">Abwasserspezifische Informationen zur WE</h3>
-  <form class="form form-horizontal">
+  <form class="form form-horizontal" name="f" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
     <fieldset>
       <div class="row">
         <label for="awtVorhanden" class="control-label col-sm-4">Entwässerungssys. vorhanden</label>
