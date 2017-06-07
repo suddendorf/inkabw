@@ -1,6 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { Message } from '../message';
 import { LISA2Component } from '../lisa2-component';
 import { AbwProjektDetail } from '../abw-projekt-detail';
@@ -13,10 +13,10 @@ import { ProjektdetailService } from '../projektdetail.service';
   styleUrls: ['./inka-lak-b.component.css']
 })
 export class InkaLakBComponent extends LISA2Component implements OnInit {
-  projekt: AbwProjektDetail = new AbwProjektDetail();
-  message: Message;
-
-  constructor(private route: ActivatedRoute, private service: ProjektdetailService) {
+  private projekt: AbwProjektDetail = new AbwProjektDetail();
+  private message: Message;
+  private liegenschaftId:string;
+  constructor(private route: ActivatedRoute, private router:Router,private service: ProjektdetailService) {
     super();
     this.projekt.phase = 'LAK B';
     this.route.params.subscribe(params => {
@@ -28,6 +28,15 @@ export class InkaLakBComponent extends LISA2Component implements OnInit {
 
   }
 
+
+  isLand(): boolean {
+    return localStorage.getItem("userGroup") == "32";
+  }
+
+  isFFE(): boolean {
+    return localStorage.getItem("userGroup") == "33"
+  }
+
   private get(projektId: string, liegenschaftId: string) {
     this.message = new Message();
     console.log('Projekt:' + projektId);
@@ -37,6 +46,7 @@ export class InkaLakBComponent extends LISA2Component implements OnInit {
       projektId = 'B';
 
     }
+      this.liegenschaftId=liegenschaftId;
     this.service.read(projektId, liegenschaftId)
       .subscribe(
       p => this.projekt = p,
@@ -70,7 +80,7 @@ export class InkaLakBComponent extends LISA2Component implements OnInit {
         .subscribe(
         abw => this.projekt = abw,
         error => this.message = <any>error);
-
+      this.router.navigate(['/inka-we', this.liegenschaftId]);
     }
   }
 

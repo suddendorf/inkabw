@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SecurityService } from './security.service';
+
 declare var ol: any;
 @Component({
   selector: 'app-root',
@@ -9,11 +10,11 @@ declare var ol: any;
 
 })
 export class AppComponent {
-  title = 'INKA Berichtswesen';
   ol: any;
 
   constructor(private securityService: SecurityService) { }
   ngOnInit(): void {
+
     var map = new ol.Map({
       controls: ol.control.defaults({
         attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
@@ -41,6 +42,8 @@ export class AppComponent {
     });
 
   }
+
+
   isLoggedIn(): boolean {
     console.log("loggedIn");
     return this.securityService.isLoggedIn();

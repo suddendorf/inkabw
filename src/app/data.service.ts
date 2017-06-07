@@ -16,7 +16,11 @@ export class DataService {
   //private static webServer: string = "http://192.168.137.79:8182/SQLServer/";
   //private static webServer: string = "http://192.168.137.57:8080/SQLServer/";
 
-  private static webServer: string = "/SQLServer/";
+  //private static webServer: string = "/SQLServer/";
+  private static webServer: string = "http://192.168.137.57:8080/SQLServer/";
+  //private static webServer: string = "http://192.168.137.76:8182/SQLServer/";
+
+  //private static webServer: string = "/";//
   private urlSQL = 'SQLServlet';
   private urlWE = 'WEServlet';
   private urlABW = 'WESucheServlet';
@@ -69,6 +73,7 @@ export class DataService {
     const params: URLSearchParams = new URLSearchParams();
     params.set('liegenschaftId', id);
     return this.http.get(DataService.getWebServer() + 'WKTServlet', {
+    //return this.http.get('http://localhost:8182/' + 'WKTServlet', {
       search: params
     }).map(this.extractGeom)
       .catch(this.handleError);

@@ -1,3 +1,20 @@
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Wollen Sie wirklich löschen?</h4>
+      </div>
+      <div class="modal-body">
+        <button class="btn btn-danger btn-block" data-dismiss="modal" title="Löschen" (click)="delete(projekt)"> Löschen </button>
+        <button class="btn btn-info btn-block" data-dismiss="modal" title="a"> Abbrechen </button>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row ">
     <div class="col-sm-4">
         <app-inka2-admin>
@@ -11,10 +28,10 @@
                 <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
                 <div class="col-sm-1">
                     <button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right"
-                        [disabled]="!f.form.valid"> <i class="glyphicon glyphicon-ok">  </i></button>
+                        [disabled]="!f.form.valid && !isLand()"> <i class="glyphicon glyphicon-ok">  </i></button>
                 </div>
                 <div class="col-sm-1">
-                    <button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(projekt)" align="right"> <i class="glyphicon glyphicon-remove"> </i></button>
+                    <button class="btn btn-primary btn-block" data-toggle="tooltip" [disabled]="!isLand()" title="löschen" data-toggle="modal" data-target="#myModal" align="right"> <i class="glyphicon glyphicon-remove"> </i></button>
                 </div>
             </div>
             <h3 style="text-align:center">LAK Teil B</h3>
@@ -23,7 +40,7 @@
                     <div class="row">
                         <label for="projektNr" class="control-label col-sm-4">Projekt Nr. *</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control  text-left" id="projektNr" [(ngModel)]="projekt.projektNr" name="projektNr" required>
+                            <input type="text" class="form-control  text-left" id="projektNr" [disabled]="!isLand()" [(ngModel)]="projekt.projektNr" name="projektNr" required>
                         </div>
                         <div *ngIf="f?.controls?.projektNr?.hasError('')">
                             Dieses Feld ist ein Pflichtfeld.
@@ -32,14 +49,14 @@
                     <div class="row">
                         <label for="projektName" class="control-label col-sm-4">Projektname</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control  text-left" id="projektName" [(ngModel)]="projekt.projektName" name="projektName">
+                            <input type="text" class="form-control  text-left" id="projektName" [disabled]="!isLand()" [(ngModel)]="projekt.projektName" name="projektName">
                         </div>
                     </div>
                     <div class="row">
                         <label for="auftraggeber" class="control-label col-sm-4">Auftraggeber *</label>
                         <div class="col-sm-8">
                             <!--input type="text" class="form-control  text-left" id="projektName"  [(ngModel)]="projekt.auftraggeber" name="auftraggeber"-->
-                            <select class="input-large form-control" id="auftraggeber" [(ngModel)]="projekt.auftraggeber" name="auftraggeber" required>
+                            <select class="input-large form-control" id="auftraggeber" [disabled]="!isLand()" [(ngModel)]="projekt.auftraggeber" name="auftraggeber" required>
               <option  value="KompZ BauMgmt Düsseldorf">KompZ BauMgmt Düsseldorf</option>
               <option  value="KompZ BauMgmt Hannover">KompZ BauMgmt Hannover</option>
               <option value="KompZ BauMgmt Kiel" >KompZ BauMgmt Kiel</option>
@@ -56,31 +73,31 @@
                     <div class="row">
                         <label for="durchfStelle" class="control-label col-sm-4">Durchf. Stelle</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control  text-left" id="durchfStelle" [(ngModel)]="projekt.durchfStelle" name="durchfStelle">
+                            <input type="text" class="form-control  text-left" id="durchfStelle" [disabled]="!isLand()" [(ngModel)]="projekt.durchfStelle" name="durchfStelle">
                         </div>
                     </div>
                     <div class="row">
                         <label for="bemerkung" class="control-label col-sm-4">Kommentar durchführende Stelle</label>
                         <div class="col-sm-8">
-                            <textarea cols="50" rows="3" class="form-control  text-left" id="bemerkung" [(ngModel)]="projekt.bemerkung" name="bemerkung"></textarea>
+                            <textarea cols="50" rows="3" class="form-control  text-left" id="bemerkung" [disabled]="!isLand()" [(ngModel)]="projekt.bemerkung" name="bemerkung"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <label for="projektLeiter" class="control-label col-sm-4">Sachbearb. BdE (Fz)</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control  text-left" id="projektLeiter" [(ngModel)]="projekt.projektLeiter" name="projektLeiter">
+                            <input type="text" class="form-control  text-left" id="projektLeiter" [disabled]="!isLand()" [(ngModel)]="projekt.projektLeiter" name="projektLeiter">
                         </div>
                     </div>
                     <div class="row">
                         <label for="beginn" class="control-label col-sm-4">Beauftragung</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control  text-left" id="beginn" [(ngModel)]="projekt.beginn" name="beginn">
+                            <input type="date" class="form-control  text-left" id="beginn" [disabled]="!isLand()" [(ngModel)]="projekt.beginn" name="beginn">
                         </div>
                     </div>
                     <div class="row">
                         <label for="ende" class="control-label col-sm-4">Fertigstellung</label>
                         <div class="col-sm-4">
-                            <input type="date" class="form-control  text-left" id="ende" [(ngModel)]="projekt.ende" name="ende">
+                            <input type="date" class="form-control  text-left" id="ende" [disabled]="!isLand()" [(ngModel)]="projekt.ende" name="ende">
                         </div>
                     </div>
                     <div class="row">
@@ -88,7 +105,7 @@
 
                         <div class="col-sm-4">
                             <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
-                            <select class="input-large form-control" id="status" [(ngModel)]="projekt.status" name="status" required>
+                            <select class="input-large form-control" id="status" [disabled]="!isLand()" [(ngModel)]="projekt.status" name="status" required>
               <option value="geplant" >geplant</option>
               <option  value="FfE beauftragt">FfE beauftragt</option>
               <option  value="BdE beauftragt">BdE beauftragt</option>
@@ -98,7 +115,7 @@
                     <div class="row">
                         <label for="extAuftragnehmer" class="control-label col-sm-4">Ing.-Büro</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control  text-left" id="extAuftragnehmer" [(ngModel)]="projekt.extAuftragnehmer" name="extAuftragnehmer">
+                            <input type="text" class="form-control  text-left" id="extAuftragnehmer" [disabled]="!isLand()" [(ngModel)]="projekt.extAuftragnehmer" name="extAuftragnehmer">
                         </div>
                     </div>
                     <div style="background-color:#e0e0f0">
@@ -109,23 +126,23 @@
                         <div class="row">
                             <label for="baumassnahmeBeginn" class="control-label col-sm-4">Beginn</label>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control  text-left" id="baumassnahmeBeginn" [(ngModel)]="projekt.baumassnahmeBeginn" name="baumassnahmeBeginn">
+                                <input type="date" class="form-control  text-left" id="baumassnahmeBeginn" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeBeginn" name="baumassnahmeBeginn">
                             </div>
                             <label for="baumassnahmeEnde" class="control-label col-sm-1">Ende</label>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control  text-left" id="baumassnahmeEnde" [(ngModel)]="projekt.baumassnahmeEnde" name="baumassnahmeEnde">
+                                <input type="date" class="form-control  text-left" id="baumassnahmeEnde" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeEnde" name="baumassnahmeEnde">
                             </div>
                         </div>
                         <div class="row">
                             <label for="baumassnahmeNr" class="control-label col-sm-4"> Nummer(n)</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control  text-left" id="baumassnahmeNr" [(ngModel)]="projekt.baumassnahmeNr" name="baumassnahmeNr">
+                                <input type="text" class="form-control  text-left" id="baumassnahmeNr" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeNr" name="baumassnahmeNr">
                             </div>
                         </div>
                         <div class="row">
                             <label for="baumassnahmeKosten" class="control-label col-sm-4"> Geschätzte Kosten</label>
                             <div class="col-sm-3">
-                                <input type="number" class="form-control  text-left" id="baumassnahmeKosten" [(ngModel)]="projekt.baumassnahmeKosten" name="baumassnahmeKosten">
+                                <input type="number" class="form-control  text-left" id="baumassnahmeKosten" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeKosten" name="baumassnahmeKosten">
                             </div>
                         </div>
                     </div>
@@ -146,7 +163,7 @@
                                     <tr *ngFor="let k of mf.data">
                                         <td>{{k.kostenart}}</td>
                                         <td>
-                                            <input type="number" class="form-control" id="kosten" [(ngModel)]="k.kosten" name="kosten">
+                                            <input type="number" class="form-control" id="kosten" [disabled]="!isLand()" [(ngModel)]="k.kosten" name="kosten">
                                         </td>
                                     </tr>
                                 </tbody>

@@ -19,6 +19,10 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router, private service: LakListeService) {
     super();
   }
+  
+  isLand(): boolean {
+    return localStorage.getItem("userGroup") == "32";
+  }
 
   ngOnInit() {
     this.route.params.subscribe(params => {

@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'inka-lak-a/:projektId/:liegenschaftId', component: InkaLakAComponent, canActivate: [LoggedInGuard] },
   { path: 'inka-lak-b/:projektId/:liegenschaftId', component: InkaLakBComponent, canActivate: [LoggedInGuard] },
   { path: 'inka-lak-fkl/:projektId/:liegenschaftId', component: InkaLakFklComponent, canActivate: [LoggedInGuard] },
-  { path: 'map', component: MapComponent, canActivate: [LoggedInGuard] },
+  { path: 'map', component: MapComponent },
   { path: 'error/:errorMessage', component: ErrorComponent },
   { path: '**', component: InkaWeSucheComponent, canActivate: [LoggedInGuard] }
 ];

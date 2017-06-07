@@ -20,7 +20,7 @@ export class LakListeService extends AbstractService {
     super(http, router);
     this.urlLak = DataService.getWebServer() + 'ABWProjektSucheServlet';
   }
-  
+
 
   searchLaks(liegenschaftId: string): Observable<Array<AbwProjekt>> {
     console.log("search Projekte:");

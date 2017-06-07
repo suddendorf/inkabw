@@ -60,9 +60,9 @@
         <td>{{p.projektName}}</td>
         <td>{{toDate(p.beginn)}}</td>
         <td>{{toDate(p.ende)}}</td>
-        <td>{{p.projektleiter}}</td>
+        <td>{{p.projektLeiter}}</td>
         <td>{{p.kostenBrutto}}</td>
-        <td>{{p.Status}}</td>
+        <td>{{p.status}}</td>
 
         <td>
           <div class="pull-right">
@@ -86,7 +86,7 @@
 
         <td>
           <div class="pull-right">
-            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
+            <button type="button" class="btn btn-primary" [disabled]="!isLand()" data-toggle="modal" data-target="#myModal">
 
             <span div class="glyphicon glyphicon-plus"></span>
            </button>

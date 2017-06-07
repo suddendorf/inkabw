@@ -6,7 +6,7 @@ import * as Rx from 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import { Router } from '@angular/router';
-
+import { Title} from '@angular/platform-browser';
 import { DataService } from './data.service';
 
 export var AUTH_PROVIDERS: Array<any> = [{ provide: SecurityService, useClass: SecurityService }];
@@ -16,7 +16,7 @@ export var AUTH_PROVIDERS: Array<any> = [{ provide: SecurityService, useClass: S
 export class SecurityService {
   url: string;
 
-  constructor(private http: Http, private router: Router) {
+  constructor(private http: Http, private router: Router, private titleService: Title) {
   }
 
   login(user: string, password: string): Observable<string> {
@@ -25,6 +25,7 @@ export class SecurityService {
     let parms: string = JSON.stringify({ action: "login", user: user, password: password });
     const url: string = DataService.getWebServer() + 'ABWLoginServlet';
     console.log(url);
+    this.titleService.setTitle("INKA Berichtswesen "+user);
     return this.http.post(url, parms, options)
       .map(this.extract)
       .catch(this.handleError);
@@ -70,14 +71,17 @@ export class SecurityService {
   }
 
 
-
+  public setTitle(newTitle: string){
+    this.titleService.setTitle(newTitle);
+  }
 
   private extract(res: Response): string {
     console.log('login' + res);
+    
     let result = res.json();
-    if (result.token && result.group) {
+    if (result.token && result.gruppe) {
       localStorage.setItem('userToken', result.token);
-      localStorage.setItem('userGroup',result.group);
+      localStorage.setItem('userGroup',result.gruppe);
       return null;
     } else if (result.fehler) {
       return result.fehler;
