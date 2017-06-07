@@ -15,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
 export class Inka2AbwasserComponent implements OnInit {
   abw: Abwasser = new Abwasser();
   message: Message;
+  isLand: boolean;
+  is
 
   constructor(private route: ActivatedRoute, private service: AbwasserService) {
     this.route.params.subscribe(params => {
@@ -27,7 +29,10 @@ export class Inka2AbwasserComponent implements OnInit {
 
   private read() {
     this.getAbw(this.abw.liegenschaftId);
+    this.isLand = false;
   }
+
+
 
 
   private getAbw(liegenschaftId: string) {

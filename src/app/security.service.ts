@@ -34,10 +34,15 @@ export class SecurityService {
 
   logout() {
     localStorage.removeItem('userToken');
+    localStorage.removeItem('userGroup');
   }
 
   getToken(): any {
     return localStorage.getItem('userToken');
+  }
+
+  getUserGroup(): String{
+    return localStorage.getItem('userGroup');
   }
   isLoggedIn(): boolean {
     return this.getToken() != null;
@@ -70,8 +75,9 @@ export class SecurityService {
   private extract(res: Response): string {
     console.log('login' + res);
     let result = res.json();
-    if (result.token) {
+    if (result.token && result.group) {
       localStorage.setItem('userToken', result.token);
+      localStorage.setItem('userGroup',result.group);
       return null;
     } else if (result.fehler) {
       return result.fehler;

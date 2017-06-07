@@ -12,7 +12,7 @@
       <div class="row">
         <label for="awtVorhanden" class="control-label col-sm-4">Entwässerungssys. vorhanden</label>
         <div class="col-sm-8">
-          <select class="input-large form-control" id="awtVorhanden"  [(ngModel)]="abw.awtVorhanden" name="awtVorhanden" required >
+          <select class="input-large form-control" id="awtVorhanden"  disabled="isLand" [(ngModel)]="abw.awtVorhanden" name="awtVorhanden" required >
               <!--option value="{{abw.awtVorhanden}}">{{abw.awtVorhanden}}</option-->
               <option value="Ja" >Ja</option>
               <option value="geringer Umfang">geringer Umfang</option>
