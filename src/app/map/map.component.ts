@@ -23,7 +23,7 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let lid: string = localStorage.getItem('liegenschaftId');
+    let lid: string = sessionStorage.getItem('liegenschaftId');
     console.log('init Map' + lid);
     if (this.liegenschaftId != lid) {
       this.liegenschaftId = lid;

@@ -26,7 +26,7 @@ export class Inka2AdminComponent implements OnInit {
     if (id) {
       this.readWE(id);
     }else{
-      let lid:string=localStorage.getItem('liegenschaftId');
+      let lid:string=sessionStorage.getItem('liegenschaftId');
         this.readWE(lid);
       }
     

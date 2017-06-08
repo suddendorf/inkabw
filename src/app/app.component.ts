@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor(private securityService: SecurityService) { }
   ngOnInit(): void {
-
+    this.securityService.checkLogin();
     var map = new ol.Map({
       controls: ol.control.defaults({
         attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
@@ -42,11 +42,4 @@ export class AppComponent {
     });
 
   }
-
-
-  isLoggedIn(): boolean {
-    console.log("loggedIn");
-    return this.securityService.isLoggedIn();
-  }
-
 }

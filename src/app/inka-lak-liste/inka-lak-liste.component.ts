@@ -21,7 +21,7 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
   }
   
   isLand(): boolean {
-    return localStorage.getItem("userGroup") == "32";
+    return sessionStorage.getItem("userGroup") == "32";
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
     if (liegenschaftId) {
       this.search();
     }else {
-      this.liegenschaftId = localStorage.getItem('liegenschaftId');
+      this.liegenschaftId = sessionStorage.getItem('liegenschaftId');
       this.search();
     }
   }

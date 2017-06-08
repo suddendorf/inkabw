@@ -24,7 +24,7 @@ export class ProjektdetailService extends AbstractService {
   public read(projektId: string,liegenschaftId:string): Observable<AbwProjektDetail> {
     console.log("readAbw");
     const params: URLSearchParams = new URLSearchParams();
-    let token = localStorage.getItem('userToken');
+    let token = sessionStorage.getItem('userToken');
 
     params.set('projektId', projektId);
     params.set('liegenschaftId', liegenschaftId);
@@ -38,7 +38,7 @@ export class ProjektdetailService extends AbstractService {
   public update(abw: AbwProjektDetail): Observable<Message> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let token = localStorage.getItem('userToken');
+    let token = sessionStorage.getItem('userToken');
     let parms: string = JSON.stringify({ action: "update", token: token, object: abw });
     return this.http.post(this.url, parms, options)
       .map(this.extractMessage)
@@ -47,7 +47,7 @@ export class ProjektdetailService extends AbstractService {
   public delete(projektId: string) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let token = localStorage.getItem('userToken');
+    let token = sessionStorage.getItem('userToken');
     let parms: string = JSON.stringify({ action: "delete", object: projektId, token: token });
     return this.http.post(this.url, parms, options)
       .map(this.extract)

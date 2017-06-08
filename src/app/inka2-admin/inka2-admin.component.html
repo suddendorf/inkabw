@@ -1,24 +1,25 @@
 <div class="container-fluid" style="background-color:#d0d0d0">
-  <h3>Wirtschaftseinheit</h3>
+  
 
   <form class="form-horizontal">
     <fieldset>
-      <p>{{we.liegenschaftNr}} {{we.bezeichnung}}</p>
-      <p>{{we.bundesland}} </p>
-      <p>{{we.regbez}} </p>
-      <p>{{we.plz}} {{we.ort}} </p>
-      <p>Fläche [ha]: {{we.flaeche}} </p>
+      <h3>{{we.liegenschaftNr}} {{we.bezeichnung}}</h3>
+      <strong>ADMIN-Daten der Wirtschaftseinheit</strong>
+      <p>{{we.bundesland}}<br>
+      <span *ngIf="we.regbez">{{we.regbez}}<br></span>
+      {{we.plz}} {{we.ort}}<br>
+      Fläche [ha]: {{we.flaeche}} </p>
 
         <p>
-          FfE:<br>{{we.ffe}}<br>{{we.ffeAdresse}}
+          <strong>Fachaufsichtführende Ebene:</strong><br>{{we.ffe}}<br>{{we.ffeAdresse}}
         </p>
         <p>
-          BdE:<br>{{we.bde}}<br>{{we.bdeAdresse}}
+          <strong>Baudurchführende Ebene:</strong><br>{{we.bde}}<br>{{we.bdeAdresse}}
         </p>
       
       <div style="background-color:#50a050; margin:5px; ">
         <p ><strong>
-          Bundeswehr
+          Bundeswehr (SASPF)
           </strong>
         </p>
         <p>
@@ -37,7 +38,7 @@
       </div>
      <div style="background-color:#9090f0; margin:5px; ">
         <p ><strong>
-          BImA
+          BImA BALIMA)
           </strong>
         </p>
         <p>

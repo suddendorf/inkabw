@@ -95,7 +95,7 @@ export class DataService {
     }
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    let token = localStorage.getItem('userToken');
+    let token = sessionStorage.getItem('userToken');
     let parms: string = JSON.stringify({ action: "search", token: token, we: we });
     const url: string = DataService.getWebServer() + this.urlABW;
     return this.http.post(url, parms, options)

@@ -34,19 +34,24 @@ export class SecurityService {
   }
 
   logout() {
-    localStorage.removeItem('userToken');
-    localStorage.removeItem('userGroup');
+    sessionStorage.removeItem('userToken');
+    sessionStorage.removeItem('userGroup');
   }
 
   getToken(): any {
-    return localStorage.getItem('userToken');
+    return sessionStorage.getItem('userToken');
   }
 
   getUserGroup(): String{
-    return localStorage.getItem('userGroup');
+    return sessionStorage.getItem('userGroup');
   }
   isLoggedIn(): boolean {
     return this.getToken() != null;
+  }
+  checkLogin(){
+    if(!this.isLoggedIn()){
+      this.router.navigate(['/login']);
+    }
   }
 
 
@@ -80,8 +85,8 @@ export class SecurityService {
     
     let result = res.json();
     if (result.token && result.gruppe) {
-      localStorage.setItem('userToken', result.token);
-      localStorage.setItem('userGroup',result.gruppe);
+      sessionStorage.setItem('userToken', result.token);
+      sessionStorage.setItem('userGroup',result.gruppe);
       return null;
     } else if (result.fehler) {
       return result.fehler;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
+import { SecurityService} from '../security.service';
 
 import { WE } from '../we';
 @Component({
@@ -13,12 +14,13 @@ export class InkaWeSucheComponent implements OnInit {
   wes: WE[];
   we: WE;
   loading:boolean=false;
-  constructor(private router: Router, private service: DataService) { 
+  constructor(private router: Router, private service: DataService, private securityService: SecurityService) { 
     console.log('Konstruktor WE Suche');
-    localStorage.removeItem('we');
+    sessionStorage.removeItem('we');
   }
 
   ngOnInit() {
+    this.securityService.checkLogin();
     console.log('init WE Suche');
     console.log('init WE Suche:' + this.we);
     this.loading=false;
@@ -26,7 +28,7 @@ export class InkaWeSucheComponent implements OnInit {
       this.we = new WE();            
     }
     this.we.abwasserspezifischeInfos=true;
-    const sWe: string = localStorage.getItem('we.bezeichnung');
+    const sWe: string = sessionStorage.getItem('we.bezeichnung');
     if ( sWe!=null){
       this.we.bezeichnung = sWe;
       this.search();
@@ -56,14 +58,14 @@ export class InkaWeSucheComponent implements OnInit {
   }
   onSelection(u: WE) {
     // console.log("select:" + JSON.stringify(u));
-    localStorage.setItem('we.bezeichnung', this.we.bezeichnung);
+    sessionStorage.setItem('we.bezeichnung', this.we.bezeichnung);
   }
 
   navigate(we: WE) {
     console.log('WE-Suche: ' + we);
      
     const id = we.liegenschaftId;
-    localStorage.setItem('liegenschaftId', id);
+    sessionStorage.setItem('liegenschaftId', id);
     console.log('WE-Suche: ' + we.liegenschaftId);
     this.router.navigate(['/inka-we', id]);
   }

@@ -29,13 +29,13 @@ export class Inka2AbwasserComponent implements OnInit {
 
   private read() {
     this.getAbw(this.abw.liegenschaftId);
-    console.log("UserGroup: " + localStorage.getItem("userGroup"));
+    console.log("UserGroup: " + sessionStorage.getItem("userGroup"));
 
   }
 
   private getAbw(liegenschaftId: string) {
-    this.isLand = localStorage.getItem("userGroup")=="32";
-    this.isBima = localStorage.getItem("userGroup")=="35";
+    this.isLand = sessionStorage.getItem("userGroup")=="32";
+    this.isBima = sessionStorage.getItem("userGroup")=="35";
     this.message = new Message();
     console.log('ABW:' + liegenschaftId);
     if (liegenschaftId) {
@@ -44,7 +44,7 @@ export class Inka2AbwasserComponent implements OnInit {
         abw => { this.abw = abw; console.log(abw); },
         error => this.message.fehler = <any>error);
     } else {
-      let lid: string = localStorage.getItem('liegenschaftId');
+      let lid: string = sessionStorage.getItem('liegenschaftId');
       this.service.readAbw(lid)
         .subscribe(
         abw => { this.abw = abw; console.log(abw); },
@@ -58,7 +58,7 @@ export class Inka2AbwasserComponent implements OnInit {
     this.message = new Message();
     if (abw != null) {
       if (abw.liegenschaftId == null) {
-        let lid: string = localStorage.getItem('liegenschaftId');
+        let lid: string = sessionStorage.getItem('liegenschaftId');
         abw.liegenschaftId = lid;
       }
       console.log(JSON.stringify(abw));

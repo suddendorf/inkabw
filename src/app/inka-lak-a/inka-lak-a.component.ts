@@ -29,11 +29,11 @@ export class InkaLakAComponent extends LISA2Component implements OnInit {
   }
 
   isLand(): boolean {
-    return localStorage.getItem("userGroup") == "32";
+    return sessionStorage.getItem("userGroup") == "32";
   }
 
   isFFE(): boolean {
-    return localStorage.getItem("userGroup") == "33"
+    return sessionStorage.getItem("userGroup") == "33"
   }
 
   read() {
