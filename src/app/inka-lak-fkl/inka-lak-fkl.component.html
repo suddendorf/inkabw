@@ -28,7 +28,8 @@
         <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
         <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right"
             [disabled]="!f.form.valid && !(isLand() || isFFE())"> <i class="glyphicon glyphicon-ok" >  </i></button></div>
-        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" [disabled]="!isLand()" data-toggle="modal" data-target="#myModal" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
+        <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" [disabled]="!isLand()" data-toggle="modal"
+            data-target="#myModal" align="right"> <i class="glyphicon glyphicon-remove"> </i></button></div>
       </div>
       <h3 style="text-align:center">LAK für kleine Liegenschaften</h3>
       <form class="form form-horizontal" name="f" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
@@ -36,7 +37,8 @@
           <div class="row">
             <label for="projektNr" class="control-label col-sm-4">Projekt Nr. *</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control  text-left" id="projektNr" [disabled]="!isLand()" [(ngModel)]="projekt.projektNr" name="projektNr" required>
+              <input type="text" class="form-control  text-left" id="projektNr" [disabled]="!isLand()" [(ngModel)]="projekt.projektNr"
+                name="projektNr" required>
             </div>
             <div *ngIf="f?.controls?.projektNr?.hasError('')">
               Dieses Feld ist ein Pflichtfeld.
@@ -45,14 +47,16 @@
           <div class="row">
             <label for="projektName" class="control-label col-sm-4">Projektname</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektName" [disabled]="!isLand()" [(ngModel)]="projekt.projektName" name="projektName">
+              <input type="text" class="form-control  text-left" id="projektName" [disabled]="!isLand()" [(ngModel)]="projekt.projektName"
+                name="projektName">
             </div>
           </div>
           <div class="row">
             <label for="auftraggeber" class="control-label col-sm-4">Auftraggeber *</label>
             <div class="col-sm-8">
               <!--input type="text" class="form-control  text-left" id="projektName"  [(ngModel)]="projekt.auftraggeber" name="auftraggeber"-->
-              <select class="input-large form-control" id="auftraggeber" [disabled]="!isLand()" [(ngModel)]="projekt.auftraggeber" name="auftraggeber" required>
+              <select class="input-large form-control" id="auftraggeber" [disabled]="!isLand()" [(ngModel)]="projekt.auftraggeber" name="auftraggeber"
+                required>
               <option  value="KompZ BauMgmt Düsseldorf">KompZ BauMgmt Düsseldorf</option>
               <option  value="KompZ BauMgmt Hannover">KompZ BauMgmt Hannover</option>
               <option value="KompZ BauMgmt Kiel" >KompZ BauMgmt Kiel</option>
@@ -69,19 +73,25 @@
           <div class="row">
             <label for="durchfStelle" class="control-label col-sm-4">Durchf. Stelle</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="durchfStelle" [disabled]="!isLand()" [(ngModel)]="projekt.durchfStelle" name="durchfStelle">
+              <input list="stellenListe" class="form-control" id="durchfStelle" [disabled]="!isLand()" [(ngModel)]="projekt.durchfStelle"
+                name="durchfStelle">
+              <datalist id="stellenListe">
+                <option *ngFor="let i of projekt.durchfStellen" [value]="i">{{i}}</option>
+              </datalist>
             </div>
           </div>
           <div class="row">
             <label for="bemerkung" class="control-label col-sm-4">Kommentar durchführende Stelle</label>
             <div class="col-sm-8">
-              <textarea cols="50" rows="3" class="form-control  text-left" id="bemerkung" [disabled]="!isLand()" [(ngModel)]="projekt.bemerkung" name="bemerkung"></textarea>
+              <textarea cols="50" rows="3" class="form-control  text-left" id="bemerkung" [disabled]="!isLand()" [(ngModel)]="projekt.bemerkung"
+                name="bemerkung"></textarea>
             </div>
           </div>
           <div class="row">
             <label for="projektLeiter" class="control-label col-sm-4">Sachbearb. BdE (Fz)</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="projektLeiter" [disabled]="!isLand()" [(ngModel)]="projekt.projektLeiter" name="projektLeiter">
+              <input type="text" class="form-control  text-left" id="projektLeiter" [disabled]="!isLand()" [(ngModel)]="projekt.projektLeiter"
+                name="projektLeiter">
             </div>
           </div>
           <div class="row">
@@ -106,13 +116,15 @@
               <option  value="FfE beauftragt">FfE beauftragt</option>
               <option  value="BdE beauftragt">BdE beauftragt</option>
               <option  value="fertiggestellt">fertiggestellt</option>
+              <option value="Altdaten">Altdaten</option>
               </select>
             </div>
           </div>
           <div class="row">
             <label for="extAuftragnehmer" class="control-label col-sm-4">Ing.-Büro</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="extAuftragnehmer" [disabled]="!isLand()" [(ngModel)]="projekt.extAuftragnehmer" name="extAuftragnehmer">
+              <input type="text" class="form-control  text-left" id="extAuftragnehmer" [disabled]="!isLand()" [(ngModel)]="projekt.extAuftragnehmer"
+                name="extAuftragnehmer">
             </div>
           </div>
           <div style="background-color:#e0f0e0">
@@ -137,29 +149,34 @@
               <label for="sachstandZkl5" class="control-label col-sm-4">Sachstand</label>
 
               <div class="col-sm-8">
-                <textarea cols="50" rows="3" class="form-control  text-left" id="sachstandZkl5" [disabled]="!isLand()" [(ngModel)]="projekt.sachstandZkl5" name="sachstandZkl5"></textarea>
+                <textarea cols="50" rows="3" class="form-control  text-left" id="sachstandZkl5" [disabled]="!isLand()" [(ngModel)]="projekt.sachstandZkl5"
+                  name="sachstandZkl5"></textarea>
               </div>
             </div>
             <div class="row">
               <label for="kommentarFfe" class="control-label col-sm-4">Kommentar FfE</label>
               <div class="col-sm-8">
-                <textarea cols="50" rows="3" class="form-control  text-left" id="kommentarFfe" [disabled]="!(isLand() || isFFE())" [(ngModel)]="projekt.kommentarFfe" name="kommentarFfe"></textarea>
+                <textarea cols="50" rows="3" class="form-control  text-left" id="kommentarFfe" [disabled]="!(isLand() || isFFE())" [(ngModel)]="projekt.kommentarFfe"
+                  name="kommentarFfe"></textarea>
               </div>
             </div>
             <div class="row">
               <label for="inspektion" class="control-label col-sm-4">TV Inspektion von</label>
               <div class="col-sm-3">
-                <input type="date" class="form-control  text-left" id="inspektionBeginn" [disabled]="!isLand()" [(ngModel)]="projekt.inspektionBeginn" name="inspektionBeginn">
+                <input type="date" class="form-control  text-left" id="inspektionBeginn" [disabled]="!isLand()" [(ngModel)]="projekt.inspektionBeginn"
+                  name="inspektionBeginn">
               </div>
               <label for="inspektionEnde" class="control-label col-sm-1">bis</label>
               <div class="col-sm-3">
-                <input type="date" class="form-control  text-left" id="inspektionEnde" [disabled]="!isLand()" [(ngModel)]="projekt.inspektionEnde" name="inspektionEnde">
+                <input type="date" class="form-control  text-left" id="inspektionEnde" [disabled]="!isLand()" [(ngModel)]="projekt.inspektionEnde"
+                  name="inspektionEnde">
               </div>
             </div>
             <div class="row">
               <label for="inspekteur" class="control-label col-sm-4">Inspektionsfirma</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control  text-left" id="inspekteur" [disabled]="!isLand()" [(ngModel)]="projekt.inspekteur" name="inspekteur">
+                <input type="text" class="form-control  text-left" id="inspekteur" [disabled]="!isLand()" [(ngModel)]="projekt.inspekteur"
+                  name="inspekteur">
               </div>
             </div>
           </div>
@@ -172,23 +189,27 @@
             <div class="row">
               <label for="baumassnahmeBeginn" class="control-label col-sm-4">Beginn</label>
               <div class="col-sm-3">
-                <input type="date" class="form-control  text-left" id="baumassnahmeBeginn" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeBeginn" name="baumassnahmeBeginn">
+                <input type="date" class="form-control  text-left" id="baumassnahmeBeginn" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeBeginn"
+                  name="baumassnahmeBeginn">
               </div>
               <label for="baumassnahmeEnde" class="control-label col-sm-1">Ende</label>
               <div class="col-sm-3">
-                <input type="date" class="form-control  text-left" id="baumassnahmeEnde" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeEnde" name="baumassnahmeEnde">
+                <input type="date" class="form-control  text-left" id="baumassnahmeEnde" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeEnde"
+                  name="baumassnahmeEnde">
               </div>
             </div>
             <div class="row">
               <label for="baumassnahmeNr" class="control-label col-sm-4"> Nummer(n)</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control  text-left" id="baumassnahmeNr" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeNr" name="baumassnahmeNr">
+                <input type="text" class="form-control  text-left" id="baumassnahmeNr" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeNr"
+                  name="baumassnahmeNr">
               </div>
             </div>
             <div class="row">
               <label for="baumassnahmeKosten" class="control-label col-sm-4"> Geschätzte Kosten</label>
               <div class="col-sm-3">
-                <input type="number" class="form-control  text-left" id="baumassnahmeKosten" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeKosten" name="baumassnahmeKosten">
+                <input type="number" class="form-control  text-left" id="baumassnahmeKosten" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeKosten"
+                  name="baumassnahmeKosten">
               </div>
             </div>
           </div>

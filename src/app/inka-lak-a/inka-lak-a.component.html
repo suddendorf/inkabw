@@ -75,7 +75,10 @@
           <div class="row">
             <label for="durchfStelle" class="control-label col-sm-4">Durchf. Stelle</label>
             <div class="col-sm-8">
-              <input type="text" class="form-control  text-left" id="durchfStelle" [disabled]="!isLand()" [(ngModel)]="projekt.durchfStelle" name="durchfStelle">
+              <input list="stellenListe" class="form-control" id="durchfStelle" [disabled]="!isLand()" [(ngModel)]="projekt.durchfStelle" name="durchfStelle">
+              <datalist id="stellenListe">
+                <option *ngFor="let i of projekt.durchfStellen" [value]="i">{{i}}</option>
+              </datalist>
             </div>
           </div>
           <div class="row">
@@ -112,6 +115,7 @@
               <option  value="FfE beauftragt">FfE beauftragt</option>
               <option  value="BdE beauftragt">BdE beauftragt</option>
               <option  value="fertiggestellt">fertiggestellt</option>
+              <option  value="Altdaten">Altdaten</option>
               </select>
             </div>
           </div>
