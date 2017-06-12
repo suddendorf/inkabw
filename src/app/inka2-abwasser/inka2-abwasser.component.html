@@ -67,7 +67,11 @@
       <div class="row">
         <label for="artAbw" class="control-label col-sm-4">Abwasserart</label>
         <div class="col-sm-8">
-          <textarea class="form-control" id="artAbw" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.artAbw" name="artAbw"></textarea>
+          <select class="input-large form-control" id="artAbw" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.artAbw" name="artAbw">
+            <option>häuslich</option>
+            <option>gewerblich oder industriell</option>
+            <option>unbekannnt</option>
+          </select>
         </div>
       </div>
       <div class="row">
@@ -105,7 +109,11 @@
       <div class="row">
         <label for="einlArt" class="control-label  col-sm-4">Einleitungsart</label>
         <div class="col-sm-8">
-          <textarea type="text" class="form-control" id="einlArt" size=6 [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.einlArt" name="einlArt"></textarea>
+          <select class="input-large form-control" id="einlArt" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.einlArt" name="einlArt">
+            <option>Gewässer</option>
+            <option>öffentliche Abwasseranlage</option>
+            <option>private Abwasseranlage</option>
+          </select>
         </div>
       </div>
       <div class="row">
