@@ -105,7 +105,7 @@ export class MapComponent implements OnInit {
         })
       ]),
       layers: [
-        this.bing,
+        //this.bing,
         this.osm,
         vectorLayer
       ],
