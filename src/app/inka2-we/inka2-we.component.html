@@ -1,13 +1,28 @@
-<div>
+<div class="align-center">
+  <h2 >
+    <a  data-toggle="collapse" data-target="#collapseBeispiel" (click)="toggleCollapse()">
+         {{title}}
+        </a>
+  </h2>
   <div class="row ">
-    <div class="form-group col-sm-4">
-      <app-inka2-admin>
-      </app-inka2-admin>
-      <!--app-map></app-map-->
+    <div class="form-group col-sm-4 collapse in" id="collapseBeispiel">
+      <button class="btn btn-info align-baseline pull-right" type="button" data-toggle="collapse" data-target="#collapseBeispiel"
+        aria-expanded="false" aria-controls="collapseBeispiel" (click)="toggleCollapse()"> <i class="glyphicon glyphicon-menu-left"></i></button>
+
+        <app-inka2-admin>
+        </app-inka2-admin>
+        <!--app-map></app-map-->
     </div>
-    <div class="form-group col-sm-8">
+
+    <div *ngIf="!collapse" class="form-group col-sm-8">
       <app-inka2-abwasser>
       </app-inka2-abwasser>
+    </div>
+     <button *ngIf="collapse" class="btn btn-info align-baseline pull-left break" type="button" data-toggle="collapse" data-target="#collapseBeispiel"
+        aria-expanded="false" aria-controls="collapseBeispiel" (click)="toggleCollapse()"> <i class="glyphicon glyphicon-tags"></i></button><br>
+    <div *ngIf="collapse" class="form-group col-sm-11">
+        <app-inka2-abwasser>
+        </app-inka2-abwasser>
     </div>
   </div>
   <app-inka-lak-liste>
