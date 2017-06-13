@@ -206,7 +206,7 @@
               </div>
             </div>
             <div class="row">
-              <label for="baumassnahmeKosten" class="control-label col-sm-4"> Geschätzte Kosten</label>
+              <label for="baumassnahmeKosten" class="control-label col-sm-4"> Geschätzte Kosten [€]</label>
               <div class="col-sm-3">
                 <input type="number" class="form-control  text-left" id="baumassnahmeKosten" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeKosten"
                   name="baumassnahmeKosten">
@@ -223,7 +223,7 @@
                     <mfDefaultSorter by="kostenart">Kostenart</mfDefaultSorter>
                   </th>
                   <th>
-                    <mfDefaultSorter by="kosten" align="right">Kosten (Brutto)</mfDefaultSorter>
+                    <mfDefaultSorter by="kosten" align="right">Kosten (Brutto) [€]</mfDefaultSorter>
                   </th>
                 </thead>
                 <tbody>
