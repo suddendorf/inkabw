@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  <table class="table table-striped table-hover" [mfData]="wes" #mf="mfDataTable" [mfRowsOnPage]="5">
+  <table class="table table-striped table-hover" [mfData]="projekte" #mf="mfDataTable" [mfRowsOnPage]="5">
     <thead>
       <!--th align="right">Id</th-->
       <th align="center">
@@ -40,10 +40,10 @@
         <mfDefaultSorter by="ende">Ende</mfDefaultSorter>
       </th>
       <th align="center">
-        <mfDefaultSorter by="leiter">Projektleiter</mfDefaultSorter>
+        <mfDefaultSorter by="projektLeiter">Projektleiter</mfDefaultSorter>
       </th>
       <th align="center">
-        <mfDefaultSorter by="kosten">Kosten [€]</mfDefaultSorter>
+        <mfDefaultSorter by="kostenBrutto">Kosten [€]</mfDefaultSorter>
       </th>
       <th align="center">
         <mfDefaultSorter by="status">Status</mfDefaultSorter>
@@ -53,7 +53,7 @@
     </thead>
     <tbody>
 
-      <tr *ngFor="let p of projekte">
+      <tr *ngFor="let p of mf.data">
         <!--td align="center">{{user.id}}</td-->
         <td>{{p.phase}}</td>
         <td>{{p.projektNr}}</td>
