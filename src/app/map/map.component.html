@@ -1,10 +1,16 @@
-
- <!-- BING example select id="layer-select">
+<!-- BING example select id="layer-select">
        <option value="Aerial">Aerial</option>
        <option value="AerialWithLabels" selected>Aerial with labels</option>
        <option value="Road">Road</option>
        <option value="collinsBart">Collins Bart</option>
        <option value="ordnanceSurvey">Ordnance Survey</option>
      </select-->
-<div id="map" name="map"  class="map"></div>
-<div><input type="checkbox" class="text-left" id="bingVisible"  [(ngModel)]="bingVisible" name="bingVisible" (click)="toggleBing()">ohne OSM</div>
+<h3 align="center">
+      <a routerLink="/inka-we">
+         {{title}}
+        </a>
+</h3>
+
+<div id="map" name="map" class="map"></div>
+<div><input type="checkbox" class="text-left" id="bingVisible" [(ngModel)]="bingVisible" name="bingVisible" (click)="toggleBing()">ohne
+      OSM</div>

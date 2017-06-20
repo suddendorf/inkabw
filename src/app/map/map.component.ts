@@ -17,6 +17,8 @@ export class MapComponent implements OnInit {
   private bingVisible=false;
   private bing :any;
   private osm:any;
+ private title;
+
 
   constructor(private route: ActivatedRoute, private service: DataService) {
 
@@ -29,6 +31,8 @@ export class MapComponent implements OnInit {
       this.liegenschaftId = lid;
       this.readFeature(lid);
     }
+    this.title = sessionStorage.getItem('title');
+    
   }
   private toggleBing(){
     this.bingVisible= !this.bingVisible;

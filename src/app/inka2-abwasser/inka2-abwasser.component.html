@@ -1,26 +1,29 @@
 <!-- Modal fuer Fehlermeldung-->
-  <div id="errModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+<div id="errModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Fehlermeldung</h4>
-        </div>
-        <div class="modal-body">
-          <p>{{message.fehler}} </p>
-          <button class="btn btn-primary btn-block" data-dismiss="modal" title="Meldung"> Ok</button>
-        </div>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Fehlermeldung</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{message.fehler}} </p>
+        <button class="btn btn-primary btn-block" data-dismiss="modal" title="Meldung"> Ok</button>
       </div>
     </div>
-  </div><div>
+  </div>
+</div>
+<div>
   <div class="row">
     <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
     <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
     <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
-    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right" [disabled]="!f.form.valid && !(isLand || isBima)"    > <i class="glyphicon glyphicon-ok">  </i></button></div>
-    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right" [disabled]="!(isLand || isBima)" > <i class="glyphicon glyphicon-remove"> </i></button></div>
+    <div class="col-sm-1">
+      <button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right" [disabled]="!f.form.valid && !(isLand || isBima)"> <i class="glyphicon glyphicon-ok">  </i></button>
+    </div>
+    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right" [disabled]="!(isLand || isBima)"> <i class="glyphicon glyphicon-remove"> </i></button></div>
   </div>
   <h3 style="text-align:right">Abwasserspezifische Informationen zur WE</h3>
   <form class="form form-horizontal" name="f" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
@@ -28,19 +31,20 @@
       <div class="row">
         <label for="awtVorhanden" class="control-label col-sm-4">Entwässerungssys. vorhanden</label>
         <div class="col-sm-8">
-          <select class="input-large form-control" id="awtVorhanden"  [disabled]="!(isLand || isBima)" [(ngModel)]="abw.awtVorhanden" name="awtVorhanden" required >
-              <!--option value="{{abw.awtVorhanden}}">{{abw.awtVorhanden}}</option-->
-              <option value="Ja" >Ja</option>
-              <option value="geringer Umfang">geringer Umfang</option>
-              <option value="Nein" >Nein</option>
-              <option value="keine Angabe">keine Angabe</option>
-        </select>
+          <select class="input-large form-control" id="awtVorhanden" [disabled]="!(isLand || isBima)" [(ngModel)]="abw.awtVorhanden"
+            name="awtVorhanden" required>
+            <!--option value="{{abw.awtVorhanden}}">{{abw.awtVorhanden}}</option-->
+            <option value="Ja">Ja</option>
+            <option value="geringer Umfang">geringer Umfang</option>
+            <option value="Nein">Nein</option>
+            <option value="keine Angabe">keine Angabe</option>
+            </select>
         </div>
       </div>
       <div class="row">
         <label for="baujAwtanl" class="control-label col-sm-4">Baujahr</label>
         <div class="col-sm-8">
-          <input type="number" class="form-control input4" [disabled]="!(isLand || isBima)"  id="baujAwtanl" size=4 maxlength=4  [(ngModel)]="abw.baujAwtanl"
+          <input type="number" class="form-control input4" [disabled]="!(isLand || isBima)" id="baujAwtanl" size=4 maxlength=4 [(ngModel)]="abw.baujAwtanl"
             name="baujAwtanl">
         </div>
       </div>
@@ -54,86 +58,89 @@
       <div class="row">
         <label for="datum1Untersuchung" class="control-label col-sm-4">Erstuntersuchung</label>
         <div class="col-sm-8">
-          <input type="date" class="form-control" [disabled]="!(isLand || isBima)"  id="datum1Untersuchung" size=30  [(ngModel)]="abw.datum1untersg" name="datum1Untersuchung">
+          <input type="date" class="form-control" [disabled]="!(isLand || isBima)" id="datum1Untersuchung" size=30 [(ngModel)]="abw.datum1untersg"
+            name="datum1Untersuchung">
         </div>
       </div>
 
       <div class="row">
         <label for="laengeNetz" class="control-label  col-sm-4">gesamte Netzlänge [m]</label>
         <div class="col-sm-8">
-          <input type="number" class="form-control" [disabled]="!(isLand || isBima)" id="laengeNetz" size=30  [(ngModel)]="abw.laengeNetz" name="laengeNetz">
+          <input type="number" class="form-control" [disabled]="!(isLand || isBima)" id="laengeNetz" size=30 [(ngModel)]="abw.laengeNetz"
+            name="laengeNetz">
         </div>
       </div>
       <div class="row">
         <label for="artAbw" class="control-label col-sm-4">Abwasserart</label>
         <div class="col-sm-8">
-          <select class="input-large form-control" id="artAbw" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.artAbw" name="artAbw">
-            <option>häuslich</option>
-            <option>gewerblich oder industriell</option>
-            <option>unbekannnt</option>
-          </select>
+          <ss-multiselect-dropdown name="artAbw" id="artAbw" [options]="artAbw" [(ngModel)]="artAbwAuswahl" [disabled]="!(isLand || isBima)"></ss-multiselect-dropdown>
         </div>
       </div>
       <div class="row">
         <label for="datumLetzteUnters" class="control-label  col-sm-4">letzte Untersuchung</label>
         <div class="col-sm-8">
-          <input type="date" class="form-control" id="datumLetzteUnters" size=30 [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.datumLetzteUnters" name="datumLetzteUnters">
+          <input type="date" class="form-control" id="datumLetzteUnters" size=30 [disabled]="!(isLand || isBima)" [(ngModel)]="abw.datumLetzteUnters"
+            name="datumLetzteUnters">
         </div>
       </div>
       <div class="row">
         <label for="wsz" class="control-label  col-sm-4">WSZ</label>
         <div class="col-sm-8">
           <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
-          <select class="input-large form-control" id="wsz" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.wsz" name="wsz">
+          <select class="input-large form-control" id="wsz" [disabled]="!(isLand || isBima)" [(ngModel)]="abw.wsz" name="wsz">
               <option value="I" >I</option>
               <option value="II" >II</option>
               <option value="III A" >III A</option>
               <option value="III B" >III B</option>
               <option value="Nein" >Nein</option>
-              <option value="Unbekannt" >Unbekannt</option>              
+              <option value="Nicht bekannt" >Unbekannt</option>              
         </select>
         </div>
       </div>
       <div class="row">
         <label for="wassergefStoffe" class="control-label  col-sm-4"> wassergefährdende Stoffe</label>
         <div class="col-sm-8">
-          <input type="checkbox" class="text-left" id="wassergefStoffe" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.wassergefStoffe" name="wassergefStoffe">
+          <input type="checkbox" class="text-left" id="wassergefStoffe" [disabled]="!(isLand || isBima)" [(ngModel)]="abw.wassergefStoffe"
+            name="wassergefStoffe">
         </div>
       </div>
       <div class="row">
         <label for="ueberprFristen" class="control-label  col-sm-4">Überprüfungsintervall [Jahre]</label>
         <div class="col-sm-8">
-          <input type="number" class="form-control" id="ueberprFristen" size=30 [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.ueberprFristen" name="ueberprFristen">
+          <input type="number" class="form-control" id="ueberprFristen" size=30 [disabled]="!(isLand || isBima)" [(ngModel)]="abw.ueberprFristen"
+            name="ueberprFristen">
         </div>
       </div>
       <div class="row">
         <label for="einlArt" class="control-label  col-sm-4">Einleitungsart</label>
         <div class="col-sm-8">
-          <select class="input-large form-control" id="einlArt" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.einlArt" name="einlArt">
-            <option>Gewässer</option>
-            <option>öffentliche Abwasseranlage</option>
-            <option>private Abwasseranlage</option>
-          </select>
+          <ss-multiselect-dropdown name="einlArt" id="einlArt" [options]="einlArt" [(ngModel)]="einlArtAuswahl" (ngModelChange)="onChange($event)" [disabled]="!(isLand || isBima)"></ss-multiselect-dropdown>
         </div>
       </div>
+
       <div class="row">
         <label for="gsb" class="control-label  col-sm-4"> Gewässerschutzbeauftr. erf.</label>
         <div class="col-sm-8">
-          <input type="checkbox" class="text-left" id="gsb" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.gsb" name="gsb">
+          <input type="checkbox" class="text-left" id="gsb" [disabled]="!(isLand || isBima)" [(ngModel)]="abw.gsb" name="gsb">
         </div>
       </div>
       <div class="row">
         <label for="naechstesLak" class="control-label col-sm-4">nächstes LAK geplant [Jahr]</label>
         <div class="col-sm-8">
-          <input type="number" class="form-control input4" id="naechstesLak" size=4 [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.naechstesLak" name="naechstesLak">
+          <input type="number" class="form-control input4" id="naechstesLak" size=4 [disabled]="!(isLand || isBima)" [(ngModel)]="abw.naechstesLak"
+            name="naechstesLak">
         </div>
       </div>
       <div class="row">
         <label for="naechsteUnters" class="control-label col-sm-4">nächste Untersuchung</label>
         <div class="col-sm-8">
-          <input type="date" class="form-control" id="naechsteUnters" [disabled]="!(isLand || isBima)"  [(ngModel)]="abw.naechsteUnters" name="naechsteUnters">
+          <input type="date" class="form-control" id="naechsteUnters" [disabled]="!(isLand || isBima)" [(ngModel)]="abw.naechsteUnters"
+            name="naechsteUnters">
         </div>
       </div>
     </fieldset>
+
+
   </form>
+
 </div>

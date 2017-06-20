@@ -15,12 +15,20 @@
         </div>
     </div>
 </div>
+
+<h3 align="center">
+    <a routerLink="/inka-we">
+         {{title}}
+        </a>
+</h3>
 <div class="row ">
-    <div class="col-sm-4">
+    <div *ngIf="!collapse" class="col-sm-4">
+        <button class="btn btn-info align-baseline pull-right" type="button" (click)="toggleCollapse()"> <i class="glyphicon glyphicon-menu-left"></i></button>
         <app-inka2-admin>
         </app-inka2-admin>
     </div>
-    <div class="col-sm-8">
+    <button *ngIf="collapse" class="btn btn-info align-baseline pull-left break" type="button" (click)="toggleCollapse()"> <i class="glyphicon glyphicon-tags"></i></button><br>
+    <div [ngClass]="colSize()">
         <div>
             <div class="row">
                 <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
@@ -39,7 +47,7 @@
             <form class="form form-horizontal" name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
                 <fieldset>
                     <div class="row">
-                        <label for="projektNr" class="control-label col-sm-4">Projekt Nr. *</label>
+                        <label for="projektNr" class="control-label col-sm-4">Projekt-Nr. *</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control  text-left" id="projektNr" [disabled]="!isLand()" [(ngModel)]="projekt.projektNr"
                                 name="projektNr" required>
@@ -61,17 +69,17 @@
                             <!--input type="text" class="form-control  text-left" id="projektName"  [(ngModel)]="projekt.auftraggeber" name="auftraggeber"-->
                             <select class="input-large form-control" id="auftraggeber" [disabled]="!isLand()" [(ngModel)]="projekt.auftraggeber" name="auftraggeber"
                                 required>
-              <option  value="KompZ BauMgmt Düsseldorf">KompZ BauMgmt Düsseldorf</option>
-              <option  value="KompZ BauMgmt Hannover">KompZ BauMgmt Hannover</option>
-              <option value="KompZ BauMgmt Kiel" >KompZ BauMgmt Kiel</option>
-              <option  value="KompZ BauMgmt München">KompZ BauMgmt München</option>
-              <option  value="KompZ BauMgmt Strausberg">KompZ BauMgmt Strausberg</option>
-              <option value="KompZ BauMgmt Stuttgart" >KompZ BauMgmt Stuttgart</option>
-              <option  value="WBV Nord">WBV Nord</option>
-              <option  value="WBV Ost">WBV Ost</option>
-              <option  value="WBV Süd">WBV Süd</option>
-              <option value="WBV West" >WBV West</option>
-              </select>
+                                <option value="KompZ BauMgmt Düsseldorf">KompZ BauMgmt Düsseldorf</option>
+                                <option value="KompZ BauMgmt Hannover">KompZ BauMgmt Hannover</option>
+                                <option value="KompZ BauMgmt Kiel">KompZ BauMgmt Kiel</option>
+                                <option value="KompZ BauMgmt München">KompZ BauMgmt München</option>
+                                <option value="KompZ BauMgmt Strausberg">KompZ BauMgmt Strausberg</option>
+                                <option value="KompZ BauMgmt Stuttgart">KompZ BauMgmt Stuttgart</option>
+                                <option value="WBV Nord">WBV Nord</option>
+                                <option value="WBV Ost">WBV Ost</option>
+                                <option value="WBV Süd">WBV Süd</option>
+                                <option value="WBV West">WBV West</option>
+                                </select>
                         </div>
                     </div>
                     <div class="row">
@@ -79,9 +87,9 @@
                         <div class="col-sm-8">
                             <input list="stellenListe" class="form-control" id="durchfStelle" [disabled]="!isLand()" [(ngModel)]="projekt.durchfStelle"
                                 name="durchfStelle">
-                            <datalist id="stellenListe">
-                                <option *ngFor="let i of projekt.durchfStellen" [value]="i">{{i}}</option>
-                            </datalist>
+                                <datalist id="stellenListe">
+                                    <option *ngFor="let i of projekt.durchfStellen" [value]="i">{{i}}</option>
+                                </datalist>
                         </div>
                     </div>
                     <div class="row">
@@ -191,7 +199,7 @@
                                         </td>
                                     </tr>
                                 </tfoot>
-                            </table>
+                                </table>
                         </div>
                     </div>
                 </fieldset>

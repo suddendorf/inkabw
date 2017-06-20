@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 import { Title} from '@angular/platform-browser';
 import { DataService } from './data.service';
 
-export var AUTH_PROVIDERS: Array<any> = [{ provide: SecurityService, useClass: SecurityService }];
 
 
 @Injectable()
@@ -97,3 +96,4 @@ export class SecurityService {
     return res.text();
   }
 }
+export var AUTH_PROVIDERS: Array<any> = [{ provide: SecurityService, useClass: SecurityService }];

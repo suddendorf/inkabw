@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from '../message';
-import { LISA2Component } from '../lisa2-component';
+import { ToggleCollapse } from '../toggle-collapse';
+
 import { AbwProjektDetail } from '../abw-projekt-detail';
 import { ProjektdetailService } from '../projektdetail.service';
 
@@ -13,7 +14,7 @@ import { ProjektdetailService } from '../projektdetail.service';
   templateUrl: './inka-lak-fkl.component.html',
   styleUrls: ['./inka-lak-fkl.component.css']
 })
-export class InkaLakFklComponent extends LISA2Component implements OnInit {
+export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
 
   projekt: AbwProjektDetail = new AbwProjektDetail();
   private liegenschaftId: string; // id der primaeren Lg
@@ -49,7 +50,7 @@ export class InkaLakFklComponent extends LISA2Component implements OnInit {
 
   private get(projektId: string, liegenschaftId: string) {
     this.message = new Message();
-    console.log('Projekt:' + projektId); 
+    console.log('Projekt:' + projektId);
     this.liegenschaftId = liegenschaftId;
     // beim neu Anlegen wird die ID auf 'KL' gesetzt, um dem Server mitzuteilen, dass ein Projekt der Phases LAK KL angelegt werden soll.
     // der Server ermittelt die möglichen Kostenarten und schickt diese zurück

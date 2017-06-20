@@ -15,12 +15,20 @@
     </div>
   </div>
 </div>
+
+<h3 align="center">
+    <a routerLink="/inka-we">
+         {{title}}
+        </a>
+  </h3>
 <div class="row ">
-  <div class="col-sm-4">
-    <app-inka2-admin>
+  <div *ngIf="!collapse"  class="col-sm-4">
+       <button class="btn btn-info align-baseline pull-right" type="button" (click)="toggleCollapse()"> <i class="glyphicon glyphicon-menu-left"></i></button>
+ <app-inka2-admin>
     </app-inka2-admin>
   </div>
-  <div class="col-sm-8">
+   <button *ngIf="collapse" class="btn btn-info align-baseline pull-left break" type="button" (click)="toggleCollapse()"> <i class="glyphicon glyphicon-tags"></i></button><br>
+  <div [ngClass]="colSize()">
     <div>
       <div class="row">
         <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
@@ -35,7 +43,7 @@
       <form class="form form-horizontal" name="f" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
         <fieldset>
           <div class="row">
-            <label for="projektNr" class="control-label col-sm-4">Projekt Nr. *</label>
+            <label for="projektNr" class="control-label col-sm-4">Projekt-Nr. *</label>
             <div class="col-sm-4">
               <input type="text" class="form-control  text-left" id="projektNr" [disabled]="!isLand()" [(ngModel)]="projekt.projektNr"
                 name="projektNr" required>

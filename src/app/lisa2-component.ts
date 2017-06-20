@@ -2,12 +2,12 @@ export class LISA2Component {
     public toDate(d: any): string {
      //   console.log(d);
         if (d != null) {
-            if (typeof d === "Date") {
+            if ( d instanceof Date) {
                 return d.toLocaleDateString();
-            } else if (typeof d === "string") {
-                let s: string = d;
+            } else if (d instanceof String) {
+                let s: String = d;
                 if (s.length > 0) {
-                  d = new Date(s);
+                  d = new Date(s.toString());
                   return d.toLocaleDateString();
                 }
             }

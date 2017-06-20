@@ -6,8 +6,8 @@ export class Abwasser {
     wsz: string; //Wassschutzzone
     naechstesLak: number;
     baujAwtanl: number;
-    artAbw: string;
-    einlArt: string;
+    artAbw: string[];
+    einlArt: string[];
     gsb: boolean;
     datum1untersg: Date;
     ueberprFristen: number;

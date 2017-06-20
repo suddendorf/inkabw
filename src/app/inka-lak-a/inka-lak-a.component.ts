@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute ,Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from '../message';
-import { LISA2Component } from '../lisa2-component';
+import { ToggleCollapse } from '../toggle-collapse';
 import { AbwProjektDetail } from '../abw-projekt-detail';
+
 import { ProjektdetailService } from '../projektdetail.service';
 
 @Component({
@@ -11,11 +12,11 @@ import { ProjektdetailService } from '../projektdetail.service';
   templateUrl: './inka-lak-a.component.html',
   styleUrls: ['./inka-lak-a.component.css']
 })
-export class InkaLakAComponent extends LISA2Component implements OnInit {
+export class InkaLakAComponent extends  ToggleCollapse  implements OnInit {
   projekt: AbwProjektDetail = new AbwProjektDetail();
   private liegenschaftId: string; // id der primaeren Lg
   message: Message;
-
+ 
   constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService) {
     super();
     this.projekt.phase = 'LAK A';
@@ -26,7 +27,11 @@ export class InkaLakAComponent extends LISA2Component implements OnInit {
 
   ngOnInit() {
 
+    let c: string = localStorage.getItem('collapsed');
+
+    console.log(c);
   }
+
 
   isLand(): boolean {
     return sessionStorage.getItem("userGroup") == "32";
@@ -51,7 +56,7 @@ export class InkaLakAComponent extends LISA2Component implements OnInit {
       projektId = 'A';
 
     }
-    this.liegenschaftId=liegenschaftId;
+    this.liegenschaftId = liegenschaftId;
     this.service.read(projektId, liegenschaftId)
       .subscribe(
       p => this.projekt = p,
@@ -78,19 +83,19 @@ export class InkaLakAComponent extends LISA2Component implements OnInit {
     console.log(this.message.fehler);
   }
   delete(p: AbwProjektDetail) {
-   /* let test = confirm("Löschen?");
-    console.log(test);
-    if (test == true) {
-     */
-     this.message = new Message();
-      if (p != null) {
-        console.log(JSON.stringify(p));
-        this.service.delete(p.projektId)
-          .subscribe(
-          message => this.message = message,
-          error => this.fehler(error));
-        this.router.navigate(['/inka-we', this.liegenschaftId]);
-      }
+    /* let test = confirm("Löschen?");
+     console.log(test);
+     if (test == true) {
+      */
+    this.message = new Message();
+    if (p != null) {
+      console.log(JSON.stringify(p));
+      this.service.delete(p.projektId)
+        .subscribe(
+        message => this.message = message,
+        error => this.fehler(error));
+      this.router.navigate(['/inka-we', this.liegenschaftId]);
+    }
     //}
   }
 

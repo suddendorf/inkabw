@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
 import { AUTH_PROVIDERS } from './security.service';
 import { SecurityService } from './security.service';
 import { LoggedInGuard } from './security/logged-in-guard';
@@ -21,6 +22,9 @@ import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import { DataTableModule } from "angular2-datatable";
 import { MapComponent } from './map/map.component';
+ 
+ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+
 const appRoutes: Routes = [
   { path: '', component: InkaWeSucheComponent, canActivate: [LoggedInGuard] },
   { path: 'login', component: LoginComponent },
@@ -55,7 +59,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     DataTableModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+   MultiselectDropdownModule
   ],
   providers: [SecurityService, LoggedInGuard],
   bootstrap: [AppComponent]

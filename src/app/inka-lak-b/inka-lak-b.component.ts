@@ -1,8 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
-import { Message } from '../message';
-import { LISA2Component } from '../lisa2-component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Message } from '../message'; 
+import { ToggleCollapse } from '../toggle-collapse';
+
 import { AbwProjektDetail } from '../abw-projekt-detail';
 import { ProjektdetailService } from '../projektdetail.service';
 
@@ -12,11 +13,11 @@ import { ProjektdetailService } from '../projektdetail.service';
   templateUrl: './inka-lak-b.component.html',
   styleUrls: ['./inka-lak-b.component.css']
 })
-export class InkaLakBComponent extends LISA2Component implements OnInit {
+export class InkaLakBComponent extends ToggleCollapse implements OnInit {
   private projekt: AbwProjektDetail = new AbwProjektDetail();
   private message: Message;
-  private liegenschaftId:string;
-  constructor(private route: ActivatedRoute, private router:Router,private service: ProjektdetailService) {
+  private liegenschaftId: string;
+  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService) {
     super();
     this.projekt.phase = 'LAK B';
     this.route.params.subscribe(params => {
@@ -46,7 +47,7 @@ export class InkaLakBComponent extends LISA2Component implements OnInit {
       projektId = 'B';
 
     }
-      this.liegenschaftId=liegenschaftId;
+    this.liegenschaftId = liegenschaftId;
     this.service.read(projektId, liegenschaftId)
       .subscribe(
       p => this.projekt = p,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {browser} from 'protractor/built';
+import { Component, OnInit ,Input} from '@angular/core';
 import { WE } from '../we';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
@@ -13,8 +14,7 @@ export class Inka2AdminComponent implements OnInit {
 
   public we: WE = new WE();
   public errorMessage: String;
-
-  constructor(private route: ActivatedRoute, private service: DataService) {
+ constructor(private route: ActivatedRoute, private service: DataService) {
     this.route.params.subscribe(params => {
       this.getWE(params['liegenschaftId']);
     });
@@ -38,4 +38,5 @@ export class Inka2AdminComponent implements OnInit {
       error => this.errorMessage = <any>error);
 
   }
+ 
 }
