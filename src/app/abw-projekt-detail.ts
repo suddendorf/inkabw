@@ -1,5 +1,5 @@
 import {AbwProjektKosten} from "./abw-projekt-kosten";
-
+import {LiegenschaftRumpf} from "./liegenschaft-rumpf";
 export class AbwProjektDetail {
         // ABW_PROJEKT
     projektId: string ;
@@ -35,8 +35,9 @@ export class AbwProjektDetail {
     baumassnahmeNr: String;
     
     kosten: AbwProjektKosten[];
-    liegenschaftIds: string[];
-
+    // Tabelle mit zugeordnenten Liegenschaftsdaten
+    liegenschaften: LiegenschaftRumpf[];
+   
     durchfStellen: String[];
 
 }

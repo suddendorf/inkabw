@@ -22,7 +22,6 @@ export class ProjektdetailService extends AbstractService {
   }
 
   public read(projektId: string,liegenschaftId:string): Observable<AbwProjektDetail> {
-    console.log("readAbw");
     const params: URLSearchParams = new URLSearchParams();
     let token = sessionStorage.getItem('userToken');
 
@@ -67,4 +66,6 @@ export class ProjektdetailService extends AbstractService {
     }
     return null;
   }
+
+ 
 }
