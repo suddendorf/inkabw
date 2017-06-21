@@ -2,48 +2,49 @@
   <h3>Suche nach Wirtschaftseinheiten</h3>
   <form class="form form-horizontal">
     <fieldset>
-      <div class="row">
+      <div class="row no-gutters">
         <div class="form-group col-sm-3">
           <label for="liegenschaftNr" class="control-label col-xs-8">Liegenschafts-Nr.:</label>
-          <input type="text" class=" col-xs-4 text-left" id="liegenschaftNr" size=30  [(ngModel)]="we.liegenschaftNr" name="liegenschaftNr">
+          <input type="text" class=" col-xs-4 text-left" id="liegenschaftNr" [(ngModel)]="we.liegenschaftNr" name="liegenschaftNr">
         </div>
         <div class="form-group col-sm-2">
-          <label for="weNrBw" class="control-label col-xs-7">Bw:</label>
-          <input type="text" class=" col-xs-5 text-left" id="weNrBw" size=30  [(ngModel)]="we.weNrBw" name="weNrBw">
+          <label for="weNrBw" class="control-label col-xs-5">Bw:</label>
+          <input type="text" class=" col-xs-7 text-left" id="weNrBw" [(ngModel)]="we.weNrBw" name="weNrBw">
         </div>
         <div class="form-group col-sm-2">
-          <label for="weNrBima" class="control-label col-xs-7">BImA:</label>
-          <input type="text" class=" col-xs-5 text-left" id="weNrBima" size=30  [(ngModel)]="we.weNrBima" name="weNrBima">
+          <label for="weNrBima" class="control-label col-xs-5">BImA:</label>
+          <input type="text" class=" col-xs-7 text-left" id="weNrBima" [(ngModel)]="we.weNrBima" name="weNrBima">
         </div>
 
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-5">
           <label for="bezeichnung" class="control-label col-xs-5">Bezeichnung:</label>
-          <input type="text" class="col-xs-7" id="bezeichnung" size=30  [(ngModel)]="we.bezeichnung" name="bezeichnung">
+          <input type="text" class="col-xs-7" id="bezeichnung" [(ngModel)]="we.bezeichnung" name="bezeichnung">
         </div>
-        <div class="form-group col-sm-1">
-          <div>
-            <button  class="btn btn-primary btn-block" data-toggle="tooltip" title="suchen" (click)="search()">
-              <i *ngIf="loading" class="fa fa-spinner fa-spin fa-1x"> </i>
-              <span div *ngIf="!loading" class="glyphicon glyphicon-search"></span>
-            </button>
-            <!--a class="enlarge " data-toggle="tooltip" title="löschen" (click)="delete(we)"> <i class="fa fa-eraser fa-2x" style="color:#bb0000"> </i></a-->
-          </div>
-        </div>
+
       </div>
 
       <div class="row">
         <div class="form-group col-sm-4">
           <label for="abwasserspezifischeInfos" class="control-label col-sm-8">abwasserspezifische Informationen:</label>
-          <input type="checkbox" class="col-sm-2" id="abwasserspezifischeInfos"  style="vertical-align:baseline;"  [(ngModel)]="we.abwasserspezifischeInfos"
+          <input type="checkbox" class="col-sm-2" id="abwasserspezifischeInfos" style="vertical-align:baseline;" [(ngModel)]="we.abwasserspezifischeInfos"
             name="abwasserspezifischeInfos">
         </div>
         <div class="form-group col-sm-4">
           <label for="imSDM" class="control-label col-sm-10">Bundeswehr Liegenschaft:</label>
-          <input type="checkbox" class="col-sm-2" id="imSDM"  [(ngModel)]="we.imSDM" name="imSDM">
+          <input type="checkbox" class="col-sm-2" id="imSDM" [(ngModel)]="we.imSDM" name="imSDM">
         </div>
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label for="imBima" class="control-label col-sm-10">BImA Liegenschaft:          </label>
-          <input type="checkbox" class="col-sm-2"  id="imBima"  [(ngModel)]="we.imBima" name="imBima">
+          <input type="checkbox" class="col-sm-2" id="imBima" [(ngModel)]="we.imBima" name="imBima">
+        </div>
+        <div class="form-group col-sm-1">
+          <div>
+            <button class="btn btn-primary btn-block" data-toggle="tooltip" title="suchen" (click)="search()">
+              <i *ngIf="loading" class="fa fa-spinner fa-spin fa-1x"> </i>
+              <span div *ngIf="!loading" class="glyphicon glyphicon-search"></span>
+            </button>
+            <!--a class="enlarge " data-toggle="tooltip" title="löschen" (click)="delete(we)"> <i class="fa fa-eraser fa-2x" style="color:#bb0000"> </i></a-->
+          </div>
         </div>
       </div>
     </fieldset>
@@ -81,7 +82,7 @@
       <td>{{we.bezeichnung}}</td>
       <td>
         <div class="pull-right">
-           <button  class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(we)">
+          <button class="btn btn-primary btn-block" data-toggle="tooltip" title="bearbeiten" (click)="navigate(we)">
             <span div class="glyphicon glyphicon-pencil"></span>
            </button>
 

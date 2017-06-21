@@ -105,13 +105,13 @@
           <div class="row">
             <label for="beginn" class="control-label col-sm-4">Beauftragung</label>
             <div class="col-sm-4">
-              <input type="date" class="form-control  text-left" id="beginn" [disabled]="!isLand()" [(ngModel)]="projekt.beginn" name="beginn">
+              <input type="date" class="form-control  text-left" id="beginn" [disabled]="!isLand()" [(ngModel)]="projekt.beginn" name="beginn" data-toggle="tooltip" title="Datum">
             </div>
           </div>
           <div class="row">
             <label for="ende" class="control-label col-sm-4">Fertigstellung</label>
             <div class="col-sm-4">
-              <input type="date" class="form-control  text-left" id="ende" [disabled]="!isLand()" [(ngModel)]="projekt.ende" name="ende">
+              <input type="date" class="form-control  text-left" id="ende" [disabled]="!isLand()" [(ngModel)]="projekt.ende" name="ende" data-toggle="tooltip" title="Datum">
             </div>
           </div>
           <div class="row">
@@ -172,12 +172,12 @@
               <label for="inspektion" class="control-label col-sm-4">TV Inspektion von</label>
               <div class="col-sm-3">
                 <input type="date" class="form-control  text-left" id="inspektionBeginn" [disabled]="!isLand()" [(ngModel)]="projekt.inspektionBeginn"
-                  name="inspektionBeginn">
+                  name="inspektionBeginn" data-toggle="tooltip" title="Datum">
               </div>
               <label for="inspektionEnde" class="control-label col-sm-1">bis</label>
               <div class="col-sm-3">
                 <input type="date" class="form-control  text-left" id="inspektionEnde" [disabled]="!isLand()" [(ngModel)]="projekt.inspektionEnde"
-                  name="inspektionEnde">
+                  name="inspektionEnde" data-toggle="tooltip" title="Datum">
               </div>
             </div>
             <div class="row">
@@ -198,12 +198,12 @@
               <label for="baumassnahmeBeginn" class="control-label col-sm-4">Beginn</label>
               <div class="col-sm-3">
                 <input type="date" class="form-control  text-left" id="baumassnahmeBeginn" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeBeginn"
-                  name="baumassnahmeBeginn">
+                  name="baumassnahmeBeginn" data-toggle="tooltip" title="Datum">
               </div>
               <label for="baumassnahmeEnde" class="control-label col-sm-1">Ende</label>
               <div class="col-sm-3">
                 <input type="date" class="form-control  text-left" id="baumassnahmeEnde" [disabled]="!isLand()" [(ngModel)]="projekt.baumassnahmeEnde"
-                  name="baumassnahmeEnde">
+                  name="baumassnahmeEnde" data-toggle="tooltip" title="Datum">
               </div>
             </div>
             <div class="row">

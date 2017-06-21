@@ -35,7 +35,7 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
 
     let c: string = localStorage.getItem('collapsed');
 
-    console.log(c);
+  
   }
 
 
@@ -134,7 +134,11 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
         this.message.fehler = 'Die Projekt Nummer darf nicht leer sein';
         return;
       }
-      console.log(JSON.stringify(p));
+      if (p.status=='Altdaten') {
+        this.message.fehler = 'Der Status Altdaten ist bei der Datensatzänderung nicht erlaubt.';
+        return;
+      }
+      console.log(JSON.stringify(p.kosten));
       for (let l of p.liegenschaften) {
         if (l.liegenschaftid == this.primaer) {
           l.rang = 1;

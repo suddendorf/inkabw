@@ -3,7 +3,8 @@ import { Message } from '../message';
 import { Component, OnInit } from '@angular/core';
 import { AbwasserService } from './abwasser.service';
 import { ActivatedRoute } from '@angular/router';
-import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+//https://github.com/softsimon/angular-2-dropdown-multiselect
+import { IMultiSelectOption,IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'app-inka2-abwasser',
@@ -21,7 +22,15 @@ export class Inka2AbwasserComponent implements OnInit {
   artAbwAuswahl: string[];
   einlArt: IMultiSelectOption[];
   artAbw: IMultiSelectOption[];
-
+  myTexts: IMultiSelectTexts = {
+    checkAll: 'alle auswählen',
+    uncheckAll: 'alle abwählen',
+    checked: 'ausgewählt',
+    checkedPlural: 'ausgewählt',
+    searchPlaceholder: 'suchen',
+    defaultTitle: 'auswählen',
+    allSelected: 'alle ausgewählt',
+};
   constructor(private route: ActivatedRoute, private service: AbwasserService) {
     this.route.params.subscribe(params => {
       this.getAbw(params['liegenschaftId']);
