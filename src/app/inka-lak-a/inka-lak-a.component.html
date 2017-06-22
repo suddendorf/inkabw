@@ -20,7 +20,6 @@
          {{title}}
         </a>
 </h3>
-
 <div class="row ">
   <div *ngIf="!collapse" class="col-sm-4">
     <button class="btn btn-info align-baseline pull-right" type="button" (click)="toggleCollapse()"> <i class="glyphicon glyphicon-menu-left"></i></button>
@@ -72,7 +71,7 @@
           <div class="row">
             <label for="liegenschaften" class="control-label col-sm-4">Liegenschaften</label>
             <div class="col-sm-8">
-              <table *ngIf="projekt.liegenschaften!=null && projekt.liegenschaften.length>0" class="table table-striped table-hover" >
+              <table *ngIf="projekt.liegenschaften!=null && projekt.liegenschaften.length>0" class="table table-striped table-hover">
                 <thead>
                   <th align="center">
                     Primär
@@ -91,32 +90,34 @@
                 <tbody>
 
                   <tr *ngFor="let k of projekt.liegenschaften ; let in = index">
-                    <td><input type="radio" id="vi" name="rang" [(ngModel)]="primaer" [value]="k.liegenschaftid"></td>
+                    <td><input type="radio" id="vi" name="rang" [(ngModel)]="primaer" [disabled]="!isLand()" [value]="k.liegenschaftid"></td>
                     <td>{{k.sdmwenr}}</td>
                     <td>{{k.bimawenr}}</td>
                     <td>{{k.bezeichnung}}</td>
                     <!--td>
                       <input type="number" class="form-control" [disabled]="!isLand()" [(ngModel)]="k.kosten" name="kosten-{{in}}">
                     </td-->
-                    <td> <button class="btn btn-primary" data-toggle="tooltip" title="löschen" (click)="deleteLiegenschaft(k)" [disabled]="checkPrimaer(k)"> <i class="glyphicon glyphicon-minus"> </i></button></td>
+                    <td>
+                      <button class="btn btn-primary" data-toggle="tooltip" title="löschen" (click)="deleteLiegenschaft(k)" [disabled]="checkPrimaer(k) || !isLand()"> <i class="glyphicon glyphicon-minus"> </i></button>
+                    </td>
                   </tr>
                   <tr>
                     <td colspan="4">
                       <input list="liegListe" class="form-control" id="neueLiegenschaft" [disabled]="!isLand()" [(ngModel)]="neueLiegenschaft"
                         name="neueLiegenschaft" (click)="fehler(null)">
-                        <datalist id="liegListe"> 
-                          <option *ngFor="let i of lieg" >{{i.title}}</option>
+                        <datalist id="liegListe">
+                          <option *ngFor="let i of lieg">{{i.title}}</option>
                           <!--option *ngFor="let i of liegBez" [value]="i">{{i}}</option-->
                         </datalist>
                     </td>
                     <td> <button class="btn btn-primary" data-toggle="tooltip" title="neu" (click)="addLiegenschaft()" [disabled]="neueLiegenschaft==null"> <i class="glyphicon glyphicon-plus"> </i></button></td>
                   </tr>
                 </tbody>
-               
-                </table>
+
+              </table>
             </div>
           </div>
-           <!-- ---------------------------------------------------------------------------------------------- -->
+          <!-- ---------------------------------------------------------------------------------------------- -->
           <div class="row">
             <label for="auftraggeber" class="control-label col-sm-4">Auftraggeber *</label>
             <div class="col-sm-8">
@@ -163,17 +164,19 @@
           <div class="row">
             <label for="beginn" class="control-label col-sm-4">Beauftragung</label>
             <div class="col-sm-4">
-              <input type="date" class="form-control  text-left" id="beginn" [disabled]="!isLand()" [(ngModel)]="projekt.beginn" name="beginn" data-toggle="tooltip" title="Datum">
+              <input type="date" class="form-control  text-left" id="beginn" [disabled]="!isLand()" [(ngModel)]="projekt.beginn" name="beginn"
+                data-toggle="tooltip" title="Datum">
             </div>
           </div>
           <div class="row">
             <label for="ende" class="control-label col-sm-4">Fertigstellung</label>
             <div class="col-sm-4">
-              <input type="date" class="form-control  text-left" id="ende" [disabled]="!isLand()" [(ngModel)]="projekt.ende" name="ende" data-toggle="tooltip" title="Datum">
+              <input type="date" class="form-control  text-left" id="ende" [disabled]="!isLand()" [(ngModel)]="projekt.ende" name="ende"
+                data-toggle="tooltip" title="Datum">
             </div>
           </div>
           <div class="row">
-            <label for="status" class="control-label col-sm-4">Status</label>
+            <label for="status" class="control-label col-sm-4">Status *</label>
 
             <div class="col-sm-8">
               <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
@@ -198,7 +201,7 @@
               <label class="control-label col-sm-4">Sofortmaßnahmen</label>
             </div>
             <div class="row">
-              <label for="statusZkl5" class="control-label col-sm-4">Status *</label>
+              <label for="statusZkl5" class="control-label col-sm-4">Status </label>
               <div class="col-sm-8">
                 <!--input type="text" class="form-control" id="wsz" size=6  [(ngModel)]="abw.wsz" name="wsz"-->
                 <select class="input-large form-control" id="statusZkl5" [disabled]="!isLand()" [(ngModel)]="projekt.statusZkl5" name="statusZkl5">
@@ -235,7 +238,7 @@
               <label for="inspektionEnde" class="control-label col-sm-1">bis</label>
               <div class="col-sm-3">
                 <input type="date" class="form-control  text-left" id="inspektionEnde" [disabled]="!isLand()" [(ngModel)]="projekt.inspektionEnde"
-                  name="inspektionEnde" data-toggle="tooltip" title="Datum"> 
+                  name="inspektionEnde" data-toggle="tooltip" title="Datum">
               </div>
             </div>
             <div class="row">
@@ -247,15 +250,16 @@
             </div>
           </div>
           <div class="row">
+            <!--label  class="control-label col-sm-4">Kosten</label-->
             <div class="col-sm-12">
               <table *ngIf="projekt.kosten!=null && projekt.kosten.length>0" class="table table-striped table-hover" [mfData]="projekt.kosten"
                 #mf="mfDataTable" [mfRowsOnPage]="5">
                 <thead>
                   <th align="center">
-                    <mfDefaultSorter by="kostenart">Kostenart</mfDefaultSorter>
+                    Kostenart
                   </th>
                   <th>
-                    <mfDefaultSorter by="kosten" align="right">Kosten (Brutto) [€]</mfDefaultSorter>
+                    Kosten (Brutto) [€]
                   </th>
                 </thead>
                 <tbody>
@@ -263,17 +267,18 @@
                   <tr *ngFor="let k of mf.data ; let in = index">
                     <td>{{k.kostenart}}</td>
                     <td>
-                      <input type="number"  class="form-control" [disabled]="!isLand()" [(ngModel)]="k.kosten" name="kosten-{{in}}">
+                      <input type="number" class="form-control" [disabled]="!isLand()" [(ngModel)]="k.kosten" name="kosten-{{in}}">
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td>Summe:</td>
+                    <td>
+                      <input type="number" class="form-control" [disabled]="true" [(ngModel)]="summeKosten" name="kosten-summe">
                     </td>
                   </tr>
                 </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="5">
-                      <mfBootstrapPaginator [rowsOnPageSet]="[10,20,100]">test</mfBootstrapPaginator>
-                    </td>
-                  </tr>
-                </tfoot>
+
                 </table>
             </div>
           </div>

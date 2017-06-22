@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbwasserService } from './abwasser.service';
 import { ActivatedRoute } from '@angular/router';
 //https://github.com/softsimon/angular-2-dropdown-multiselect
-import { IMultiSelectOption,IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
+import { IMultiSelectOption,IMultiSelectTexts,IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'app-inka2-abwasser',
@@ -22,6 +22,13 @@ export class Inka2AbwasserComponent implements OnInit {
   artAbwAuswahl: string[];
   einlArt: IMultiSelectOption[];
   artAbw: IMultiSelectOption[];
+  mySettings: IMultiSelectSettings = {
+    enableSearch: false,
+    checkedStyle: 'glyphicon',
+    buttonClasses: 'btn btn-default btn-block',
+    dynamicTitleMaxItems: 5,
+    displayAllSelectedText: false
+};
   myTexts: IMultiSelectTexts = {
     checkAll: 'alle auswählen',
     uncheckAll: 'alle abwählen',

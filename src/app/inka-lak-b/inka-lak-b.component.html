@@ -141,7 +141,8 @@
                     </div>
                     <div style="background-color:#e0e0f0">
                         <div class="row">
-                            <label class="control-label col-sm-4">Baumaßnahmen</label>
+                            <label class="col-sm-12">Festgelegter Bedarf an Baumaßnahmen</label>
+                            
                         </div>
 
                         <div class="row">
@@ -177,10 +178,10 @@
                                 #mf="mfDataTable" [mfRowsOnPage]="5">
                                 <thead>
                                     <th align="center">
-                                        <mfDefaultSorter by="kostenart">Kostenart</mfDefaultSorter>
+                                        Kostenart
                                     </th>
                                     <th>
-                                        <mfDefaultSorter by="kosten" align="right">Kosten (Brutto) [€]</mfDefaultSorter>
+                                       Kosten (Brutto) [€]
                                     </th>
                                 </thead>
                                 <tbody>
@@ -192,13 +193,7 @@
                                         </td>
                                     </tr>
                                 </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="5">
-                                            <mfBootstrapPaginator [rowsOnPageSet]="[10,20,100]">test</mfBootstrapPaginator>
-                                        </td>
-                                    </tr>
-                                </tfoot>
+                                
                                 </table>
                         </div>
                     </div>

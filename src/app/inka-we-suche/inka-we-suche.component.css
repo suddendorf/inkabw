@@ -1,9 +1,9 @@
 
 input[type="checkbox"] {
-    margin-top: .75em;
+    margin-top: 20px;
 }
 
 input {
-    padding-left: 1px;
-    padding-right: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
 }

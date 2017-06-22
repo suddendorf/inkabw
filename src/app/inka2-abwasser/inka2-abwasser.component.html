@@ -92,7 +92,7 @@
       <div class="row">
         <label for="artAbw" class="control-label col-sm-4">Abwasserart</label>
         <div class="col-sm-8">
-          <ss-multiselect-dropdown name="artAbw" id="artAbw" [texts]="myTexts" [options]="artAbw" [(ngModel)]="artAbwAuswahl" [disabled]="!(isLand || isBima)"></ss-multiselect-dropdown>
+          <ss-multiselect-dropdown name="artAbw" id="artAbw" [settings]="mySettings" [texts]="myTexts" [options]="artAbw" [(ngModel)]="artAbwAuswahl" [disabled]="!(isLand || isBima)"></ss-multiselect-dropdown>
         </div>
       </div>
      
@@ -120,7 +120,7 @@
       <div class="row">
         <label for="einlArt" class="control-label  col-sm-4">Einleitungsart</label>
         <div class="col-sm-8">
-          <ss-multiselect-dropdown name="einlArt" id="einlArt" [options]="einlArt" [texts]="myTexts" [(ngModel)]="einlArtAuswahl" (ngModelChange)="onChange($event)" [disabled]="!(isLand || isBima)"></ss-multiselect-dropdown>
+          <ss-multiselect-dropdown name="einlArt" id="einlArt" [options]="einlArt" [settings]="mySettings" [texts]="myTexts" [(ngModel)]="einlArtAuswahl" (ngModelChange)="onChange($event)" [disabled]="!(isLand || isBima)"></ss-multiselect-dropdown>
         </div>
       </div>
 
