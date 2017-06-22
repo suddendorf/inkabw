@@ -1,3 +1,4 @@
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -67,7 +68,7 @@
                 name="projektName">
             </div>
           </div>
-          <!-- ---------------------------------------------------------------------------------------------- -->
+          <!-- ------------------------------------------ Sekundäre Liegenschaften ---------------------------------------------------- -->
           <div class="row">
             <label for="liegenschaften" class="control-label col-sm-4">Liegenschaften</label>
             <div class="col-sm-8">
@@ -102,15 +103,16 @@
                     </td>
                   </tr>
                   <tr>
-                    <td colspan="4">
-                      <input list="liegListe" class="form-control" id="neueLiegenschaft" [disabled]="!isLand()" [(ngModel)]="neueLiegenschaft"
-                        name="neueLiegenschaft" (click)="fehler(null)">
-                        <datalist id="liegListe">
-                          <option *ngFor="let i of lieg">{{i.title}}</option>
-                          <!--option *ngFor="let i of liegBez" [value]="i">{{i}}</option-->
-                        </datalist>
+                    
+                    <td colspan="4">                      
+                      <input list="liegListe" class="form-control" id="neueLiegenschaft" [disabled]="!isLand()" name="neueLiegenschaft" [(ngModel)]="neueLiegenschaft" (click)="fehler(null)" >
+                      <datalist id="liegListe">
+                        <option *ngFor="let i of lieg" [value]="i.title" [label]="i.title"></option>
+                        <!--option *ngFor="let i of liegBez" [value]="i">{{i}}</option-->
+                        
+                      </datalist>
                     </td>
-                    <td> <button class="btn btn-primary" data-toggle="tooltip" title="neu" (click)="addLiegenschaft()" [disabled]="neueLiegenschaft==null"> <i class="glyphicon glyphicon-plus"> </i></button></td>
+                    <td> <button class="btn btn-primary" data-toggle="tooltip" title="neu" (click)="addLiegenschaft()"> <i class="glyphicon glyphicon-plus"> </i></button></td>
                   </tr>
                 </tbody>
 
@@ -267,14 +269,14 @@
                   <tr *ngFor="let k of mf.data ; let in = index">
                     <td>{{k.kostenart}}</td>
                     <td>
-                      <input type="number" class="form-control" [disabled]="!isLand()" [(ngModel)]="k.kosten" name="kosten-{{in}}">
+                      <input type="number" class="form-control" [disabled]="!isLand()" [(ngModel)]="k.kosten" name="kosten-{{in}}" (blur)="summe()">
                     </td>
 
                   </tr>
                   <tr>
                     <td>Summe:</td>
                     <td>
-                      <input type="number" class="form-control" [disabled]="true" [(ngModel)]="summeKosten" name="kosten-summe">
+                      <input type="number" class="form-control" [disabled]="true" [(ngModel)]="summeKosten" name="kosten-summe" (click)="summe()">
                     </td>
                   </tr>
                 </tbody>

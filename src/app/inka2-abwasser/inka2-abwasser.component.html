@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">
         <p>{{message.fehler}} </p>
-        <button class="btn btn-primary btn-block" data-dismiss="modal" title="Meldung"> Ok</button>
+        <button class="btn btn-primary " data-dismiss="modal" title="Meldung"> Ok</button>
       </div>
     </div>
   </div>
@@ -19,11 +19,11 @@
   <div class="row">
     <div class="enlarge col-sm-5 " data-toggle="tooltip" title="" align="right" style="color:#bb0000"> {{message.fehler}} </div>
     <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
-    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
+    <div class="col-sm-1"><button class="btn btn-primary " data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
     <div class="col-sm-1">
-      <button class="btn btn-primary btn-block" data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right" [disabled]="!f.form.valid && !(isLand || isBima)"> <i class="glyphicon glyphicon-ok">  </i></button>
+      <button class="btn btn-primary " data-toggle="tooltip" title="speichern" (click)="update(abw)" align="right" [disabled]="!f.form.valid && !(isLand || isBima)"> <i class="glyphicon glyphicon-ok">  </i></button>
     </div>
-    <div class="col-sm-1"><button class="btn btn-primary btn-block" data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right" [disabled]="!(isLand || isBima)"> <i class="glyphicon glyphicon-remove"> </i></button></div>
+    <div class="col-sm-1"><button class="btn btn-primary " data-toggle="tooltip" title="löschen" (click)="delete(abw)" align="right" [disabled]="!(isLand || isBima)"> <i class="glyphicon glyphicon-remove"> </i></button></div>
   </div>
   <h3 style="text-align:right">Abwasserspezifische Informationen zur WE</h3>
   <form class="form form-horizontal" name="f" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>

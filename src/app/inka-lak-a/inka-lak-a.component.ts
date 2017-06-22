@@ -11,7 +11,7 @@ import { WE } from '../we';
 
 @Component({
   selector: 'app-inka-lak-a',
-  providers: [ProjektdetailService, DataService],
+  providers: [ProjektdetailService, DataService],//sek
   templateUrl: './inka-lak-a.component.html',
   styleUrls: ['./inka-lak-a.component.css']
 })
@@ -19,11 +19,11 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
   projekt: AbwProjektDetail = new AbwProjektDetail();
   private liegenschaftId: string; // id der primaeren Lg
   message: Message;
-  primaer: string;
-  lieg: Array<{ id: string, title: string, weNrBw: string, weNrBima: string, bezeichnung: string }> = new Array();
-  neueLiegenschaft: string;
-
-  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService) {
+  primaer: string; //sek
+  lieg: Array<{ id: string, title: string, weNrBw: string, weNrBima: string, bezeichnung: string }> = new Array(); //sek
+  neueLiegenschaft: string;//sek
+  summeKosten: number = 0;
+  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService) {//sek
     super();
     this.projekt.phase = 'LAK A';
     this.route.params.subscribe(params => {
@@ -35,7 +35,7 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
 
     let c: string = localStorage.getItem('collapsed');
 
-  
+
   }
 
 
@@ -65,34 +65,54 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
     this.liegenschaftId = liegenschaftId;
     this.service.read(projektId, liegenschaftId)
       .subscribe(
-      p => this.readSekLgs(p),
+      p => this.readSekLgs(p), //sek
       error => this.message.fehler = <any>error);
-    if (this.lieg.length == 0) {
+    //sek
+    if (!this.lieg||this.lieg.length == 0) {
       let we: WE = new WE();
-      we.abwasserspezifischeInfos=true;
+      we.abwasserspezifischeInfos = true;
       this.dataService.searchWE(we)
         .subscribe(
         l => this.assign(l),
         error => this.message.fehler = <any>error);
     }
   }
+  //sek
   assign(l: WE[]) {
+    this.lieg = new Array();
     for (let i of l) {
-      let bez: string = i.bezeichnung + "(Bw:" + i.weNrBw + "; BImA:" + i.weNrBima + ")";
+      //let bez: string = i.bezeichnung + "(Bw:" + i.weNrBw + "; BImA:" + i.weNrBima + ")";
+      // let re = / /gi;
+      let bez = i.bezeichnung;//.replace(re, "_");
       this.lieg.push({ id: i.liegenschaftId, title: bez, weNrBw: i.weNrBw, weNrBima: i.weNrBima, bezeichnung: i.bezeichnung });
     }
+    this.summe();
+  }
+
+  summe() {
+    this.summeKosten = 0;
+    for (let k of this.projekt.kosten) {
+      this.summeKosten += k.kosten;
+    }
+    console.log("kosten:" + this.summeKosten);
   }
   deleteLiegenschaft(l: LiegenschaftRumpf) {
     this.projekt.liegenschaften = this.projekt.liegenschaften.filter(obj => obj !== l);
 
   }
+  //sek
   addLiegenschaft() {
-    console.log(this.neueLiegenschaft);
+    // Workaround fuer Bug in IE10
+    let ele: HTMLTextAreaElement = <HTMLTextAreaElement>document.getElementById("neueLiegenschaft");
+    this.neueLiegenschaft = ele.value;
+    // Ende Workaround
     if (!this.neueLiegenschaft) {
       this.fehler("Bitte wählen Sie eine Liegenschaft aus.");
       return;
     }
     for (let l of this.lieg) {
+      console.log(l.title);
+      console.log(this.neueLiegenschaft);
       if (this.neueLiegenschaft == l.title) {
         let sek: LiegenschaftRumpf = new LiegenschaftRumpf();
         sek.liegenschaftid = l.id;
@@ -111,7 +131,7 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
         return;
       }
     }
-    this.fehler("Bitte wählen Sie eine Liegenschaft aus der Liste aus.");
+    this.fehler(this.neueLiegenschaft + " nicht gefunden. Bitte wählen Sie eine Liegenschaft aus der Liste aus.");
 
   }
   readSekLgs(p: AbwProjektDetail) {
@@ -123,22 +143,24 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
       console.log("Sekundäre Liegenschaft:" + l.liegenschaftid + ":" + l.rang);
     }
   }
-  checkPrimaer(l: LiegenschaftRumpf) :boolean{
-    let ok:boolean= this.primaer==l.liegenschaftid;
+  checkPrimaer(l: LiegenschaftRumpf): boolean {
+    let ok: boolean = this.primaer == l.liegenschaftid;
     return ok;
   }
   update(p: AbwProjektDetail) {
+    this.summe();
     this.message = new Message();
     if (p != null) {
       if (!p.projektNr) {
         this.message.fehler = 'Die Projekt Nummer darf nicht leer sein';
         return;
       }
-      if (p.status=='Altdaten') {
+      if (p.status == 'Altdaten') {
         this.message.fehler = 'Der Status Altdaten ist bei der Datensatzänderung nicht erlaubt.';
         return;
       }
       console.log(JSON.stringify(p.kosten));
+      //sek
       for (let l of p.liegenschaften) {
         if (l.liegenschaftid == this.primaer) {
           l.rang = 1;
@@ -156,6 +178,7 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
   fehler(error: any) {
     this.message.fehler = <any>error;
     console.log(this.message.fehler);
+
   }
   delete(p: AbwProjektDetail) {
     /* let test = confirm("Löschen?");
