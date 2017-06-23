@@ -12,5 +12,11 @@
 </h3>
 
 <div id="map" name="map" class="map" style="width: 100%; height: 700px;"></div>
-<div><input type="checkbox" class="text-left" id="bingVisible" [(ngModel)]="bingVisible" name="bingVisible" (click)="toggleBing()">ohne
-      OSM</div>
+<div>
+      <button type="button" class="button btn-primary" id="bingVisible"  name="bingVisible" (click)="toggleBing()">
+             <i *ngIf="karte" class="glyphicon glyphicon-check"></i>
+             <i *ngIf="!karte" class="glyphicon glyphicon-unchecked"></i>
+             
+      </button>
+      Karte
+</div>

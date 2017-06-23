@@ -14,7 +14,7 @@ export class MapComponent implements OnInit {
   private ol: any;
   private errorMessage: string;
   private liegenschaftId: string;
-  private bingVisible=false;
+  private karte=true;
   private bing :any;
   private osm:any;
  private title;
@@ -35,9 +35,9 @@ export class MapComponent implements OnInit {
     
   }
   private toggleBing(){
-    this.bingVisible= !this.bingVisible;
-    this.bing.setVisible(this.bingVisible);
-    this.osm.setVisible(!this.bingVisible);
+    this.karte= !this.karte;
+    this.bing.setVisible(!this.karte);
+    this.osm.setVisible(this.karte);
   }
   private readFeature(liegenschaftId: string) {
     this.service.readSDMGeom(liegenschaftId)

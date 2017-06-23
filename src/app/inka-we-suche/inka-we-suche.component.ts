@@ -59,7 +59,7 @@ export class InkaWeSucheComponent implements OnInit {
   onSelection(u: WE) {
     // console.log("select:" + JSON.stringify(u));
     sessionStorage.setItem('we.bezeichnung', this.we.bezeichnung);//suchparameter
-    sessionStorage.setItem('title', u.bezeichnung +"(Bw:"+u.weNrBw+"; BImA:"+u.weNrBima+ ")");
+    sessionStorage.setItem('title', u.bezeichnung +" (Bw:"+u.weNrBw+"; BImA:"+u.weNrBima+ ")");
     
   }
 
