@@ -1,9 +1,8 @@
 import {browser} from 'protractor/built';
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit ,Input,Inject} from '@angular/core';
 import { WE } from '../we';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../data.service';
-
 @Component({
   selector: 'app-inka2-admin',
   providers: [DataService],
@@ -34,9 +33,16 @@ export class Inka2AdminComponent implements OnInit {
   private readWE(id: string) {
     this.service.readWE(id)
       .subscribe(
-      we => this.we = we,
+      we => this.assign( we),
       error => this.errorMessage = <any>error);
 
   }
- 
+  assign(we:WE){
+    this.we=we;
+    console.log("admin"+this.we.liegenschaftId);
+   
+  }
+  getTitle():string{
+    return "childTitle";
+  }
 }

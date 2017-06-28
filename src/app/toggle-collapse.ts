@@ -2,16 +2,19 @@ import { LISA2Component } from './lisa2-component';
 
 export class ToggleCollapse extends LISA2Component {
     protected collapse: boolean = false;
-    protected title;
+     title:string;
 
     constructor() {
         super();
+        this.init();
+    }
+
+    init(){
         let lid: string = sessionStorage.getItem('title');
         this.title = lid;
 
         let c: string = localStorage.getItem('collapsed');
 
-        console.log(c);
         if (c == 'true') {
             this.collapse = true;
         } else {
@@ -22,7 +25,6 @@ export class ToggleCollapse extends LISA2Component {
     toggleCollapse() {
         this.collapse = !this.collapse;
         let c: string = (this.collapse ? 'true' : 'false');
-        console.log(c);
         localStorage.setItem('collapsed', c);
     }
 
@@ -32,5 +34,8 @@ export class ToggleCollapse extends LISA2Component {
         } else {
             return 'col-sm-8';
         }
+    }
+    public  setTitle(s:string){
+        this.title=s;
     }
 }

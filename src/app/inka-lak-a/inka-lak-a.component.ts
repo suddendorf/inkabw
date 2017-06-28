@@ -68,7 +68,7 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
       p => this.readSekLgs(p), //sek
       error => this.message.fehler = <any>error);
     //sek
-    if (!this.lieg||this.lieg.length == 0) {
+    if (!this.lieg || this.lieg.length == 0) {
       let we: WE = new WE();
       we.abwasserspezifischeInfos = true;
       this.dataService.searchWE(we)
@@ -197,6 +197,11 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
     //}
   }
 
+  navigate(u: LiegenschaftRumpf) {
+    sessionStorage.setItem('title', u.bezeichnung + " (Bw:" + u.sdmwenr + "; BImA:" + u.bimawenr + ")");
+    sessionStorage.setItem('liegenschaftId', u.liegenschaftid);
+    this.router.navigate(['/inka-we', u.liegenschaftid]);
+  }
   get beginn(): string {
     return this.toDate(this.projekt.beginn);
   }

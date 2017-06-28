@@ -99,7 +99,9 @@ export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
       let bez = i.bezeichnung;//.replace(re, "_");
       this.lieg.push({ id: i.liegenschaftId, title: bez, weNrBw: i.weNrBw, weNrBima: i.weNrBima, bezeichnung: i.bezeichnung });
     }
-  }//sek
+    this.summe();
+  }
+  //sek
   addLiegenschaft() {
     // Workaround fuer Bug in IE10
     let ele: HTMLTextAreaElement = <HTMLTextAreaElement>document.getElementById("neueLiegenschaft");

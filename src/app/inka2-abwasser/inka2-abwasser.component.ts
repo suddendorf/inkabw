@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbwasserService } from './abwasser.service';
 import { ActivatedRoute } from '@angular/router';
 //https://github.com/softsimon/angular-2-dropdown-multiselect
-import { IMultiSelectOption,IMultiSelectTexts,IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
+import { IMultiSelectOption, IMultiSelectTexts, IMultiSelectSettings } from 'angular-2-dropdown-multiselect';
 
 @Component({
   selector: 'app-inka2-abwasser',
@@ -28,7 +28,7 @@ export class Inka2AbwasserComponent implements OnInit {
     buttonClasses: 'btn btn-default btn-block',
     dynamicTitleMaxItems: 5,
     displayAllSelectedText: false
-};
+  };
   myTexts: IMultiSelectTexts = {
     checkAll: 'alle auswählen',
     uncheckAll: 'alle abwählen',
@@ -37,7 +37,7 @@ export class Inka2AbwasserComponent implements OnInit {
     searchPlaceholder: 'suchen',
     defaultTitle: 'auswählen',
     allSelected: 'alle ausgewählt',
-};
+  };
   constructor(private route: ActivatedRoute, private service: AbwasserService) {
     this.route.params.subscribe(params => {
       this.getAbw(params['liegenschaftId']);
@@ -55,16 +55,15 @@ export class Inka2AbwasserComponent implements OnInit {
       { id: 'Regenwasser', name: 'Regenwasser' },
       { id: 'häuslich', name: 'häuslich' },
       { id: 'gewerblich oder industriell', name: 'gewerblich oder industriell' },
-      { id: 'unbekannt', name: 'unbekannt' }      
+      { id: 'unbekannt', name: 'unbekannt' }
     ];
     //this.einlArtAuswahl=[2];
   }
   onChange() {
-    console.log(this.einlArtAuswahl);
+    console.log("onChange:" + this.einlArtAuswahl);
   }
   private read() {
     this.getAbw(this.abw.liegenschaftId);
-    console.log("UserGroup: " + sessionStorage.getItem("userGroup"));
 
   }
 
@@ -72,7 +71,6 @@ export class Inka2AbwasserComponent implements OnInit {
     this.isLand = sessionStorage.getItem("userGroup") == "32";
     this.isBima = sessionStorage.getItem("userGroup") == "35";
     this.message = new Message();
-    console.log('ABW:' + liegenschaftId);
     if (liegenschaftId) {
       this.service.readAbw(liegenschaftId)
         .subscribe(
@@ -88,10 +86,10 @@ export class Inka2AbwasserComponent implements OnInit {
   }
 
   readABW(abw: Abwasser) {
-    console.log(abw);
     this.abw = abw;
     this.einlArtAuswahl = abw.einlArt;
-    this.artAbwAuswahl=abw.artAbw;
+    this.artAbwAuswahl = abw.artAbw;
+  
   }
 
   update(abw: Abwasser) {
@@ -101,9 +99,8 @@ export class Inka2AbwasserComponent implements OnInit {
         let lid: string = sessionStorage.getItem('liegenschaftId');
         abw.liegenschaftId = lid;
       }
-      abw.artAbw=this.artAbwAuswahl;
+      abw.artAbw = this.artAbwAuswahl;
       abw.einlArt = this.einlArtAuswahl;
-      console.log(JSON.stringify(abw));
       this.service.updateAbw(abw)
         .subscribe(
         message => this.message = message,
@@ -114,7 +111,6 @@ export class Inka2AbwasserComponent implements OnInit {
   delete(abw: Abwasser) {
     this.message = new Message();
     if (abw != null) {
-      console.log(JSON.stringify(abw));
       this.service.deleteAbw(abw)
         .subscribe(
         abw => this.abw = abw,

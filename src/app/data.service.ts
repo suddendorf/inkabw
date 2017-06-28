@@ -13,8 +13,8 @@ import { Message } from './message';
 @Injectable()
 export class DataService {
  
-  private static webServer: string = "/inkabw/";
- // private static webServer: string = "http://192.168.137.152:8182/SQLServer/";
+  //private static webServer: string = "/inkabw/";
+ private static webServer: string = "http://192.168.137.152:8182/SQLServer/";
 
   private urlSQL = 'SQLServlet';
   private urlWE = 'WEServlet';
@@ -30,8 +30,10 @@ export class DataService {
     return body;
   }
   private extractSingleWE(res: Response): WE {
-    const body: WE = res.json();
-    return body;
+    const u: WE = res.json();
+    sessionStorage.setItem('title', u.bezeichnung +" (Bw:"+u.weNrBw+"; BImA:"+u.weNrBima+ ")");
+ 
+    return u;
   }
   private handleError(error: Response | any) {
     let errMsg: string;

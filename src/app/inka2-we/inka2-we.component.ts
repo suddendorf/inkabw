@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { WE } from '../we';
 
 import { ToggleCollapse } from '../toggle-collapse';
-
 @Component({
   selector: 'app-inka2-we',
   templateUrl: './inka2-we.component.html',
@@ -13,12 +12,12 @@ export class Inka2WeComponent extends ToggleCollapse implements OnInit {
   model: WE = new WE();
   constructor() {
     super();
+
   }
 
   ngOnInit() {
-   
-   
   }
-  
+
+
 
 }
