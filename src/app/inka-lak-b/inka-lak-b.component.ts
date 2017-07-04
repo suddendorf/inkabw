@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from '../message';
 import { ToggleCollapse } from '../toggle-collapse';
@@ -10,6 +10,9 @@ import { ProjektdetailService } from '../projektdetail.service';
 import { LiegenschaftRumpf } from "../liegenschaft-rumpf";
 import { DataService } from '../data.service';
 import { WE } from '../we';
+import { Store } from '../store/store';
+
+import { Actions } from '../store/actions';
 
 @Component({
   selector: 'app-inka-lak-b',
@@ -25,7 +28,7 @@ export class InkaLakBComponent extends ToggleCollapse implements OnInit {
   lieg: Array<{ id: string, title: string, weNrBw: string, weNrBima: string, bezeichnung: string }> = new Array(); //sek
   neueLiegenschaft: string;//sek
 
-  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService) {
+  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService,@Inject(Store) private  store: Store) {
     super();
     this.projekt.phase = 'LAK B';
     this.route.params.subscribe(params => {
@@ -171,7 +174,20 @@ export class InkaLakBComponent extends ToggleCollapse implements OnInit {
       this.router.navigate(['/inka-we', this.liegenschaftId]);
     }
   }
+  //sek
+  deleteLiegenschaft(l: LiegenschaftRumpf) {
+    this.projekt.liegenschaften = this.projekt.liegenschaften.filter(obj => obj !== l);
 
+  }
+  
+ navigate(u: LiegenschaftRumpf) {
+    sessionStorage.setItem('title', u.bezeichnung + " (Bw:" + u.sdmwenr + "; BImA:" + u.bimawenr + ")");
+    sessionStorage.setItem('liegenschaftId', u.liegenschaftid);
+        this.store.dispatch(Actions.setTitle(u.bezeichnung));
+    this.store.dispatch(Actions.setLgId(u.liegenschaftid));
+ 
+    this.router.navigate(['/inka-we', u.liegenschaftid]);
+  }
   get beginn(): string {
     return this.toDate(this.projekt.beginn);
   }

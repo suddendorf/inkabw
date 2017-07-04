@@ -35,12 +35,11 @@
         <div class="enlarge col-sm-4 " data-toggle="tooltip" title="" align="right" style="color:#000000"> {{message.ok}} </div>
         <div class="col-sm-1"><button class="btn btn-primary " data-toggle="tooltip" title="rückgängig" (click)="read()" align="right"> <i class="glyphicon glyphicon-refresh"> </i></button></div>
         <div class="col-sm-1">
-          <button class="btn btn-primary " data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right"
-            [disabled]="!f.form.valid && !(isLand() || isFFE())"> <i class="glyphicon glyphicon-ok">  </i></button>
+          <button class="btn btn-primary " data-toggle="tooltip" title="speichern" (click)="update(projekt)" align="right" [disabled]="!f.form.valid && !(isLand() || isFFE())"> <i class="glyphicon glyphicon-ok">  </i></button>
         </div>
         <div class="col-sm-1">
-          <button class="btn btn-primary " data-toggle="tooltip" title="löschen" [disabled]="!isLand()" data-toggle="modal"
-            data-target="#myModal" align="right"> <i class="glyphicon glyphicon-remove"> </i></button>
+          <button class="btn btn-primary " data-toggle="tooltip" title="löschen" [disabled]="!isLand()" data-toggle="modal" data-target="#myModal"
+            align="right"> <i class="glyphicon glyphicon-remove"> </i></button>
         </div>
       </div>
       <h3 style="text-align:center">LAK für kleine Liegenschaften</h3>
@@ -64,10 +63,10 @@
             </div>
           </div>
           <!-- ------------------------------------------ Sekundäre Liegenschaften ---------------------------------------------------- -->
-          <div class="row">
+          <div class="row" *ngIf="projekt.liegenschaften!=null && projekt.liegenschaften.length>1">
             <label for="liegenschaften" class="control-label col-sm-4">Liegenschaften</label>
             <div class="col-sm-8">
-              <table *ngIf="projekt.liegenschaften!=null && projekt.liegenschaften.length>0" class="table table-striped table-hover">
+              <table class="table table-striped table-hover">
                 <thead>
                   <th align="center">
                     Primär
@@ -89,32 +88,40 @@
                     <td><input type="radio" id="vi" name="rang" [(ngModel)]="primaer" [disabled]="!isLand()" [value]="k.liegenschaftid"></td>
                     <td>{{k.sdmwenr}}</td>
                     <td>{{k.bimawenr}}</td>
-                    <td>{{k.bezeichnung}}</td>
-                    <!--td>
-                      <input type="number" class="form-control" [disabled]="!isLand()" [(ngModel)]="k.kosten" name="kosten-{{in}}">
-                    </td-->
                     <td>
+                      <a style="cursor:hand" (click)="navigate(k)">
+                      {{k.bezeichnung}}
+                      </a>
+                    </td>
+                    <td style="margin-right:0px;width:50px">
                       <button class="btn btn-primary" data-toggle="tooltip" title="löschen" (click)="deleteLiegenschaft(k)" [disabled]="checkPrimaer(k) || !isLand()"> <i class="glyphicon glyphicon-minus"> </i></button>
                     </td>
                   </tr>
-                  <tr>
 
-                    <td colspan="4">
-                      <input list="liegListe" class="form-control" id="neueLiegenschaft" [disabled]="!isLand()" name="neueLiegenschaft" [(ngModel)]="neueLiegenschaft"
-                        (click)="fehler(null)">
-                        <datalist id="liegListe">
-                          <option *ngFor="let i of lieg" [value]="i.title" [label]="i.title"></option>
-                          <!--option *ngFor="let i of liegBez" [value]="i">{{i}}</option-->
-
-                        </datalist>
-                    </td>
-                    <td> <button class="btn btn-primary" data-toggle="tooltip" title="neu" (click)="addLiegenschaft()"> <i class="glyphicon glyphicon-plus"> </i></button></td>
-                  </tr>
                 </tbody>
 
               </table>
             </div>
           </div>
+          <div class="row" *ngIf="isLand() ">
+            <label for="neueLiegenschaft" class="control-label col-sm-4">Liegenschaft hinzufügen</label>
+            <div class="col-sm-8">
+              <table class="table table-striped table-hover">
+                <tr>
+
+                  <td colspan="4">
+                    <input list="liegListe" class="form-control" id="neueLiegenschaft" [disabled]="!isLand()" name="neueLiegenschaft" [(ngModel)]="neueLiegenschaft"
+                      (click)="fehler(null)">
+                      <datalist id="liegListe">
+                        <option *ngFor="let i of lieg" [value]="i.title" [label]="i.title"></option>
+                      </datalist>
+                  </td>
+                  <td style="margin-right:0px; width:50px"> <button class="btn btn-primary" data-toggle="tooltip" title="neu" (click)="addLiegenschaft()"> <i class="glyphicon glyphicon-plus"> </i></button></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
           <!-- ---------------------------------------------------------------------------------------------- -->
           <div class="row">
             <label for="auftraggeber" class="control-label col-sm-4">Auftraggeber *</label>

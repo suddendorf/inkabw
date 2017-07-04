@@ -5,6 +5,9 @@ import { HttpModule } from '@angular/http';
 
 import { AUTH_PROVIDERS } from './security.service';
 import { SecurityService } from './security.service';
+
+import { Store } from './store/store';
+
 import { LoggedInGuard } from './security/logged-in-guard';
 import { AppComponent } from './app.component';
 import { InkaLakListeComponent } from './inka-lak-liste/inka-lak-liste.component';
@@ -62,7 +65,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
    MultiselectDropdownModule
   ],
-  providers: [SecurityService, LoggedInGuard],
+  providers: [SecurityService, LoggedInGuard,Store],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

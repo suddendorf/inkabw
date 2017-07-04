@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { SecurityService } from './security.service';
+import { Store } from './store/store';
+import { State } from './store/state';
 
 declare var ol: any;
 @Component({
@@ -10,36 +12,18 @@ declare var ol: any;
 
 })
 export class AppComponent {
-  ol: any;
+  title: string;
+  constructor(private securityService: SecurityService, @Inject(Store) private store: Store) {
+    this.store.subscribe(() => this.readState());
+    this.readState();
+  }
 
-  constructor(private securityService: SecurityService) { }
+  readState() {
+    const state: State = this.store.getState();
+    this.title = state.title;
+  }
+
   ngOnInit(): void {
     this.securityService.checkLogin();
-    var map = new ol.Map({
-      controls: ol.control.defaults({
-        attributionOptions: /** @type {olx.control.AttributionOptions} */ ({
-          collapsible: false
-        })
-      }).extend([
-        new ol.control.ZoomToExtent({
-          extent: [
-            813079.7791264898, 5929220.284081122,
-            848966.9639063801, 7036863.986909639
-          ]
-        })
-      ]),
-      layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM()
-        })
-      ],
-      target: 'map',
-      view: new ol.View({
-        projection: 'EPSG:900913',
-        center: [1075000.0, 6843000.0],
-        zoom: 14
-      })
-    });
-
   }
 }

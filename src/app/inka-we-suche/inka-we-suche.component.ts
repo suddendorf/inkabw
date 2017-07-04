@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Inject} from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { SecurityService} from '../security.service';
 
+import { Store } from '../store/store';
+
+import { Actions } from '../store/actions';
 import { WE } from '../we';
 @Component({
   selector: 'app-inka-we-suche',
@@ -14,7 +17,7 @@ export class InkaWeSucheComponent implements OnInit {
   wes: WE[];
   we: WE;
   loading:boolean=false;
-  constructor(private router: Router, private service: DataService, private securityService: SecurityService) { 
+  constructor(private router: Router, private service: DataService, private securityService: SecurityService,@Inject(Store) private  store: Store)  { 
     console.log('Konstruktor WE Suche');
     sessionStorage.removeItem('we');
   }
@@ -69,6 +72,9 @@ export class InkaWeSucheComponent implements OnInit {
     const id = we.liegenschaftId;
     sessionStorage.setItem('liegenschaftId', id);
     console.log('WE-Suche: ' + we.liegenschaftId);
+    let s=we.bezeichnung;
+    this.store.dispatch(Actions.setTitle(s));
+    this.store.dispatch(Actions.setLgId(we.liegenschaftId));
     this.router.navigate(['/inka-we', id]);
   }
   

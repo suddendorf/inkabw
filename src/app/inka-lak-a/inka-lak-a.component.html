@@ -94,30 +94,15 @@
                     <td>{{k.sdmwenr}}</td>
                     <td>{{k.bimawenr}}</td>
                     <td>
-                      <!--a [routerLink]="['/inka-we', k.liegenschaftid]" >
-                      {{k.bezeichnung}}
-                      </a-->
                       <a style="cursor:hand" (click)="navigate(k)" >
                       {{k.bezeichnung}}
                       </a>
                     </td>
-                    <!--td>
-                      <input type="number" class="form-control" [disabled]="!isLand()" [(ngModel)]="k.kosten" name="kosten-{{in}}">
-                    </td-->
                     <td style="margin-right:0px;width:50px">
                       <button class="btn btn-primary" data-toggle="tooltip" title="löschen" (click)="deleteLiegenschaft(k)" [disabled]="checkPrimaer(k) || !isLand()"> <i class="glyphicon glyphicon-minus"> </i></button>
                     </td>
                   </tr>
-                  <!--tr>
-                    
-                    <td colspan="4">                      
-                      <input list="liegListe" class="form-control" id="neueLiegenschaft" [disabled]="!isLand()" name="neueLiegenschaft" [(ngModel)]="neueLiegenschaft" (click)="fehler(null)" >
-                      <datalist id="liegListe">
-                        <option *ngFor="let i of lieg" [value]="i.title" [label]="i.title"></option>                        
-                      </datalist>
-                    </td>
-                    <td> <button class="btn btn-primary" data-toggle="tooltip" title="neu" (click)="addLiegenschaft()"> <i class="glyphicon glyphicon-plus"> </i></button></td>
-                  </tr-->
+                  
                 </tbody>
 
               </table>
@@ -141,19 +126,7 @@
               </table>
             </div>
           </div>
-          <!--div class="row">
-            <label for="neueLiegenschaft" class="control-label col-sm-4">Liegenschaft hinzufügen</label>
-            <div class="col-sm-6">
-              <input list="liegListe" class="form-control " id="neueLiegenschaft" [disabled]="!isLand()" name="neueLiegenschaft"
-                [(ngModel)]="neueLiegenschaft" (click)="fehler(null)">
-                <datalist id="liegListe">
-                  <option *ngFor="let i of lieg" [value]="i.title" [label]="i.title"></option>
-                </datalist>
-            </div>
-            <div class="col-sm-1">
-              <button class="btn btn-primary" data-toggle="tooltip" title="neu" (click)="addLiegenschaft()"> <i class="glyphicon glyphicon-plus"> </i></button>
-            </div>
-          </div-->
+          
           <!-- ---------------------------------------------------------------------------------------------- -->
           <div class="row">
             <label for="auftraggeber" class="control-label col-sm-4">Auftraggeber *</label>

@@ -12,16 +12,17 @@ import { Message } from './message';
 
 @Injectable()
 export class DataService {
- 
+
   private static webServer: string = "/inkabw/";
- //private static webServer: string = "http://192.168.137.152:8182/SQLServer/";
+  // private static webServer: string = "http://192.168.137.152:8182/SQLServer/";
+  //private static webServer: string = "http://192.168.137.152:8181/inkabw/";
 
   private urlSQL = 'SQLServlet';
   private urlWE = 'WEServlet';
   private urlABW = 'WESucheServlet';
 
   constructor(private http: Http, private router: Router) {
-    this.getWebServerUrl();
+    // this.getWebServerUrl();
   }
 
 
@@ -31,8 +32,8 @@ export class DataService {
   }
   private extractSingleWE(res: Response): WE {
     const u: WE = res.json();
-    sessionStorage.setItem('title', u.bezeichnung +" (Bw:"+u.weNrBw+"; BImA:"+u.weNrBima+ ")");
- 
+    sessionStorage.setItem('title', u.bezeichnung + " (Bw:" + u.weNrBw + "; BImA:" + u.weNrBima + ")");
+
     return u;
   }
   private handleError(error: Response | any) {
@@ -50,7 +51,7 @@ export class DataService {
     return Rx.Observable.throw(errMsg);
 
   }
- 
+
   public static getWebServer() {
     return this.webServer;
   }
@@ -70,7 +71,7 @@ export class DataService {
     const params: URLSearchParams = new URLSearchParams();
     params.set('liegenschaftId', id);
     return this.http.get(DataService.getWebServer() + 'WKTServlet', {
-    //return this.http.get('http://localhost:8182/' + 'WKTServlet', {
+      //return this.http.get('http://localhost:8182/' + 'WKTServlet', {
       search: params
     }).map(this.extractGeom)
       .catch(this.handleError);
@@ -78,18 +79,16 @@ export class DataService {
 
   private extractGeom(res: Response): Array<String> {
     const body = res.json();
-    console.log('extract Geom'+body);
-    if ( body ){
-      let geom= body;
+    console.log('extract Geom' + body);
+    if (body) {
+      let geom = body;
       return geom;
     }
     return null;
   }
 
   public searchWE(we: WE): Observable<Array<WE>> {
-    if (DataService.getWebServer() == null) {
-      this.getWebServerUrl();
-    }
+
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let token = sessionStorage.getItem('userToken');
@@ -101,8 +100,8 @@ export class DataService {
   }
 
 
-  public getWebServerUrl(): Observable<string> {
-    // const params: URLSearchParams = new URLSearchParams();
+  /*public getWebServerUrl(): Observable<string> {
+     const params: URLSearchParams = new URLSearchParams();
     return this.http.get("/xclient.config", null)
       .map(this.extractWebServer)
       .catch(this.handleError);
@@ -110,7 +109,8 @@ export class DataService {
 
   private extractWebServer(res: Response): string {
     DataService.webServer = res.text();
+    console.log('dataservice:'+DataService.webServer);
     return DataService.webServer;
   }
-
+*/
 }

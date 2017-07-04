@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from '../message';
 import { ToggleCollapse } from '../toggle-collapse';
@@ -8,6 +8,10 @@ import { LiegenschaftRumpf } from "../liegenschaft-rumpf";
 import { ProjektdetailService } from '../projektdetail.service';
 import { DataService } from '../data.service';
 import { WE } from '../we';
+
+import { Store } from '../store/store';
+
+import { Actions } from '../store/actions';
 
 @Component({
   selector: 'app-inka-lak-a',
@@ -23,7 +27,7 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
   lieg: Array<{ id: string, title: string, weNrBw: string, weNrBima: string, bezeichnung: string }> = new Array(); //sek
   neueLiegenschaft: string;//sek
   summeKosten: number = 0;
-  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService) {//sek
+  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService,@Inject(Store) private  store: Store) {//sek
     super();
     this.projekt.phase = 'LAK A';
     this.route.params.subscribe(params => {
@@ -96,6 +100,7 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
     }
     console.log("kosten:" + this.summeKosten);
   }
+  //sek
   deleteLiegenschaft(l: LiegenschaftRumpf) {
     this.projekt.liegenschaften = this.projekt.liegenschaften.filter(obj => obj !== l);
 
@@ -200,6 +205,9 @@ export class InkaLakAComponent extends ToggleCollapse implements OnInit {
   navigate(u: LiegenschaftRumpf) {
     sessionStorage.setItem('title', u.bezeichnung + " (Bw:" + u.sdmwenr + "; BImA:" + u.bimawenr + ")");
     sessionStorage.setItem('liegenschaftId', u.liegenschaftid);
+      this.store.dispatch(Actions.setTitle(u.bezeichnung));
+    this.store.dispatch(Actions.setLgId(u.liegenschaftid));
+  
     this.router.navigate(['/inka-we', u.liegenschaftid]);
   }
   get beginn(): string {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Inject} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from '../message';
 import { ToggleCollapse } from '../toggle-collapse';
@@ -11,6 +11,9 @@ import { LiegenschaftRumpf } from "../liegenschaft-rumpf";
 import { DataService } from '../data.service';
 import { WE } from '../we';
 
+import { Store } from '../store/store';
+
+import { Actions } from '../store/actions';
 
 @Component({
   selector: 'app-inka-lak-fkl',
@@ -30,7 +33,7 @@ export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
 
   summeKosten: number = 0;
 
-  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService) {
+  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService,@Inject(Store) private  store: Store) {
     super();
     this.projekt.phase = 'LAK KL';
     this.route.params.subscribe(params => {
@@ -184,6 +187,11 @@ export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
     this.message.fehler = <any>error;
     console.log(this.message.fehler);
   }
+  //sek
+  deleteLiegenschaft(l: LiegenschaftRumpf) {
+    this.projekt.liegenschaften = this.projekt.liegenschaften.filter(obj => obj !== l);
+  }
+  
   delete(p: AbwProjektDetail) {
     this.message = new Message();
     if (p != null) {
@@ -195,7 +203,14 @@ export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
       this.router.navigate(['/inka-we', this.liegenschaftId]);
     }
   }
-
+ navigate(u: LiegenschaftRumpf) {
+    sessionStorage.setItem('title', u.bezeichnung + " (Bw:" + u.sdmwenr + "; BImA:" + u.bimawenr + ")");
+    sessionStorage.setItem('liegenschaftId', u.liegenschaftid);
+        this.store.dispatch(Actions.setTitle(u.bezeichnung));
+    this.store.dispatch(Actions.setLgId(u.liegenschaftid));
+ 
+    this.router.navigate(['/inka-we', u.liegenschaftid]);
+  }
   get beginn(): string {
     return this.toDate(this.projekt.beginn);
   }
