@@ -1962,9 +1962,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var MapComponent = (function () {
-    function MapComponent(route, service) {
+    function MapComponent(route, service, router) {
         this.route = route;
         this.service = service;
+        this.router = router;
         this.karte = true;
     }
     MapComponent.prototype.ngOnInit = function () {
@@ -1986,25 +1987,42 @@ var MapComponent = (function () {
         this.service.readSDMGeom(liegenschaftId)
             .subscribe(function (geom) { return _this.showMap(geom); }, function (error) { return _this.errorMessage = error; });
     };
-    MapComponent.prototype.showMap = function (res) {
-        var geojsonObject = res;
-        console.log('showMap:' + geojsonObject);
+    MapComponent.prototype.getStyle = function (f, resolution) {
+        console.log("style:" + f);
+        console.log("res:" + resolution);
+        var size = 20;
+        if (resolution > 4) {
+            size = 10;
+        }
         var style = new ol.style.Style({
             stroke: new ol.style.Stroke({
                 color: 'green',
                 width: 2
             }),
             fill: new ol.style.Fill({
-                color: 'rgba(0, 255, 0, 0.0)' //praktisch kein fill
+                color: 'rgba(255, 100, 100, 0.0)' //praktisch kein fill
+            }),
+            text: new ol.style.Text({
+                text: f.get('bezeichnung'),
+                font: size + 'px sans serif',
+                stroke: new ol.style.Stroke({
+                    color: 'green'
+                })
             })
         });
+        return style;
+    };
+    MapComponent.prototype.showMap = function (res) {
+        var r = this.router;
+        var geojsonObject = res;
+        console.log('showMap:' + geojsonObject);
         var vectorSource = new ol.source.Vector();
         //vectorSource.addFeature(new ol.Feature(new ol.geom.Circle([9.9254,54.4616], 0.01)));
-        var f = new ol.format.GeoJSON().readFeature(geojsonObject);
-        vectorSource.addFeature(f);
+        var f = new ol.format.GeoJSON().readFeatures(geojsonObject);
+        vectorSource.addFeatures(f);
         var vectorLayer = new ol.layer.Vector({
             source: vectorSource,
-            style: style
+            style: this.getStyle
         });
         /////////////////////////////////////////////////////////////////////////
         /*let wmsLayer=new ol.layer.Image({
@@ -2060,6 +2078,43 @@ var MapComponent = (function () {
         //map.getView().fit(extent, map.getSize());
         map.getView().fit(extent, map.getSize());
         //map.getView().setZoom(10);
+        // select interaction working on "singleclick"
+        var select = new ol.interaction.Select();
+        map.addInteraction(select);
+        select.on('select', function (e) {
+            var s = '';
+            if (e.target.getFeatures().getLength() > 0) {
+                var sel = e.selected[0];
+                s = sel.get('bezeichnung');
+                var id = sel.get('liegenschaft_id');
+                sessionStorage.setItem('title', s);
+                sessionStorage.setItem('liegenschaftId', id);
+                console.log(id);
+                r.navigate(['/inka-we', id]);
+            }
+            document.getElementById('status').innerHTML = '&nbsp;' + s;
+        });
+        /*
+        var hover = new ol.interaction.Select({
+          condition: ol.events.condition.pointerMove
+        });
+    
+        hover.on('select', function (e) {
+          let s: string = '';
+          if (e.target.getFeatures().getLength() > 0) {
+            let sel = e.selected[0];
+            s = sel.get('bezeichnung');
+            let id = sel.get('liegenschaft_id');
+    
+            sessionStorage.setItem('title', s);
+            sessionStorage.setItem('liegenschaftId', id);
+    
+            this.router.navigate(['/inka-we', id]);
+    
+          } document.getElementById('status').innerHTML = '&nbsp;' + s;
+        });
+        map.addInteraction(hover);
+        */
     };
     return MapComponent;
 }());
@@ -2070,10 +2125,10 @@ MapComponent = __decorate([
         template: __webpack_require__(418),
         styles: [__webpack_require__(406)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__data_service__["a" /* DataService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__data_service__["a" /* DataService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__data_service__["a" /* DataService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]) === "function" && _c || Object])
 ], MapComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=/mnt/sdb1/home/suddendorf/angular/inkabw/src/map.component.js.map
 
 /***/ }),
@@ -2240,7 +2295,6 @@ var DataService = DataService_1 = (function () {
     function DataService(http, router) {
         this.http = http;
         this.router = router;
-        // private static webServer: string = "http://192.168.137.152:8182/SQLServer/";
         //private static webServer: string = "http://192.168.137.152:8181/inkabw/";
         this.urlSQL = 'SQLServlet';
         this.urlWE = 'WEServlet';
@@ -2283,7 +2337,9 @@ var DataService = DataService_1 = (function () {
     };
     DataService.prototype.readSDMGeom = function (id) {
         var params = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["f" /* URLSearchParams */]();
-        params.set('liegenschaftId', id);
+        if (id) {
+            params.set('liegenschaftId', id);
+        }
         return this.http.get(DataService_1.getWebServer() + 'WKTServlet', {
             //return this.http.get('http://localhost:8182/' + 'WKTServlet', {
             search: params
@@ -2311,7 +2367,8 @@ var DataService = DataService_1 = (function () {
     };
     return DataService;
 }());
-DataService.webServer = "/inkabw/";
+//private static webServer: string = "/inkabw/";
+DataService.webServer = "http://192.168.137.152:8182/SQLServer/";
 DataService = DataService_1 = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["b" /* Router */]) === "function" && _b || Object])
@@ -2486,7 +2543,7 @@ module.exports = "\n<div class=\"col-md-6 col-md-offset-3\">\n    <div class=\"a
 /***/ 418:
 /***/ (function(module, exports) {
 
-module.exports = "<!-- BING example select id=\"layer-select\">\n       <option value=\"Aerial\">Aerial</option>\n       <option value=\"AerialWithLabels\" selected>Aerial with labels</option>\n       <option value=\"Road\">Road</option>\n       <option value=\"collinsBart\">Collins Bart</option>\n       <option value=\"ordnanceSurvey\">Ordnance Survey</option>\n     </select-->\n\n<!--div>\n      <button type=\"button\" class=\"button btn-primary\" id=\"bingVisible\" name=\"bingVisible\" (click)=\"toggleBing()\">\n             <i *ngIf=\"karte\" class=\"glyphicon glyphicon-check\"></i>\n             <i *ngIf=\"!karte\" class=\"glyphicon glyphicon-unchecked\"></i>\n             \n      </button> Karte\n</div-->\n\n<div id=\"map\" name=\"map\" class=\"map\" style=\"width: 100%;height: 100%; position:fixed\"></div>"
+module.exports = "<!-- BING example select id=\"layer-select\">\n       <option value=\"Aerial\">Aerial</option>\n       <option value=\"AerialWithLabels\" selected>Aerial with labels</option>\n       <option value=\"Road\">Road</option>\n       <option value=\"collinsBart\">Collins Bart</option>\n       <option value=\"ordnanceSurvey\">Ordnance Survey</option>\n     </select-->\n\n<!--div>\n      <button type=\"button\" class=\"button btn-primary\" id=\"bingVisible\" name=\"bingVisible\" (click)=\"toggleBing()\">\n             <i *ngIf=\"karte\" class=\"glyphicon glyphicon-check\"></i>\n             <i *ngIf=\"!karte\" class=\"glyphicon glyphicon-unchecked\"></i>\n             \n      </button> Karte\n</div-->\n <span id=\"status\">&nbsp;</span>\n<div id=\"map\" name=\"map\" class=\"map\" style=\"width: 100%;height: 100%; position:fixed\"></div>"
 
 /***/ }),
 

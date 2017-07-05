@@ -13,8 +13,8 @@ import { Message } from './message';
 @Injectable()
 export class DataService {
 
-  private static webServer: string = "/inkabw/";
-  // private static webServer: string = "http://192.168.137.152:8182/SQLServer/";
+  //private static webServer: string = "/inkabw/";
+   private static webServer: string = "http://192.168.137.152:8182/SQLServer/";
   //private static webServer: string = "http://192.168.137.152:8181/inkabw/";
 
   private urlSQL = 'SQLServlet';
@@ -69,7 +69,9 @@ export class DataService {
 
   public readSDMGeom(id: string): Observable<String> {
     const params: URLSearchParams = new URLSearchParams();
-    params.set('liegenschaftId', id);
+    if ( id){
+      params.set('liegenschaftId', id);
+    }
     return this.http.get(DataService.getWebServer() + 'WKTServlet', {
       //return this.http.get('http://localhost:8182/' + 'WKTServlet', {
       search: params
