@@ -1,4 +1,4 @@
-import { Component, OnInit ,Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Message } from '../message';
 import { ToggleCollapse } from '../toggle-collapse';
@@ -33,7 +33,7 @@ export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
 
   summeKosten: number = 0;
 
-  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService,@Inject(Store) private  store: Store) {
+  constructor(private route: ActivatedRoute, private router: Router, private service: ProjektdetailService, private dataService: DataService, @Inject(Store) private store: Store) {
     super();
     this.projekt.phase = 'LAK KL';
     this.route.params.subscribe(params => {
@@ -156,14 +156,14 @@ export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
 
 
   update(p: AbwProjektDetail) {
-     this.summe();
+    this.summe();
     this.message = new Message();
     if (p != null) {
       if (!p.projektNr) {
         this.message.fehler = 'Die Projekt Nummer darf nicht leer sein';
         return;
       }
-       if (p.status == 'Altdaten') {
+      if (p.status == 'Altdaten') {
         this.message.fehler = 'Der Status Altdaten ist bei der Datensatzänderung nicht erlaubt.';
         return;
       }
@@ -191,7 +191,7 @@ export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
   deleteLiegenschaft(l: LiegenschaftRumpf) {
     this.projekt.liegenschaften = this.projekt.liegenschaften.filter(obj => obj !== l);
   }
-  
+
   delete(p: AbwProjektDetail) {
     this.message = new Message();
     if (p != null) {
@@ -203,12 +203,12 @@ export class InkaLakFklComponent extends ToggleCollapse implements OnInit {
       this.router.navigate(['/inka-we', this.liegenschaftId]);
     }
   }
- navigate(u: LiegenschaftRumpf) {
+  navigate(u: LiegenschaftRumpf) {
     sessionStorage.setItem('title', u.bezeichnung + " (Bw:" + u.sdmwenr + "; BImA:" + u.bimawenr + ")");
     sessionStorage.setItem('liegenschaftId', u.liegenschaftid);
-        this.store.dispatch(Actions.setTitle(u.bezeichnung));
+    this.store.dispatch(Actions.setTitle(u.bezeichnung));
     this.store.dispatch(Actions.setLgId(u.liegenschaftid));
- 
+
     this.router.navigate(['/inka-we', u.liegenschaftid]);
   }
   get beginn(): string {

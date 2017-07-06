@@ -31,9 +31,10 @@ export class DataService {
     return body;
   }
   private extractSingleWE(res: Response): WE {
+    const test=res.text();
+    console.log(test);
     const u: WE = res.json();
-    sessionStorage.setItem('title', u.bezeichnung + " (Bw:" + u.weNrBw + "; BImA:" + u.weNrBima + ")");
-
+    sessionStorage.setItem('title', u.bezeichnung+ " (Bw:" + u.weNrBw + "; BImA:" + u.weNrBima + ")");
     return u;
   }
   private handleError(error: Response | any) {
