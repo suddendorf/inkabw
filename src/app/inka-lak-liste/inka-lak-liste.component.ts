@@ -60,10 +60,7 @@ export class InkaLakListeComponent extends LISA2Component implements OnInit {
   }
 
 
-  datum(): string {
-    return 'x';
-  }
-
+  
   navigate(lak: AbwProjekt) {
     if ('LAK A' == lak.phase) {
       this.navigateA(lak);
